@@ -1,0 +1,83 @@
+.blur-bg{
+   width: 100%;
+   height: 100%;
+   position: fixed;
+   /*filter: blur(5px);
+   -webkit-filter: blur(5px);*/
+   background: #1b1c25 url('../../img/regactivinf/bg.jpg') no-repeat fixed;
+   /*background: #1b1c25 url('https://nikkenlatam.com/interno/panel-marketing/assets/images/general/bg-pattern.jpg') fixed;*/
+   background-size: cover;
+   z-index: -2;
+}
+
+.card{
+   opacity: 0.8;
+}
+
+.personal-shadow{
+   -webkit-box-shadow: 0px 0px 19px 2px rgba(128,128,128,1);
+   -moz-box-shadow: 0px 0px 19px 2px rgba(128,128,128,1);
+   box-shadow: 0px 0px 19px 2px rgba(128,128,128,1);
+}
+
+
+
+.cards tbody tr {
+   float: left;
+   width: 21%;
+   margin: 1rem;
+   border: 0.0625rem solid rgba(0, 0, 0, .125);
+   border-radius: .25rem;
+   box-shadow: 0.25rem 0.25rem 0.5rem rgba(0, 0, 0, 0.25);
+}
+
+.cards tbody td {
+   display: block;
+}
+
+.cards thead {
+   display: none;
+}
+
+.cards td:before {
+   content: attr(data-label);
+   position: relative;
+   float: left;
+   color: #808080;
+   min-width: 4rem;
+   margin-left: 0;
+   margin-right: 1rem;
+   text-align: left;   
+}
+
+tr.selected td:before {
+   color: #CCC;
+}
+
+.table .avatar {
+   width: 50px;
+}
+
+.cards .avatar {
+   width: 150px;
+   margin: 15px;
+}
+
+.logo{
+   margin: auto;
+   max-height: 80px;
+   width: 70%;
+}
+
+.nav-header-pers{
+   background: rgb(2,0,36);
+   background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(123,79,146,1) 0%, rgba(232,68,140,1) 100%);
+}
+
+.nav-header-pers-menu{
+   opacity: 0.95;
+}
+
+.alert-warning > .close{
+   display: none;
+}

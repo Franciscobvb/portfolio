@@ -91,6 +91,18 @@ return [
             'prefix_indexes' => true,
         ],
 
+        'sqlsrv5' => [
+            'driver' => 'sqlsrv',
+            'host' => env('DB_HOST_RE', 'localhost'),
+            'port' => env('DB_PORT_RE', '1433'),
+            'database' => env('DB_DATABASE_RE', 'forge'),
+            'username' => env('DB_USERNAME_RE', 'forge'),
+            'password' => env('DB_PASSWORD_RE', ''),
+            'charset' => 'utf8',
+            'prefix' => '',
+            'prefix_indexes' => true,
+        ],
+
     ],
 
     /*
