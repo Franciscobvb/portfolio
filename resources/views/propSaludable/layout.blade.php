@@ -33,8 +33,12 @@
                     <div class="media">
                         <img src="{{ asset('fproh/img/regactivinf/user.png') }}" class="img-fluid mr-2" alt="admin-profile">
                         <div class="media-body align-self-center">
-                            <h6 class="mb-1">{{ $username ?? "Nikken Latam" }}</h6>
-                            <p class="mb-0">{{ $lastname ?? "Registro Actividad" }}</p>
+                            @php
+                                $paisCompleto = [ "COL" => "Colombia", "GTM" => "Guatemala", "PER" => "Perú", "SLV" => "El Salvador", "ECU" => "Ecuador", "PAN" => "Panamá", "LAT" => "México", "CRI" => "Costa Rica", "CHL" => "Chile"];
+                                $banderas = ["COL" => "colombia.png", "GTM" => "guatemala.png", "PER" => "peru.png", "SLV" => "salvador.png", "ECU" => "ecuador.png", "PAN" => "panama.png", "LAT" => "mexico.png", "CRI" => "costarica.png", "CHL" => "chile.png"];
+                            @endphp
+                            <h6 class="mb-1">{{ $abiInfo[0]->AssociateName ?? "Nikken Latam" }}</h6>
+                            <p class="mb-0">{{ $paisCompleto[$abiInfo[0]->Pais] . " | " . $abiInfo[0]->Associateid. " | " . $abiInfo[0]->Rango}}</p>
                         </div>
                     </div>
                 </a>
@@ -61,8 +65,8 @@
                     <div class="media">
                         <img src="{{ asset('fproh/img/regactivinf/user.png') }}" class="img-fluid mr-2" alt="admin-profile">
                         <div class="media-body align-self-center">
-                            <h6 class="mb-1">{{ $username ?? "Nikken Latam" }}</h6>
-                            <p class="mb-0">{{ $lastname ?? "Registro Actividad" }}</p>
+                            <h6 class="mb-1">{{ $abiInfo[0]->AssociateName ?? "Nikken Latam" }}</h6>
+                            <p class="mb-0">{{ $paisCompleto[$abiInfo[0]->Pais] . " | " . $abiInfo[0]->Associateid. " | " . $abiInfo[0]->Rango}}</p>
                         </div>
                     </div>
                 </a>
@@ -80,7 +84,7 @@
             <nav id="topbar">
                 <ul class="list-unstyled menu-categories d-lg-flex justify-content-lg-around mb-0" id="topAccordion">
                     <li class="menu">
-                        <a href="../finszsaludable/{{ $associateid }}">
+                        <a href="../finzssaludable/{{ $associateid }}">
                             <div>
                                 <i class="flaticon-calendar-1"></i>
                                 <span>Mis Eventos</span>
@@ -89,7 +93,7 @@
                     </li>
     
                     <li class="menu">
-                        <a href="../finszsalstatuspers/{{ $associateid }}">
+                        <a href="../finzssalstatuspers/{{ $associateid }}">
                             <div>
                                 <i class="flaticon-user-9"></i>
                                 <span>Estatus personal</span>
@@ -98,7 +102,7 @@
                     </li>
 
                     <li class="menu">
-                        <a href="../finszsalstatuspers/{{ $associateid }}">
+                        <a href="../finzssalsrepo/{{ $associateid }}">
                             <div>
                                 <i class="flaticon-users"></i>
                                 <span>Seguimiento</span>
@@ -134,7 +138,7 @@
                 <div class="col-xl-5 col-md-6 col-sm-6 col-12">
                     <ul class="list-inline mb-0 d-flex justify-content-sm-end justify-content-center mr-sm-3 ml-sm-0 mx-3">
                         <li class="list-inline-item  mr-3">
-                            <p class="bottom-footer">&#xA9; {{ Date('Y') }} <a href="javascript:void(0)">NIKKEN Latinoamerica </a></p>
+                            <p class="bottom-footer">&#xA9; {{ Date('Y') }} <a href="javascript:void(0)">NIKKEN Latinoamerica</a> &nbsp;&nbsp;&nbsp;v. 0.5</p>
                         </li>
                         <li class="list-inline-item align-self-center">
                             <div class="scrollTop"><i class="flaticon-up-arrow-fill-1"></i></div>

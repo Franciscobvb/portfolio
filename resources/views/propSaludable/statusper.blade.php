@@ -10,7 +10,7 @@
 @endsection
 
 @section('tittlePage')
-    Propocito Saludable
+    Finanzas Saludables
 @endsection
 
 @section('bg')
@@ -24,7 +24,17 @@
             <div class="widget-header">
                 <div class="row">
                     <div class="col-xl-12 col-md-12 col-sm-12 col-12 text-center">
-                        <h4>Ultima Actulizacion: 20-02-2020 17:00 pm</h4>
+                        @php
+							setlocale(LC_TIME, 'es_ES');
+							$dia = Date('d');
+							$mes = Date('m');
+							$meses = ['', 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Abril', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+							$mes = DateTime::createFromFormat('!m', $mes);
+							$mes = strftime("%B", $mes->getTimestamp());
+							$mesnum = Date('m');
+							$mesnum = str_replace('0', '', $mesnum);
+						@endphp
+                        <h4>Fecha de actualizacion: {{ $dia }} de {{ $meses[$mesnum] }} a las <span id="hora"></span> hora México.</h4>
                     </div>                 
                 </div>
             </div>
@@ -36,7 +46,7 @@
                     <div class="col-lg-8 col-md-12 layout-spacing">
                         <div class="statbox widget box box-shadow">
                             <div class="table-responsive mb-4">
-                                <table id="genealogias" class="table table-striped table-bordered table-hover" style="width:100%">
+                                <table id="statusPers" class="table table-striped table-bordered table-hover" style="width:100%">
                                     <thead>
                                         <tr>
                                             <th >Requisitos</th>
@@ -50,12 +60,18 @@
                                                 100 puntos de Volumen Personal
                                             </td>
                                             <td class="text-center">
-                                                100
+                                                {{ number_format($status[0]->VP) }}
                                             </td>
                                             <td class="text-center">
-                                                <span class=" shadow-none badge badge-danger badge-pill">
-                                                    Faltan 20
-                                                </span>
+                                                @if ($status[0]->VP < 100)
+                                                    <span class="shadow-none badge badge-danger badge-pill">
+                                                        Faltan {{ 100 - $status[0]->VP }}
+                                                    </span>
+                                                @else
+                                                    <span class=" shadow-none badge badge-success badge-pill">
+                                                        Cumple
+                                                    </span>
+                                                @endif
                                             </td>
                                         </tr>
                                         <tr>
@@ -63,25 +79,37 @@
                                                 2 incorporaciones frontales de Influencer
                                             </td>
                                             <td class="text-center">
-                                                1
+                                                {{ number_format($status[0]->Incorp_Influencers) }}
                                             </td>
                                             <td class="text-center">
-                                                <span class=" shadow-none badge badge-danger badge-pill">
-                                                    Faltan 1
-                                                </span>
+                                                @if ($status[0]->Incorp_Influencers < 2)
+                                                    <span class="shadow-none badge badge-danger badge-pill">
+                                                        Faltan {{ 2 - $status[0]->Incorp_Influencers }}
+                                                    </span>
+                                                @else
+                                                    <span class=" shadow-none badge badge-success badge-pill">
+                                                        Cumple
+                                                    </span>
+                                                @endif
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                Mínimo un evento registrado 
+                                                Mínimo un evento registrado
                                             </td>
                                             <td class="text-center">
-                                                0
+                                                {{ number_format($noEventos[0]->NoEventos) }}
                                             </td>
                                             <td class="text-center">
-                                                <span class=" shadow-none badge badge-danger badge-pill">
-                                                    Faltan 1
-                                                </span>
+                                                @if ($noEventos[0]->NoEventos < 1)
+                                                    <span class="shadow-none badge badge-danger badge-pill">
+                                                        Faltan {{ 1 - $noEventos[0]->NoEventos }}
+                                                    </span>
+                                                @else
+                                                    <span class=" shadow-none badge badge-success badge-pill">
+                                                        Cumple
+                                                    </span>
+                                                @endif
                                             </td>
                                         </tr>
                                     </tbody>
@@ -97,9 +125,10 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('fproh/mainjs/regactivinf/regactivinf.js') }}"></script>
+    <script src="{{ asset('fproh/mainjs/finszsaludables/finszsaludables.js') }}"></script>
     <script src="{{ asset('fproh/plugins/dropify/dropify.min.js') }}"></script>
     <script>
         $('.dropify').dropify();
+        setHora();
     </script>
 @endsection

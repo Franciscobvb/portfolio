@@ -61,7 +61,7 @@
                         <img src="{{ asset('fproh/img/regactivinf/user.png') }}" class="img-fluid mr-2" alt="admin-profile">
                         <div class="media-body align-self-center">
                             <h6 class="mb-1">{{ $username }}</h6>
-                            <p class="mb-0">{{ $pais . ' | ' . $lastname}}</p>
+                            <p class="mb-0">{{ $pais . ' | ' . $lastname }}</p>
                         </div>
                     </div>
                 </a>

@@ -65,13 +65,12 @@
 
 @section('content')
 
-@if ($getVP[0]->VP < 100)
+@if ($getVP[0]->VP < '100')
     <div class="alert alert-warning  br-50 mb-4 personal-shadow text-center text-black" role="alert">
         <i class="flaticon-cancel-12 close" data-dismiss="alert"></i>
         <strong>ATENCIÓN!</strong> Tu VP es <b>{{ number_format($getVP[0]->VP) }}</b>, el cual no suficiente para ganar estas bonificaciones, consigue 100 puntos de VP y no te pierdas estos beneficios.
     </div>
 @endif
-
 
 <div class="row layout-spacing">
     <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12 mb-xl-0 mb-4">
@@ -79,7 +78,7 @@
             <div class="row">
                 <div class="col-sm-12 col-12">
                     <center>
-                        <img alt="image-widget" src="{{ asset('fproh/img/regactivinf/PDI_logo.png') }}" class="img-fluid logo m-auto">
+                        <img alt="image-widget" src="{{ asset('fproh/img/regactivinf/PDI_logo.png') }}" class="img-fluid logo m-auto" width="80%">
                     </center>
                 </div>
             </div>
@@ -175,7 +174,10 @@
                                         <td>{{ $row->Periodo }}</td>
                                         <td>{{ trim($row->Kit_Influencer, " ") }}</td>
                                         <td>{{ $row->Descripcion }}</td>
-                                        <td>{{ $row->Qty_Item }}</td>
+                                        <td>
+                                            {{ $row->Qty_Item }}
+                                            @php $totalUnidades = $totalUnidades + $row->Qty_Item; @endphp
+                                        </td>
                                         <td>
                                             {{ number_format($row->Bono_Una_Unidad) }}
                                             @php $total_bono = $total_bono + $row->Bono_Una_Unidad @endphp
@@ -192,7 +194,10 @@
                                         <td>{{ $row->Periodo }}</td>
                                         <td>{{ trim($row->itemcode, " ") }}</td>
                                         <td>{{ $row->Descripcion }}</td>
-                                        <td>{{ $row->Qty_Item }}</td>
+                                        <td>
+                                            {{ $row->Qty_Item }}
+                                            @php $totalUnidades = $totalUnidades + $row->Qty_Item; @endphp
+                                        </td>
                                         <td>
                                             {{ number_format($row->Bono_Dos_Unidades) }}
                                             @php $total_bono = $total_bono + $row->Bono_Dos_Unidades @endphp

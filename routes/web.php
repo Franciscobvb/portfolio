@@ -7,6 +7,9 @@ Route::get('/mantenimiento', 'Controller@mantenimiento');
 Route::get('/regactivinf/{associateid}', 'regactivinf\regActivInfController@index');
 
 /*==== Registro de FINANZAS SALUDABLES ====*/
-Route::get('/finszsaludable/{associateid}', 'PropSaludable\PropSaludableController@index');
-Route::get('/finszsalstatuspers/{associateid}', 'PropSaludable\PropSaludableController@finszSalStatusPers');
-Route::get('/finszsalsrepo/{associateid}', 'PropSaludable\PropSaludableController@finszsalRepo');
+Route::get('/finzssaludable/{associateid}', 'PropSaludable\PropSaludableController@index');
+Route::get('/geteventsfzssal', 'PropSaludable\PropSaludableController@getEventsFzsSal');
+Route::get('/finzssalstatuspers/{associateid}', 'PropSaludable\PropSaludableController@finzsSalStatusPers');
+Route::get('/finzssalsrepo/{associateid}', 'PropSaludable\PropSaludableController@finzsSalRepo');
+Route::get('/getreportfzssal', 'PropSaludable\PropSaludableController@getReportFzsSal');
+Route::post('/finszsalsave', 'PropSaludable\PropSaludableController@finszSalSave');
