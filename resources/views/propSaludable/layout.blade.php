@@ -60,7 +60,7 @@
         </ul>
 
         <ul class="navbar-nav flex-row ml-lg-auto">
-            <li class="nav-item dropdown user-profile-dropdown mr-5  d-lg-inline-block d-none">
+            <li class="nav-item dropdown user-profile-dropdown mr-5 d-lg-inline-block d-none text-black">
                 <a href="javascript:void(0);" class="nav-link user" aria-haspopup="true" aria-expanded="false">
                     <div class="media">
                         <img src="{{ asset('fproh/img/regactivinf/user.png') }}" class="img-fluid mr-2" alt="admin-profile">

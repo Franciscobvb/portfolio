@@ -1,7 +1,8 @@
 <?php
 
-Route::get('/', 'Controller@index');
-Route::get('/mantenimiento', 'Controller@mantenimiento');
+Route::get('/', function () {
+    return view('index');
+});
 
 /*==== Registro de Actividades Influencers ====*/
 Route::get('/regactivinf/{associateid}', 'regactivinf\regActivInfController@index');
@@ -13,3 +14,6 @@ Route::get('/finzssalstatuspers/{associateid}', 'PropSaludable\PropSaludableCont
 Route::get('/finzssalsrepo/{associateid}', 'PropSaludable\PropSaludableController@finzsSalRepo');
 Route::get('/getreportfzssal', 'PropSaludable\PropSaludableController@getReportFzsSal');
 Route::post('/finszsalsave', 'PropSaludable\PropSaludableController@finszSalSave');
+
+/*==== UK Volume History Report ====*/
+Route::get('volumehistory/{associateid}/{lang}', 'VolumeHistory\VolumeHistoryController@index');

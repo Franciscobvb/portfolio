@@ -146,3 +146,7 @@ tr.selected td:before {
 .avatar{
     cursor: pointer;
 }
+
+.user-profile-dropdown > a{
+    cursor: initial;
+}

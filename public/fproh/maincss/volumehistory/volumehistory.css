@@ -1,0 +1,20 @@
+.topbar-nav.header {
+    top: 0px !important;
+    background-color: #0ba7b5;
+}
+
+.text-blue{
+    color: #0000ee;
+}
+
+.dataTables_filter{
+    display: none;
+}
+
+.dataTables_length{
+    display: none;
+}
+
+.dataTables_info{
+    text-align: left;
+}

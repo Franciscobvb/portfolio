@@ -1,7 +1,7 @@
 @extends('propSaludable.layout')
 
 @section('tittleSite')
-    Nikken | Propocito Saludable
+    Propocito Saludable
 @endsection
 
 @section('css')
@@ -40,12 +40,18 @@
             </div>
             <div class="widget-content widget-content-area">
                 <div class="row">
-                    <div class="col-lg-4 col-md-12 layout-spacing text-center">
-                        <img src="http://services.nikken.com.mx/retos/img/ser_por.png" width="50%">
+                    <div class="col-lg-6 col-md-12 ">
+                        <div class="statbox widget box box-shadow " hidden>
+                            @if ($abiInfo[0]->Pais == 'CHL')
+                                <img src="http://services.nikken.com.mx/retos/img/ClubViajero_Banner.png" width="100%">
+                            @else
+                                <img src="http://services.nikken.com.mx/retos/img/ser_por.png" width="100%">
+                            @endif
+                        </div>
                     </div>
-                    <div class="col-lg-8 col-md-12 layout-spacing">
+                    <div class="col-lg-6 col-md-12">
                         <div class="statbox widget box box-shadow">
-                            <div class="table-responsive mb-4">
+                            <div class="table-responsive ">
                                 <table id="statusPers" class="table table-striped table-bordered table-hover" style="width:100%">
                                     <thead>
                                         <tr>
@@ -122,6 +128,63 @@
         </div>
     </div>
 </div>
+
+<div class="row">  
+    <div class="col-xl-4 col-lg-6 col-sm-12 layout-spacing">
+        <div class="statbox widget box box-shadow card personal-shadow">
+            <div class="widget-header">
+                <div class="row">
+                    <div class="col-xl-12 col-md-12 col-sm-12 col-12 text-center">
+                        <h4>Detalles de la promoción:</h4>
+                    </div>                 
+                </div>
+            </div>
+            <div class="widget-content widget-content-area">
+                @if ($abiInfo[0]->Pais == 'CHL')
+                    <img src="http://services.nikken.com.mx/retos/img/ClubViajero_Banner.png" width="100%">
+                @else
+                    <img src="http://services.nikken.com.mx/retos/img/ser_por.png" width="100%">
+                @endif
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-4 col-lg-6 col-sm-12 layout-spacing">
+        <div class="statbox widget box box-shadow card personal-shadow">
+            <div class="widget-header">
+                <div class="row">
+                    <div class="col-xl-12 col-md-12 col-sm-12 col-12 text-center">
+                        <h4>Términos y condiciones</h4>
+                    </div>                 
+                </div>
+            </div>
+            <div class="widget-content widget-content-area">
+                @if ($abiInfo[0]->Pais == 'CHL')
+                    <img src="http://services.nikken.com.mx/retos/img/ClubViajero_Banner.png" width="100%">
+                @else
+                    <img src="http://services.nikken.com.mx/retos/img/ser_por.png" width="100%">
+                @endif
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-4 col-lg-6 col-sm-12 layout-spacing">
+        <div class="statbox widget box box-shadow card personal-shadow">
+            <div class="widget-header">
+                <div class="row">
+                    <div class="col-xl-12 col-md-12 col-sm-12 col-12 text-center">
+                        <h4>Términos y condiciones</h4>
+                    </div>                 
+                </div>
+            </div>
+            <div class="widget-content widget-content-area">
+                @if ($abiInfo[0]->Pais == 'CHL')
+                    <img src="http://services.nikken.com.mx/retos/img/ClubViajero_Banner.png" width="100%">
+                @else
+                    <img src="http://services.nikken.com.mx/retos/img/ser_por.png" width="100%">
+                @endif
+            </div>
+        </div>
+    </div>
+</div> 
 @endsection
 
 @section('scripts')

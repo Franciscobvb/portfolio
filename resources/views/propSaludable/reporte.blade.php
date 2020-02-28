@@ -1,7 +1,7 @@
 @extends('propSaludable.layout')
 
 @section('tittleSite')
-    Nikken | Finanas Saludables
+    Finanas Saludables
 @endsection
 
 @section('css')

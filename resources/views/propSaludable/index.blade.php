@@ -182,6 +182,7 @@
 @endsection
 
 @section('scripts')
+    
     <script src="{{ asset('fproh/plugins/sweetalerts/sweetalert2.min.js') }}"></script>
     <script src="{{ asset('fproh/mainjs/finszsaludables/finszsaludables.js') }}"></script>
     <script src="{{ asset('fproh/plugins/dropify/dropify.min.js') }}"></script>
@@ -192,15 +193,14 @@
             $('.dropify').dropify();
             geteventsfzssal();
         });
-    </script>
-    @if(Session::has('notice'))
-        <script>
+        @if(Session::has('notice'))
             swal({
                 title: 'Evento Añadido!',
                 text: "{{ Session::get('notice') }}",
                 type: 'success',
                 padding: '2em'
             })
-        </script>
-    @endif
+        @endif
+    </script>
+    
 @endsection

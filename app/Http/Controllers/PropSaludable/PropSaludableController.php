@@ -87,7 +87,7 @@ class PropSaludableController extends Controller{
         $abiRank = $rangos[$request->abiRank];
         $eventName = $request->eventName;
         $eventDate = $request->eventDate;
-
+        
         $conexion5 = \DB::connection('sqlsrv5');
             $periodo = Date('Ym');
             $response = $conexion5->insert("INSERT INTO Registro_Eventos(Associateid, AssociateName, Rango, EventName, EventImage, EventDate) VALUES ($abiCode, '$abiName', '$abiRank', '$eventName', '$full_path', '$eventDate')");
