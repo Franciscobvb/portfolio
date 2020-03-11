@@ -1,10 +1,10 @@
 .form-control { border-radius: 30px; }
 .form-control:focus { border-color: #816cfd; }
-h4 {
+.modal > h4 {
     color: #24ccda;
     text-transform: uppercase;
 }
-h1 { color: #ee3d50; }
+.modal > h1 { color: #ee3d50; }
 .popover {
     border-bottom-color: #e9ecef;
     border-radius: 4px;

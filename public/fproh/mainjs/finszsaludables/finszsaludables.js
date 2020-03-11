@@ -1,6 +1,7 @@
 function geteventsfzssal(){
     var associateid = $("#associateid").val();
     var table = $('#genealogias').DataTable({
+        'destroy': true,
         'dom':
             "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'<'float-md-right ml-2'B>f>>" +
             "<'row'<'col-sm-12'tr>>" +
@@ -14,6 +15,7 @@ function geteventsfzssal(){
                 'id': 'cardview',
             },
             'action': function (e, dt, node) {
+                //dt.destroy();
                 $(dt.table().node()).toggleClass('cards');
                 $('.fa', node).toggleClass(['fa-table', 'fa-id-badge']);
                 dt.draw('page');
@@ -28,16 +30,25 @@ function geteventsfzssal(){
                 'render': function(data, type, row){
                     if (type === 'display'){
                         data = '<i class="fa fa-user fa-fw"></i>';
-                        data = '<img src="' + row.EventImage + '" class="avatar" data-event="' + row.EventName + '" id="' + row.EventDate + '"  onclick="showEventPic(this.id)">';
+                        data = '<img src="' + row.EventImage + '" class="avatar" data-event="' + row.EventName + '" id="' + row.EventDate + Math.floor(Math.random() * 50) + '"  onclick="showEventPic(this.id)">';
                     }
                     return data;
                 },
             },
+            { 'data': 'EventName' },
+            { 'data': 'EventDate' },
             {
-               'data': 'EventName'
-            },
-            {
-               'data': 'EventDate'
+                data: null,
+                className: 'text-center ',
+                "render": function (data, type, row) {
+                    return '<a href="javascript:void(0)" onclick="editEvent(\'' + row.EventImage + '\', \'' + row.EventName + '\', \'' + row.EventDate + '\')" title="Editar este evento">' +
+                                '<i class="actions flaticon-edit-6"></i>' + 
+                            '</a>' +
+                            ' &nbsp; ' + 
+                            '<a href="javascript:void(0)" onclick="delEvent(\'' + row.EventImage + '\')" title="Eliminar este evento">' +
+                                '<i class="actions flaticon-delete-1"></i>' +
+                            '</a>';
+                }
             },
         ],
         'drawCallback': function (settings) {
@@ -71,7 +82,6 @@ function geteventsfzssal(){
                 $('tbody tr', $table).each(function () {
                     $(this).height('auto');
                 });
-                
             }
 
         },
@@ -79,7 +89,9 @@ function geteventsfzssal(){
             "url": "//cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json",
         },
         "bLengthChange": false,
-        "iDisplayLength": 10,
+        "iDisplayLength": 8,
+        "processing": true,
+        "order": [[ 0, 'asc' ], [ 1, 'asc' ]]
     })
     .on('select', function (e, dt, type, indexes) {
         var rowData = table.rows(indexes).data().toArray()
@@ -137,24 +149,6 @@ function getReport(){
                 data: 'associateid',
             },
             {
-                data: null,
-                "render": function (data, type, row) {
-                    return "5566778899"
-                }
-            },
-            {
-                data: null,
-                "render": function (data, type, row) {
-                    return "5566778899"
-                }
-            },
-            {
-                data: null,
-                "render": function (data, type, row) {
-                    return "mailtest@mail.com"
-                }
-            },
-            {
                 data: 'Rango',
             },
             {
@@ -181,7 +175,7 @@ function getReport(){
                     }
                     else{
                         var falta = 100-row.VP;
-                        return '<span class=" shadow-none badge badge-danger badge-pill">Falta ' + falta + '</span>';
+                        return '<span class=" shadow-none badge badge-danger badge-pill">Falta(n) ' + falta + '</span>';
                     }
                 }
             },
@@ -194,7 +188,7 @@ function getReport(){
                     }
                     else{
                         var falta = 2-row.Incorp_Influencers;
-                        return '<span class=" shadow-none badge badge-danger badge-pill">Falta ' + falta + '</span>';
+                        return '<span class=" shadow-none badge badge-danger badge-pill">Falta(n) ' + falta + '</span>';
                     }
                 }
             },
@@ -207,7 +201,7 @@ function getReport(){
                     }
                     else{
                         var falta = 1-row.NoEventos;
-                        return '<span class=" shadow-none badge badge-danger badge-pill">Falta ' + falta + '</span>';
+                        return '<span class=" shadow-none badge badge-danger badge-pill">Falta(n) ' + falta + '</span>';
                     }
                 }
             },
@@ -225,7 +219,7 @@ function getReport(){
         },
         "bLengthChange": false,
         "iDisplayLength": 10,
-        "responsive": true,
+        "processing": true,
     });
 }
 
@@ -244,5 +238,70 @@ function showEventPic(img){
     var src = $('#' + img).attr('src');
     $("#myLargeModalLabel").text(evento);
     $("#eventPic").attr('src', src)
-    $(".bd-example-modal-lg").modal('toggle');
+    $(".showEventPic-modal").modal('toggle');
+}
+
+function editEvent(refEvent, eventName, eventDate){
+    $("#eventEditPic").attr('src', refEvent)
+    $(".editEvent-modal").modal('toggle')
+    $("#eventNameUpdate").val(eventName);
+    $("#eventDateUpdate").val(eventDate);
+    $("#picEventLast").val(refEvent);
+}
+
+function updateEventSubmit(){
+    if($("#eventNameUpdate").val().trim() != '' && $("#eventDateUpdate").val().trim() != ''){
+        $("#updateEventFrm").submit();
+        $("#updateButton").prop('disabled', true);
+    }
+    else{
+        swal({
+            title: 'Error!',
+            text: "Todos los campos deben estar llenos!",
+            type: 'error',
+            padding: '2em'
+        })
+    }
+}
+
+function resetUpdateFrm(){
+    $(".dropify-clear").trigger("click")
+    $("#updateEventFrm").trigger("reset");
+}
+
+function delEvent(refEvent){
+    swal({
+        title: 'Eliminar evento?',
+        text: "No se podra recuperar la información!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Eliminar',
+        cancelButtonText: 'Cancelar',
+        padding: '2em'
+    }).then(function(result) {
+        if (result.value) {
+            var data = {abiCode: $("#abiCode").val(), ref: refEvent};
+            $.ajax({
+                type: 'GET',
+                url: '../finzsSalDelEvent',
+                data: data,
+                success: function(result){
+                    swal(
+                        'Eliminado!',
+                        'El evento ha sido eliminado correctamente',
+                        'success'
+                    )
+                }
+            }).fail( function() {
+                Swal.fire({
+                    type: 'error',
+                    title: 'Error al eliminar!',
+                    text: 'Contactar con soporte.',
+                })
+            });
+            geteventsfzssal()
+        }
+    })
 }

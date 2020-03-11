@@ -150,3 +150,66 @@ tr.selected td:before {
 .user-profile-dropdown > a{
     cursor: initial;
 }
+
+.dataTables_processing{
+    top: 79% !important;
+    background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(139,176,24,1) 0%, rgba(61,136,56,1) 100%);
+    background-color: rgba(0, 0, 0, 0);
+    color: #000;
+    z-index: 1;
+}
+
+.alert > .close{
+    display: none;
+}
+
+.actions{
+    font-size: 20px;
+}
+
+.flaticon-edit-6{
+    color: #3232b7;
+}
+
+.flaticon-delete-1{
+    color: #e7515a;
+}
+
+.flaticon-edit-6:hover, .flaticon-delete-1:hover{
+   color: #000; 
+}
+
+.hidden{
+    display: none;
+}
+
+#chat-circle {
+    position: fixed;
+    bottom: 55px;
+    right: 15px;
+    background-color: transparent;
+    border-radius: 5px;
+    color: #fff;
+    padding: 0;
+    z-index: 999;
+    cursor: pointer;
+    box-shadow: none;
+    outline: 0;
+    -webkit-transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s cubic-bezier(0.4, 0, 0.2, 1), -webkit-box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1);
+    transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s cubic-bezier(0.4, 0, 0.2, 1), -webkit-box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1);
+    -o-transition: box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1), background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1), background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1), background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s cubic-bezier(0.4, 0, 0.2, 1), -webkit-box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1);
+    will-change: box-shadow, transform;
+}
+
+#chat-circle i {
+    font-size: 30px;
+    color: #fff;
+    padding: 16px;
+    background: #488e34;
+    background-image: none;
+    background-image: linear-gradient(to right, #408937 0%, #85AD1B 100%);
+    border-radius: 50%;
+    letter-spacing: 0;
+}

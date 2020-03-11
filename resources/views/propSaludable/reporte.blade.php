@@ -1,11 +1,13 @@
 @extends('propSaludable.layout')
 
 @section('tittleSite')
-    Finanas Saludables
+    Finanzas Saludables
 @endsection
 
 @section('css')
     <link rel="stylesheet" type="text/css" href="{{ asset('fproh/plugins/bootstrap-select/bootstrap-select.min.css') }}">
+    <link href="{{ asset('fproh/css/ui-kit/custom-tooltips_and_popovers.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('fproh/css/modals/component.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('tittlePage')
@@ -43,17 +45,14 @@
                                 <th class="text-center">Lvl</th>
                                 <th class="text-center"><p class="main-th-space">Nombre</p></th>
                                 <th class="text-center">Id</th>
-                                <th class="text-center">Teléfono</th>
-                                <th class="text-center">Teléfono #2</th>
-                                <th class="text-center">Correo</th>
                                 <th class="text-center">Rango</th>
                                 <th class="text-center">País</th>
                                 <th class="text-center">VP Marzo</th>
                                 <th class="text-center"># Incorporaciones</th>
                                 <th class="text-center">Evento</th>
-                                <th class="text-center">Falta VP</th>
-                                <th class="text-center">Falta Incoporaciones</th>
-                                <th class="text-center">Falta Evento</th>
+                                <th class="text-center">Estatus VP</th>
+                                <th class="text-center">Estatus Incoporaciones</th>
+                                <th class="text-center">Estatus Eventos</th>
                             </tr>
                         </thead>
                     </table>

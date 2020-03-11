@@ -10,10 +10,11 @@
 
 @section('bg')
     @php
+        $pais = $abiInfo[0]->Pais ?? "LAT";
         $paisCompleto = [ "COL" => "Colombia", "GTM" => "Guatemala", "PER" => "Perú", "SLV" => "El Salvador", "ECU" => "Ecuador", "PAN" => "Panamá", "LAT" => "México", "CRI" => "Costa Rica", "CHL" => "Chile"];
         $banderas = ["COL" => "colombia.png", "GTM" => "guatemala.png", "PER" => "peru.png", "SLV" => "salvador.png", "ECU" => "ecuador.png", "PAN" => "panama.png", "LAT" => "mexico.png", "CRI" => "costarica.png", "CHL" => "chile.png"];
-        $bandera = $banderas[$abiInfo[0]->Pais];
-        $pais = $paisCompleto[$abiInfo[0]->Pais];
+        $bandera = $banderas[$pais];
+        $pais = $paisCompleto[$pais];
     @endphp
     <div class="blur-bg"></div>
 @endsection
@@ -51,7 +52,8 @@
                 </li>
 
                 <li class="menu">
-                    <a href="javascript:void(0)" data-toggle="collapse" aria-expanded="false">
+                    <!--<a href="../regactivinf/{{ base64_encode($associateid) }}" aria-expanded="false">-->
+                        <a href="../regactivinf/{{ $associateid }}" aria-expanded="false">
                         <div>
                             <i class="flaticon-stats"></i>
                             <span>Plan de Influencia</span>
@@ -64,22 +66,32 @@
 @endsection
 
 @section('content')
-
-@if ($getVP[0]->VP < '100')
+@php $VP = $abiInfo[0]->Vp ?? 0; @endphp
+@if ($VP < 100)
     <div class="alert alert-warning  br-50 mb-4 personal-shadow text-center text-black" role="alert">
         <i class="flaticon-cancel-12 close" data-dismiss="alert"></i>
-        <strong>ATENCIÓN!</strong> Tu VP es <b>{{ number_format($getVP[0]->VP) }}</b>, el cual no suficiente para ganar estas bonificaciones, consigue 100 puntos de VP y no te pierdas estos beneficios.
+        <strong>ATENCIÓN!</strong> Tu VP es <b>{{ number_format($VP) }}</b>, el cual no suficiente para ganar estas bonificaciones, consigue 100 puntos de VP y no te pierdas estos beneficios.
     </div>
 @endif
 
+<div class="col-sm-12 col-12 layout-spacing">
+    <center>
+        <img alt="image-widget" src="{{ asset('fproh/img/regactivinf/PDI_logo.png') }}" class="img-fluid logo m-auto">
+    </center>
+</div>
+
 <div class="row layout-spacing">
-    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12 mb-xl-0 mb-4">
-        <div class="widget-content-area total-coins br-4 card personal-shadow">
-            <div class="row">
-                <div class="col-sm-12 col-12">
-                    <center>
-                        <img alt="image-widget" src="{{ asset('fproh/img/regactivinf/PDI_logo.png') }}" class="img-fluid logo m-auto" width="80%">
-                    </center>
+    <div class="col-xl-3 mb-xl-0 col-lg-6 mb-4 col-md-6 col-sm-6">
+        <div class="widget-content-area data-widgets br-4 card personal-shadow">
+            <div class="widget t-order-widget">
+                <div class="media">
+                    <div class="icon ml-2">
+                        <i class="flaticon-user-group-1"></i>
+                    </div>
+                    <div class="media-body text-right">
+                        <p class="widget-text mb-0">VP:</p>
+                        <p class="widget-numeric-value">{{ number_format($VP) }}</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -125,7 +137,7 @@
                         <i class="flaticon-user-11"></i>
                     </div>
                     <div class="media-body text-right">
-                        <p class="widget-text mb-0">Bonificacion</p>
+                        <p class="widget-text mb-0">Bonificación</p>
                         <span class="widget-numeric-value" id="totalBonificacion"></span>
                     </div>
                 </div>
@@ -146,17 +158,18 @@
             </div>
             <div class="widget-content widget-content-area">
                 <div class="table-responsive mb-4">
-                    <table id="genealogia" class="table table-striped table-bordered table-hover" style="width:100%">
+                    <table id="bonos" class="table table-striped table-bordered table-hover" style="width:100%">
                         <thead>
                             <tr>
-                                <th>Associateid</th>
+                                <th>Nombre</th>
+                                <th>Código Asesor</th>
                                 <th>Num. Orden</th>
                                 <th>Fecha orden</th>
                                 <th>periodo</th>
                                 <th>Kit Influencer</th>
                                 <th>Descripción</th>
                                 <th>Cantidad</th>
-                                <th>Bono por unidad</th>
+                                <th>Bono por unidad / paquete</th>
                                 <th>País</th>
                             </tr>
                         </thead>
@@ -168,6 +181,7 @@
                             @if (!empty($unaUnidad))
                                 @foreach ($unaUnidad as $row)
                                     <tr>
+                                        <td>{{ $row->apfirstname }}</td>
                                         <td>{{ $row->Associateid }}</td>
                                         <td>{{ $row->Ordernum }}</td>
                                         <td>{{ $row->Fecha_Orden }}</td>
@@ -188,6 +202,7 @@
                             @elseif(!empty($dosUnidades))
                                 @foreach ($dosUnidades as $row)
                                     <tr>
+                                        <td>{{ $row->apfirstname }}</td>
                                         <td>{{ $row->Associateid }}</td>
                                         <td>{{ $row->Ordernum }}</td>
                                         <td>{{ $row->Orderdate }}</td>
@@ -208,6 +223,7 @@
                             @elseif(!empty($tresUnidades))
                                 @foreach ($tresUnidades as $row)
                                     <tr>
+                                        <td>{{ $row->apfirstname }}</td>
                                         <td>{{ $row->Associateid }}</td>
                                         <td>{{ $row->Ordernum }}</td>
                                         <td>{{ $row->Orderdate }}</td>

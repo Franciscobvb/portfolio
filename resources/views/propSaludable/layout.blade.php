@@ -27,7 +27,6 @@
                     <a href="javascript:void(0);" class="nav-link sidebarCollapse d-inline-block" data-placement="bottom">
                         <i class="flaticon-menu-line-2"></i>
                     </a>
-                    <a class="ml-3"> <img src="{{ asset('fpro/img/min-logo-nikken-black.png') }}" class="img-fluid" alt="logo"></a>
                 </div>
                 <a class="nav-link user d-inline-block float-right mr-2" aria-haspopup="true" aria-expanded="false">
                     <div class="media">
@@ -84,7 +83,8 @@
             <nav id="topbar">
                 <ul class="list-unstyled menu-categories d-lg-flex justify-content-lg-around mb-0" id="topAccordion">
                     <li class="menu">
-                        <a href="../finzssaludable/{{ $associateid }}">
+                        <a href="../finzssaludable/{{ base64_encode($associateid) }}">
+                        <!--<a href="../finzssaludable/{{ $associateid }}">-->
                             <div>
                                 <i class="flaticon-calendar-1"></i>
                                 <span>Mis Eventos</span>
@@ -93,7 +93,8 @@
                     </li>
     
                     <li class="menu">
-                        <a href="../finzssalstatuspers/{{ $associateid }}">
+                        <a href="../finzssalstatuspers/{{ base64_encode($associateid) }}">
+                        <!--<a href="../finzssalstatuspers/{{ $associateid }}">-->
                             <div>
                                 <i class="flaticon-user-9"></i>
                                 <span>Estatus personal</span>
@@ -102,7 +103,8 @@
                     </li>
 
                     <li class="menu">
-                        <a href="../finzssalsrepo/{{ $associateid }}">
+                        <a href="../finzssalsrepo/{{ base64_encode($associateid) }}">
+                        <!--<a href="../finzssalsrepo/{{ $associateid }}">-->
                             <div>
                                 <i class="flaticon-users"></i>
                                 <span>Seguimiento</span>
@@ -117,7 +119,12 @@
             <div class="container mt-5 pt-3">
                 <div class="page-header">
                     <div class="page-title text-black">
+                        <h5 class="d-lg-none">@yield('tittlePage')</h5>
                     </div>
+                </div>
+
+                <div class="alert alert-warning br-50 mb-4 personal-shadow text-center text-black" role="alert">
+                    <strong>ATENCIÓN!</strong> La fecha del evento va del <b>1 de marzo hasta 1 de abril</b>.
                 </div>
 
                 @yield('content')
@@ -125,6 +132,31 @@
             </div>
         </div>
         
+    </div>
+
+    <div id="chat">
+        <div id="chat-circle" class="btn btn-raised d-lg-block bs-tooltip" data-placement="left" title="¿Necesitas ayuda? Ve nuestro tutorial" data-toggle="modal" data-target=".mdl-tutorial">
+            <i class="flaticon-question"></i>
+        </div>
+        <div class="modal fade bd-example-modal-lg mdl-tutorial" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true" onclick="stopVideo()">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="myExtraLargeModalLabel"></h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="stopVideo()">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="py-3 text-center">
+                            <video controls="true" class="embed-responsive-item" width="100%">
+                                <source src="{{ asset('fproh/img/finszsaludables/tutorial.mp4') }}" type="video/mp4" />
+                            </video>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <footer class="footer-section theme-footer main-footer">
@@ -138,7 +170,7 @@
                 <div class="col-xl-5 col-md-6 col-sm-6 col-12">
                     <ul class="list-inline mb-0 d-flex justify-content-sm-end justify-content-center mr-sm-3 ml-sm-0 mx-3">
                         <li class="list-inline-item  mr-3">
-                            <p class="bottom-footer">&#xA9; {{ Date('Y') }} <a href="javascript:void(0)">NIKKEN Latinoamerica</a> &nbsp;&nbsp;&nbsp;v. 0.5</p>
+                            <p class="bottom-footer">&#xA9; {{ Date('Y') }} <a href="javascript:void(0)">NIKKEN Latinoamerica</a> &nbsp;&nbsp;&nbsp;v.0.8</p>
                         </li>
                         <li class="list-inline-item align-self-center">
                             <div class="scrollTop"><i class="flaticon-up-arrow-fill-1"></i></div>
@@ -164,6 +196,18 @@
         $(document).ready(function() {
             App.init();
         });
+
+        function stopVideo(){
+            $('video')[0].pause();
+        }
     </script>
     @yield('scripts')
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-159411215-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-159411215-1');
+    </script>
 </html>

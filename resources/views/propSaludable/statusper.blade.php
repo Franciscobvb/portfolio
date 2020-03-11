@@ -1,12 +1,14 @@
 @extends('propSaludable.layout')
 
 @section('tittleSite')
-    Propocito Saludable
+    Finanzas Saludables
 @endsection
 
 @section('css')
     <link href="{{ asset('fproh/css/pages/helpdesk.css') }}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="{{ asset('fproh/plugins/dropify/dropify.min.css') }}">
+    <link href="{{ asset('fproh/css/ui-kit/custom-tooltips_and_popovers.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('fproh/css/modals/component.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('tittlePage')
@@ -40,16 +42,8 @@
             </div>
             <div class="widget-content widget-content-area">
                 <div class="row">
-                    <div class="col-lg-6 col-md-12 ">
-                        <div class="statbox widget box box-shadow " hidden>
-                            @if ($abiInfo[0]->Pais == 'CHL')
-                                <img src="http://services.nikken.com.mx/retos/img/ClubViajero_Banner.png" width="100%">
-                            @else
-                                <img src="http://services.nikken.com.mx/retos/img/ser_por.png" width="100%">
-                            @endif
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12">
+                    <div class="col-lg-1 col-md-12"></div>
+                    <div class="col-lg-10 col-md-12">
                         <div class="statbox widget box box-shadow">
                             <div class="table-responsive ">
                                 <table id="statusPers" class="table table-striped table-bordered table-hover" style="width:100%">
@@ -66,12 +60,13 @@
                                                 100 puntos de Volumen Personal
                                             </td>
                                             <td class="text-center">
-                                                {{ number_format($status[0]->VP) }}
+                                                @php $statusVP = $status[0]->VP ?? 0; @endphp
+                                                {{ number_format($statusVP) }}
                                             </td>
                                             <td class="text-center">
-                                                @if ($status[0]->VP < 100)
+                                                @if ($statusVP < 100)
                                                     <span class="shadow-none badge badge-danger badge-pill">
-                                                        Faltan {{ 100 - $status[0]->VP }}
+                                                        Falta(n) {{ 100 - $statusVP }}
                                                     </span>
                                                 @else
                                                     <span class=" shadow-none badge badge-success badge-pill">
@@ -85,12 +80,13 @@
                                                 2 incorporaciones frontales de Influencer
                                             </td>
                                             <td class="text-center">
-                                                {{ number_format($status[0]->Incorp_Influencers) }}
+                                                @php $statusInfluencers = $status[0]->Incorp_Influencers ?? 0; @endphp
+                                                {{ number_format($statusInfluencers) }}
                                             </td>
                                             <td class="text-center">
-                                                @if ($status[0]->Incorp_Influencers < 2)
+                                                @if ($statusInfluencers < 2)
                                                     <span class="shadow-none badge badge-danger badge-pill">
-                                                        Faltan {{ 2 - $status[0]->Incorp_Influencers }}
+                                                        Falta(n) {{ 2 - $statusInfluencers ?? 0 }}
                                                     </span>
                                                 @else
                                                     <span class=" shadow-none badge badge-success badge-pill">
@@ -104,12 +100,13 @@
                                                 Mínimo un evento registrado
                                             </td>
                                             <td class="text-center">
-                                                {{ number_format($noEventos[0]->NoEventos) }}
+                                                @php $statusNoEventos = $noEventos[0]->NoEventos ?? 0; @endphp
+                                                {{ number_format($statusNoEventos) }}
                                             </td>
                                             <td class="text-center">
-                                                @if ($noEventos[0]->NoEventos < 1)
+                                                @if ($statusNoEventos < 1)
                                                     <span class="shadow-none badge badge-danger badge-pill">
-                                                        Faltan {{ 1 - $noEventos[0]->NoEventos }}
+                                                        Falta(n) {{ 1 - $statusNoEventos}}
                                                     </span>
                                                 @else
                                                     <span class=" shadow-none badge badge-success badge-pill">
@@ -123,28 +120,41 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-lg-1 col-md-12"></div>
+                    <div class="col-lg-3 col-md-12"></div>
+                    @if ($statusVP >= 100 && $statusInfluencers >= 2 && $statusNoEventos >= 1)
+                        <div class="col-lg-6 col-md-12">
+                            <div class="statbox widget box box-shadow">
+                                <div class="alert alert-info br-50 mb-4 personal-shadow text-center text-black" role="alert">
+                                    <strong>Felicidades!</strong> Cumpliste y puedes redimir tu bono en <b>(Semana para redimir bono)</b>.
+                                </div>
+                            </div>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<div class="row">  
+<div class="row">
     <div class="col-xl-4 col-lg-6 col-sm-12 layout-spacing">
         <div class="statbox widget box box-shadow card personal-shadow">
             <div class="widget-header">
                 <div class="row">
                     <div class="col-xl-12 col-md-12 col-sm-12 col-12 text-center">
-                        <h4>Detalles de la promoción:</h4>
+                        <h4 hidden>Detalles de la promoción:</h4>
                     </div>                 
                 </div>
             </div>
             <div class="widget-content widget-content-area">
-                @if ($abiInfo[0]->Pais == 'CHL')
-                    <img src="http://services.nikken.com.mx/retos/img/ClubViajero_Banner.png" width="100%">
-                @else
-                    <img src="http://services.nikken.com.mx/retos/img/ser_por.png" width="100%">
-                @endif
+                <a href="javascript:void(0)">
+                    @if ($abiInfo[0]->Pais == 'CHL')
+                        <img src="{{ asset('fproh/img/finszsaludables/InfografiasMicroSitioChile1.png') }}" width="100%" data-toggle="modal" data-target=".bd-example-modal-xl1">
+                    @else
+                        <img src="{{ asset('fproh/img/finszsaludables/InfografiasMicroSitio1.png') }}" width="100%" data-toggle="modal" data-target=".bd-example-modal-xl1">
+                    @endif
+                </a>
             </div>
         </div>
     </div>
@@ -153,16 +163,18 @@
             <div class="widget-header">
                 <div class="row">
                     <div class="col-xl-12 col-md-12 col-sm-12 col-12 text-center">
-                        <h4>Términos y condiciones</h4>
+                        <h4 hidden>Términos y condiciones</h4>
                     </div>                 
                 </div>
             </div>
             <div class="widget-content widget-content-area">
-                @if ($abiInfo[0]->Pais == 'CHL')
-                    <img src="http://services.nikken.com.mx/retos/img/ClubViajero_Banner.png" width="100%">
-                @else
-                    <img src="http://services.nikken.com.mx/retos/img/ser_por.png" width="100%">
-                @endif
+                <a href="javascript:void(0)">
+                    @if ($abiInfo[0]->Pais == 'CHL')
+                        <img src="{{ asset('fproh/img/finszsaludables/InfografiasMicroSitioChile2.png') }}" width="100%" data-toggle="modal" data-target=".bd-example-modal-xl2">
+                    @else
+                        <img src="{{ asset('fproh/img/finszsaludables/InfografiasMicroSitio2.png') }}" width="100%" data-toggle="modal" data-target=".bd-example-modal-xl2">
+                    @endif
+                </a>
             </div>
         </div>
     </div>
@@ -171,20 +183,67 @@
             <div class="widget-header">
                 <div class="row">
                     <div class="col-xl-12 col-md-12 col-sm-12 col-12 text-center">
-                        <h4>Términos y condiciones</h4>
+                        <h4 hidden>Términos y condiciones</h4>
                     </div>                 
                 </div>
             </div>
             <div class="widget-content widget-content-area">
-                @if ($abiInfo[0]->Pais == 'CHL')
-                    <img src="http://services.nikken.com.mx/retos/img/ClubViajero_Banner.png" width="100%">
-                @else
-                    <img src="http://services.nikken.com.mx/retos/img/ser_por.png" width="100%">
-                @endif
+                <a href="javascript:void(0)">
+                    @if ($abiInfo[0]->Pais == 'CHL')
+                        <img src="{{ asset('fproh/img/finszsaludables/InfografiasMicroSitioChile3.png') }}" width="100%" data-toggle="modal" data-target=".bd-example-modal-xl3">
+                    @else
+                        <img src="{{ asset('fproh/img/finszsaludables/InfografiasMicroSitio3.png') }}" width="100%" data-toggle="modal" data-target=".bd-example-modal-xl3">
+                    @endif
+                </a>
             </div>
         </div>
     </div>
-</div> 
+</div>
+
+<div class="modal fade bd-example-modal-xl1" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img src="{{ asset('fproh/img/finszsaludables/InfografiasMicroSitio1.png') }}" width="100%">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade bd-example-modal-xl2" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img src="{{ asset('fproh/img/finszsaludables/InfografiasMicroSitio2.png') }}" width="100%">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade bd-example-modal-xl3" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img src="{{ asset('fproh/img/finszsaludables/InfografiasMicroSitio3.png') }}" width="100%">
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 
 @section('scripts')

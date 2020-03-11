@@ -14,6 +14,15 @@ Route::get('/finzssalstatuspers/{associateid}', 'PropSaludable\PropSaludableCont
 Route::get('/finzssalsrepo/{associateid}', 'PropSaludable\PropSaludableController@finzsSalRepo');
 Route::get('/getreportfzssal', 'PropSaludable\PropSaludableController@getReportFzsSal');
 Route::post('/finszsalsave', 'PropSaludable\PropSaludableController@finszSalSave');
+Route::get('/finzsSalDelEvent', 'PropSaludable\PropSaludableController@finzsSalDelEvent');
+Route::post('/finzsSalUpdateEvent', 'PropSaludable\PropSaludableController@finzsSalUpdateEvent');
+Route::get('/finzsSalMktRepo', 'PropSaludable\PropSaludableController@finzsSalMktRepo');
+Route::get('/finzsSalMktRepoData', 'PropSaludable\PropSaludableController@finzsSalMktRepoData');
 
 /*==== UK Volume History Report ====*/
 Route::get('volumehistory/{associateid}/{lang}', 'VolumeHistory\VolumeHistoryController@index');
+
+/*==== MyNikkenLatam ====*/
+Route::get('/genRadial/{associateid}', 'myNikkenLatam\myNikkenLatamController@genRadial');
+Route::get('/getDataGenPers', 'myNikkenLatam\myNikkenLatamController@getDataGenPers');
+Route::get('/genLateral', 'myNikkenLatam\myNikkenLatamController@genLateral');

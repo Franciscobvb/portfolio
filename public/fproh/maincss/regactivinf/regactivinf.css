@@ -65,8 +65,22 @@ tr.selected td:before {
 
 .logo{
    margin: auto;
-   max-height: 80px;
-   width: 70%;
+   max-height: 115px;
+   width: 30%;
+}
+
+@media (max-width: 768px) {
+   .logo{
+      margin: auto;
+      width: 50%;
+   }
+}
+
+@media (max-width: 576px) {
+   .logo{
+      margin: auto;
+      width: 80%;
+   }
 }
 
 .nav-header-pers{
@@ -80,4 +94,39 @@ tr.selected td:before {
 
 .alert-warning > .close{
    display: none;
+}
+
+.dataTables_empty{
+   content: "Aun no has registrado ningun Influencer" !important;
+}
+
+#chat-circle {
+   position: fixed;
+   bottom: 55px;
+   right: 15px;
+   background-color: transparent;
+   border-radius: 5px;
+   color: #fff;
+   padding: 0;
+   z-index: 999;
+   cursor: pointer;
+   box-shadow: none;
+   outline: 0;
+   -webkit-transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s cubic-bezier(0.4, 0, 0.2, 1), -webkit-box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1);
+   transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s cubic-bezier(0.4, 0, 0.2, 1), -webkit-box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1);
+   -o-transition: box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1), background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+   transition: box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1), background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+   transition: box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1), background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s cubic-bezier(0.4, 0, 0.2, 1), -webkit-box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1);
+   will-change: box-shadow, transform;
+}
+
+#chat-circle i {
+   font-size: 30px;
+   color: #fff;
+   padding: 16px;
+   background: #488e34;
+   background-image: none;
+   background-image: linear-gradient(to right, #7c4f92 0%, #e8448c 100%);
+   border-radius: 50%;
+   letter-spacing: 0;
 }

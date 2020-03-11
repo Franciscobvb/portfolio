@@ -27,14 +27,13 @@
                     <a href="javascript:void(0);" class="nav-link sidebarCollapse d-inline-block" data-placement="bottom">
                         <i class="flaticon-menu-line-2"></i>
                     </a>
-                    <a class="ml-3"> <img src="{{ asset('fpro/img/min-logo-nikken-black.png') }}" class="img-fluid" alt="logo"></a>
                 </div>
                 <a class="nav-link user d-inline-block float-right mr-2" aria-haspopup="true" aria-expanded="false">
                     <div class="media">
                         <img src="{{ asset('fproh/img/regactivinf/user.png') }}" class="img-fluid mr-2" alt="admin-profile">
                         <div class="media-body align-self-center">
                             <h6 class="mb-1">{{ $username ?? "Nikken Latam" }}</h6>
-                            <p class="mb-0">{{ $lastname ?? "Registro Actividad" }}</p>
+                            <p class="mb-0">{{ $pais . ' | ' . $lastname ?? "Registro Actividad" }}</p>
                         </div>
                     </div>
                 </a>
@@ -60,7 +59,7 @@
                     <div class="media">
                         <img src="{{ asset('fproh/img/regactivinf/user.png') }}" class="img-fluid mr-2" alt="admin-profile">
                         <div class="media-body align-self-center">
-                            <h6 class="mb-1">{{ $username }}</h6>
+                            <h6 class="mb-1">{{ $username ?? "Nikken Latam" }}</h6>
                             <p class="mb-0">{{ $pais . ' | ' . $lastname }}</p>
                         </div>
                     </div>
@@ -89,6 +88,31 @@
             </div>
         </div>
         
+    </div>
+
+    <div id="chat">
+        <div id="chat-circle" class="btn btn-raised d-lg-block bs-tooltip" data-placement="left" title="¿Necesitas ayuda? Ve nuestro tutorial" data-toggle="modal" data-target=".mdl-tutorial">
+            <i class="flaticon-question"></i>
+        </div>
+        <div class="modal fade bd-example-modal-lg mdl-tutorial" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true" onclick="stopVideo()">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="myExtraLargeModalLabel"></h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="stopVideo()">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="py-3 text-center">
+                            <video controls="true" class="embed-responsive-item" width="100%">
+                                <source src="{{ asset('fproh/img/regactivinf/tutorial.mp4') }}" type="video/mp4" />
+                            </video>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <footer class="footer-section theme-footer">
@@ -128,6 +152,10 @@
         $(document).ready(function() {
             App.init();
         });
+
+        function stopVideo(){
+            $('video')[0].pause();
+        }
     </script>
     @yield('scripts')
 </html>
