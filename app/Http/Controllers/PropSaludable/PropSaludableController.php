@@ -5,6 +5,7 @@ namespace App\Http\Controllers\PropSaludable;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Mail;
 
 class PropSaludableController extends Controller{
     //Declaramos las configuraciones de amazon s3
@@ -166,5 +167,56 @@ class PropSaludableController extends Controller{
             'data' => $response,
         ];
         return \Response::json($data);
+    }
+
+    public function finzsSalMailView(){
+        return view('PropSaludable.email');
+    }
+
+    public function finzsSalMail(Request $request){
+        $associateid = $request->abiCode;
+        $periodo = Date('Ym');
+        $conexion5 = \DB::connection('sqlsrv5');
+        $imgHeader = "latamhead.jpg";
+        $imgFooter = "latamfooter.jpg";
+
+        //$getMailExist = $conexion5->select("SELECT * FROM Puntos2020 WHERE Associateid = $associateid AND Periodo = $periodo;");
+        $abiInfo = $conexion5->select("SELECT * FROM Puntos2020 WHERE Associateid = $associateid AND Periodo = $periodo;");
+        $propSalInfo = $conexion5->select("SELECT * FROM Proposito_Saludable WHERE Associateid = $associateid AND Periodo = $periodo;");
+        \DB::disconnect('sqlsrv5');
+
+        //$correo = "lquintero@nikkenlatam.com";
+        $correo = "saxeden666@upcmaill.com";
+        $Vp = $abiInfo[0]->Vp;
+        $Incorp_Influencers = $propSalInfo[0]->Incorp_Influencers;
+        $producto = "el Sistema de Aire Kenko Air Purifier.";
+
+        if($abiInfo[0]->Pais == "CHL"){
+            $imgHeader = "chlhead.jpg";
+            $imgFooter = "chlfooter.jpg";
+            $producto = "la Botella deportiva PiMag.";
+        }
+
+        $data = array(
+            'nombre' => $abiInfo[0]->AssociateName,
+            'imgHeader' => $imgHeader,
+            'imgFooter' => $imgFooter,
+            'Vp' => $Vp,
+            'Incorp_Influencers' => $Incorp_Influencers,
+            'product' => $producto,
+            'userB64' => base64_encode($associateid)
+        );
+
+        Mail::send('PropSaludable.email', $data, function ($message)  use ($correo){
+            //$message->from('lquintero@nikkenlatam.com', "Finanzas Saludables");
+            $message->from('fmelchor@nikkenlatam.com', "Finanzas Saludables");
+            $message->to("$correo")->subject("Finanzas Saludables");
+        });
+
+        return "1";
+    }
+
+    function internaMailPlatfomr(){
+        return view('internaMailPlatfomr');
     }
 }

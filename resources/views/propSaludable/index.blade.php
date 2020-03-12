@@ -319,27 +319,27 @@
         var textAlert = "";
 
         @if($estatus == 4 && $abiInfo[0]->Pais == 'CHL')
-            textAlert = "Te has hecho acreedor de un descuento durante las 4 semanas de Abril (1 al 30 de Abril) en Botella deportiva";
+            textAlert = "Te has hecho acreedor de un descuento durante las 4 semanas de Abril (1 al 30 de Abril) en Botella deportiva PiMag";
         @elseif($estatus == 4 && $abiInfo[0]->Pais != 'CHL')
-            textAlert = "Te has hecho acreedor de un descuento durante las 4 semanas de Abril (1 al 30 de Abril) en Sistema de aire";
+            textAlert = "Te has hecho acreedor de un descuento durante las 4 semanas de Abril (1 al 30 de Abril) en Sistema de aire KenkoAir Purifier";
         @endif
 
         @if($estatus == 3 && $abiInfo[0]->Pais == 'CHL')
-            textAlert = "Te has hecho acreedor de un descuento durante la el mes de Abril en Botella deportiva";
+            textAlert = "Te has hecho acreedor de un descuento durante el mes de Abril en Botella deportiva PiMag";
         @elseif($estatus == 3 && $abiInfo[0]->Pais != 'CHL')
-            textAlert = "Te has hecho acreedor de un descuento durante la el mes de Abril en Sistema de aire";
+            textAlert = "Te has hecho acreedor de un descuento durante el mes de Abril en Sistema de aire KenkoAir Purifier";
         @endif
 
         @if($estatus == 2 && $abiInfo[0]->Pais == 'CHL')
-            textAlert = "Te has hecho acreedor de un descuento durante la 2da y 3er semana de Abril en Botella deportiva";
+            textAlert = "Te has hecho acreedor de un descuento durante la 2da y 3er semana de Abril en Botella deportiva PiMag";
         @elseif($estatus == 2 && $abiInfo[0]->Pais != 'CHL')
-            textAlert = "Te has hecho acreedor de un descuento durante la 2da y 3er semana de Abril en Sistema de aire";
+            textAlert = "Te has hecho acreedor de un descuento durante la 2da y 3er semana de Abril en Sistema de aire KenkoAir Purifier";
         @endif
 
         @if($estatus == 1 && $abiInfo[0]->Pais == 'CHL')
-            textAlert = "Te has hecho acreedor de un descuento durante la 2da semana de Abril en Botella deportiva";
-        @elseif($estatus == 2 && $abiInfo[0]->Pais != 'CHL')
-            textAlert = "Te has hecho acreedor de un descuento durante la 2da semanas de Abril en Sistema de aire";
+            textAlert = "Te has hecho acreedor de un descuento durante la 2da semana de Abril en Botella deportiva PiMag";
+        @elseif($estatus == 1 && $abiInfo[0]->Pais != 'CHL')
+            textAlert = "Te has hecho acreedor de un descuento durante la 2da semanas de Abril en Sistema de aire KenkoAir Purifier";
         @endif
 
         @if($estatus != 0)
@@ -352,6 +352,7 @@
                 animation: false,
                 padding: '2em',
             })
+            sendMailPromo(abiName);
         @endif
     </script>
     

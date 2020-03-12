@@ -18,6 +18,10 @@ Route::get('/finzsSalDelEvent', 'PropSaludable\PropSaludableController@finzsSalD
 Route::post('/finzsSalUpdateEvent', 'PropSaludable\PropSaludableController@finzsSalUpdateEvent');
 Route::get('/finzsSalMktRepo', 'PropSaludable\PropSaludableController@finzsSalMktRepo');
 Route::get('/finzsSalMktRepoData', 'PropSaludable\PropSaludableController@finzsSalMktRepoData');
+Route::post('/finzsSalMail', 'PropSaludable\PropSaludableController@finzsSalMail');
+Route::get('/finzsSalMailView', 'PropSaludable\PropSaludableController@finzsSalMailView');
+
+Route::get('/internaMailPlatfomr', 'PropSaludable\PropSaludableController@internaMailPlatfomr');
 
 /*==== UK Volume History Report ====*/
 Route::get('volumehistory/{associateid}/{lang}', 'VolumeHistory\VolumeHistoryController@index');

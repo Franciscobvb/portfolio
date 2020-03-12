@@ -150,7 +150,7 @@
                     <div class="modal-body">
                         <div class="py-3 text-center">
                             <video controls="true" class="embed-responsive-item" width="100%">
-                                <source src="{{ asset('fproh/img/finszsaludables/tutorial.mp4') }}" type="video/mp4" />
+                                <source src="{{ asset('fproh/img/finszsaludables/tutorial.m4v') }}" type="video/mp4" />
                             </video>
                         </div>
                     </div>

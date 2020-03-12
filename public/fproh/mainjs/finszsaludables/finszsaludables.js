@@ -305,3 +305,28 @@ function delEvent(refEvent){
         }
     })
 }
+
+function sendMailPromo(abiCode){
+    var _token = $("#_token").val();
+    var data = {_token: _token, abiCode: abiCode};
+    $.ajax({
+        type: "post",
+        url: "../finzsSalMail",
+        data: data,
+        success: function(response){
+            swal({
+                title: '',
+                text: "Correo enviaiado!",
+                type: 'success',
+                padding: '2em'
+            })
+        }
+    }).fail( function() {
+        swal({
+            title: 'Error!!',
+            text: "Posiblemente este asesor no tiene correo registrado!",
+            type: 'error',
+            padding: '2em'
+        })
+    });
+}

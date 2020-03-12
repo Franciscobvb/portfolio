@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{ asset('fproh/plugins/dropify/dropify.min.css') }}">
     <link href="{{ asset('fproh/css/ui-kit/custom-tooltips_and_popovers.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('fproh/css/modals/component.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('fproh/css/ui-kit/custom-modal.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('tittlePage')
@@ -27,15 +28,15 @@
                 <div class="row">
                     <div class="col-xl-12 col-md-12 col-sm-12 col-12 text-center">
                         @php
-							setlocale(LC_TIME, 'es_ES');
-							$dia = Date('d');
-							$mes = Date('m');
-							$meses = ['', 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Abril', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
-							$mes = DateTime::createFromFormat('!m', $mes);
-							$mes = strftime("%B", $mes->getTimestamp());
-							$mesnum = Date('m');
-							$mesnum = str_replace('0', '', $mesnum);
-						@endphp
+                            setlocale(LC_TIME, 'es_ES');
+                            $dia = Date('d');
+                            $mes = Date('m');
+                            $meses = ['', 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Abril', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+                            $mes = DateTime::createFromFormat('!m', $mes);
+                            $mes = strftime("%B", $mes->getTimestamp());
+                            $mesnum = Date('m');
+                            $mesnum = str_replace('0', '', $mesnum);
+                        @endphp
                         <h4>Fecha de actualizacion: {{ $dia }} de {{ $meses[$mesnum] }} a las <span id="hora"></span> hora México.</h4>
                     </div>                 
                 </div>
@@ -209,7 +210,11 @@
                 </button>
             </div>
             <div class="modal-body">
-                <img src="{{ asset('fproh/img/finszsaludables/InfografiasMicroSitio1.png') }}" width="100%">
+                @if ($abiInfo[0]->Pais == 'CHL')
+                    <img src="{{ asset('fproh/img/finszsaludables/InfografiasMicroSitioChile1.png') }}" width="100%" data-toggle="modal" data-target=".bd-example-modal-xl1">
+                @else
+                    <img src="{{ asset('fproh/img/finszsaludables/InfografiasMicroSitio1.png') }}" width="100%" data-toggle="modal" data-target=".bd-example-modal-xl1">
+                @endif
             </div>
         </div>
     </div>
@@ -224,7 +229,11 @@
                 </button>
             </div>
             <div class="modal-body">
-                <img src="{{ asset('fproh/img/finszsaludables/InfografiasMicroSitio2.png') }}" width="100%">
+                @if ($abiInfo[0]->Pais == 'CHL')
+                    <img src="{{ asset('fproh/img/finszsaludables/InfografiasMicroSitioChile2.png') }}" width="100%" data-toggle="modal" data-target=".bd-example-modal-xl2">
+                @else
+                    <img src="{{ asset('fproh/img/finszsaludables/InfografiasMicroSitio2.png') }}" width="100%" data-toggle="modal" data-target=".bd-example-modal-xl2">
+                @endif
             </div>
         </div>
     </div>
@@ -239,7 +248,11 @@
                 </button>
             </div>
             <div class="modal-body">
-                <img src="{{ asset('fproh/img/finszsaludables/InfografiasMicroSitio3.png') }}" width="100%">
+                @if ($abiInfo[0]->Pais == 'CHL')
+                    <img src="{{ asset('fproh/img/finszsaludables/InfografiasMicroSitioChile3.png') }}" width="100%" data-toggle="modal" data-target=".bd-example-modal-xl3">
+                @else
+                    <img src="{{ asset('fproh/img/finszsaludables/InfografiasMicroSitio3.png') }}" width="100%" data-toggle="modal" data-target=".bd-example-modal-xl3">
+                @endif
             </div>
         </div>
     </div>
