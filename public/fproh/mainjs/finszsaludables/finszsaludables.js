@@ -30,7 +30,7 @@ function geteventsfzssal(){
                 'render': function(data, type, row){
                     if (type === 'display'){
                         data = '<i class="fa fa-user fa-fw"></i>';
-                        data = '<img src="' + row.EventImage + '" class="avatar" data-event="' + row.EventName + '" id="' + row.EventDate + Math.floor(Math.random() * 50) + '"  onclick="showEventPic(this.id)">';
+                        data = '<img src="' + row.EventImage + '" class="avatar" data-event="' + row.EventName + '" id="' + Math.floor(Math.random() * 500) + '"  onclick="showEventPic(this.id)" alt="Formato no permitido, Favor de subir solo fotografías.">';
                     }
                     return data;
                 },
@@ -103,7 +103,7 @@ function geteventsfzssal(){
 }
 
 function addNewEventFrm(){
-    if($("#eventName").val().trim() != '' && $("#eventDate").val().trim() != '' && $("#eventPicture").val().trim() != ''){
+    if($("#eventName").val().trim() != '' && $("#eventDate").val().trim() != '' && $("#eventPicture").val().trim() != '' && $("#abiCode").val().trim() != '' && $("#abiName").val().trim() != '' && $("#abiRank").val().trim() != ''){
         $("#addNewEventFrm").submit();
         $("#saveButton").prop('disabled', true);
     }
@@ -126,9 +126,9 @@ function addNewEventFrm(){
 
 function getReport(){
     var associateid = $("#associateid").val();
-    var type = $("#type").val();
+    var type = 1
     var count = 0;
-    var table = $('#statusPers').DataTable( {
+    var table = $('#statusPers').DataTable({
         destroy: true,
         ajax: "/getreportfzssal/?associateid=" + associateid + "&type=" + type,
         columns: [

@@ -1,0 +1,160 @@
+@font-face {
+    font-family: "Comfortaa";
+    src: url("../../fonts/comfortaa/Comfortaa-Regular.ttf");
+}
+
+body{
+    font-family: 'Comfortaa', Arial, sans-serif !important;
+}
+
+.menu{
+    color: black;
+}
+
+.modal-dialog{
+    margin: 1.75rem auto;
+}
+
+h4{
+    color: #000;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.btnExcel{
+    background-image: linear-gradient(135deg, #9434ab 0%, #621a4a 100%);
+    border: none;
+    font-size: 14px;
+    padding: 9px 18px;
+    transition: 0.3s;
+    color: #fff;
+}
+
+.btnExcel:hover{
+    background-image: linear-gradient(135deg, #621a4a 0%, #9434ab 100%);
+}
+
+.dataTables_filter input{
+    border: 1px solid #805dca;
+}
+
+#headerWrapper {
+    min-height: auto;
+}
+
+.blur-bg {
+    width: 92%;
+    height: 100%;
+    position: absolute;
+    background: #ffffffba;
+    border-radius: 25px;
+}
+
+.puntajeInput {
+    color: #d3d3d3;
+    border-radius: 30px;
+    height: auto;
+    border: none;
+}
+
+.btnicon {
+    border-radius: 50%;
+    position: absolute;
+    right: 9px;
+    top: -1px;
+    display: inline-flex;
+    width: 35px;
+    height: 35px;
+    color: #fff;
+    align-items: center;
+    justify-content: center;
+    background-color: #72217b;
+}
+
+.btnicon:hover{
+    color: #fff !important;
+}
+
+.form-control:disabled, .form-control[readonly] {
+    background-color: #fff;
+    opacity: 1;
+    color: #000;
+}
+
+#whyusWrapper {
+    padding: 4rem 0 1rem 0;
+}
+
+.m-md-auto{
+    margin: auto;
+}
+
+.headerContent {
+    margin-left: 0 !important;
+    margin: auto !important;
+}
+
+svg {
+    display: inline-block;
+    left: 0;
+}
+
+#navHeadWrapper{
+    background: linear-gradient(0.5deg, #d886f8 0%, #9332a9 100%)
+}
+
+#servicesWrapper {
+    padding: 0 0 0 0;
+}
+
+.current input{
+    font-size: 14px !important;
+}
+
+.anterior{
+    border: 1px solid #000;
+    border-radius: 25px;
+}
+
+.anterior input{
+    font-size: 14px !important;
+    border: 1px solid #000;
+}
+
+.mainPosition{
+    background-image: linear-gradient(135deg, #621a4a 0%, #9434ab 100%);
+}
+
+.table-hover:not(.table-dark) tbody tr td {
+    color: #000;
+}
+
+.table-hover:not(.table-dark) tbody .mainPosition td, .table-hover:not(.table-dark) tbody .mainPosition td[class*="text-"] {
+    color: #fff !important;
+    box-shadow: none;
+}
+
+.table-hover:not(.table-dark) tbody .mainPosition:hover td, .table-hover:not(.table-dark) tbody .mainPosition:hover td[class*="text-"] {
+    color: #fff !important;
+    box-shadow: none;
+}
+
+.page-item.active .page-link {
+    background-color: #661c52 !important;
+    border-color: #661c51 !important;
+    border-radius: 4px;
+}
+
+.table > thead > tr > th {
+    color: #661c51 !important;
+    font-weight: 600;
+}
+
+ul.pagination li a:hover:not(.active) {
+    background-color: #661c51 !important;
+    color: #fff !important;
+}

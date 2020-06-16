@@ -28,7 +28,7 @@ a {
 }
 
 #container {
-    width: 1000px;
+    width: 85%;
     height: 600px;
     margin:0 auto;
     position:relative;
@@ -43,7 +43,7 @@ a {
 }
 
 #left-container, #right-container {
-    width:200px;
+    width:300px;
     color:#686c70;
     text-align: left;
     overflow: auto;
@@ -72,8 +72,8 @@ a {
 }
 
 #center-container {
-    width:600px;
-    left:200px;
+    width:800px;
+    left:300px;
     /*background-color:#1a1a1a;
     color:#ccc;*/
     background-color:#ffffff;

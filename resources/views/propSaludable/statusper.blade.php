@@ -21,6 +21,8 @@
 @endsection
 
 @section('content')
+@php $Pais = $abiInfo[0]->Pais ?? "LAT" @endphp
+
 <div class="row" id="cancel-row">
     <div class="col-xl-12 col-lg-12 col-sm-12 layout-spacing">
         <div class="statbox widget box box-shadow card personal-shadow">
@@ -127,7 +129,11 @@
                         <div class="col-lg-6 col-md-12">
                             <div class="statbox widget box box-shadow">
                                 <div class="alert alert-info br-50 mb-4 personal-shadow text-center text-black" role="alert">
-                                    <strong>Felicidades!</strong> Cumpliste y puedes redimir tu bono en <b>(Semana para redimir bono)</b>.
+                                    @if ($Pais == 'CHL')
+                                        <strong>Felicidades!</strong> Cumpliste y puedes redimir el CupónBottle con el 30% de descuento.
+                                    @else
+                                        <strong>Felicidades!</strong> Cumpliste y puedes redimir el CupónAir con el 30% de descuento.
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -150,7 +156,7 @@
             </div>
             <div class="widget-content widget-content-area">
                 <a href="javascript:void(0)">
-                    @if ($abiInfo[0]->Pais == 'CHL')
+                    @if ($Pais == 'CHL')
                         <img src="{{ asset('fproh/img/finszsaludables/InfografiasMicroSitioChile1.png') }}" width="100%" data-toggle="modal" data-target=".bd-example-modal-xl1">
                     @else
                         <img src="{{ asset('fproh/img/finszsaludables/InfografiasMicroSitio1.png') }}" width="100%" data-toggle="modal" data-target=".bd-example-modal-xl1">
@@ -170,7 +176,7 @@
             </div>
             <div class="widget-content widget-content-area">
                 <a href="javascript:void(0)">
-                    @if ($abiInfo[0]->Pais == 'CHL')
+                    @if ($Pais == 'CHL')
                         <img src="{{ asset('fproh/img/finszsaludables/InfografiasMicroSitioChile2.png') }}" width="100%" data-toggle="modal" data-target=".bd-example-modal-xl2">
                     @else
                         <img src="{{ asset('fproh/img/finszsaludables/InfografiasMicroSitio2.png') }}" width="100%" data-toggle="modal" data-target=".bd-example-modal-xl2">
@@ -190,7 +196,7 @@
             </div>
             <div class="widget-content widget-content-area">
                 <a href="javascript:void(0)">
-                    @if ($abiInfo[0]->Pais == 'CHL')
+                    @if ($Pais == 'CHL')
                         <img src="{{ asset('fproh/img/finszsaludables/InfografiasMicroSitioChile3.png') }}" width="100%" data-toggle="modal" data-target=".bd-example-modal-xl3">
                     @else
                         <img src="{{ asset('fproh/img/finszsaludables/InfografiasMicroSitio3.png') }}" width="100%" data-toggle="modal" data-target=".bd-example-modal-xl3">
@@ -210,7 +216,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                @if ($abiInfo[0]->Pais == 'CHL')
+                @if ($Pais == 'CHL')
                     <img src="{{ asset('fproh/img/finszsaludables/InfografiasMicroSitioChile1.png') }}" width="100%" data-toggle="modal" data-target=".bd-example-modal-xl1">
                 @else
                     <img src="{{ asset('fproh/img/finszsaludables/InfografiasMicroSitio1.png') }}" width="100%" data-toggle="modal" data-target=".bd-example-modal-xl1">
@@ -229,7 +235,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                @if ($abiInfo[0]->Pais == 'CHL')
+                @if ($Pais == 'CHL')
                     <img src="{{ asset('fproh/img/finszsaludables/InfografiasMicroSitioChile2.png') }}" width="100%" data-toggle="modal" data-target=".bd-example-modal-xl2">
                 @else
                     <img src="{{ asset('fproh/img/finszsaludables/InfografiasMicroSitio2.png') }}" width="100%" data-toggle="modal" data-target=".bd-example-modal-xl2">
@@ -248,7 +254,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                @if ($abiInfo[0]->Pais == 'CHL')
+                @if ($Pais == 'CHL')
                     <img src="{{ asset('fproh/img/finszsaludables/InfografiasMicroSitioChile3.png') }}" width="100%" data-toggle="modal" data-target=".bd-example-modal-xl3">
                 @else
                     <img src="{{ asset('fproh/img/finszsaludables/InfografiasMicroSitio3.png') }}" width="100%" data-toggle="modal" data-target=".bd-example-modal-xl3">

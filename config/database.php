@@ -63,6 +63,26 @@ return [
             ]) : [],
         ],
 
+        'nikkenla_incorporation' => [
+            'driver' => 'mysql',
+            'url' => env('DATABASE_URL_CODE'),
+            'host' => env('DB_HOST_CODE', '127.0.0.1'),
+            'port' => env('DB_PORT_CODE', '3306'),
+            'database' => env('DB_DATABASE_CODE', 'forge'),
+            'username' => env('DB_USERNAME_CODE', 'forge'),
+            'password' => env('DB_PASSWORD_CODE', ''),
+            'unix_socket' => env('DB_SOCKET', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
+        ],
+
         'pgsql' => [
             'driver' => 'pgsql',
             'url' => env('DATABASE_URL'),
@@ -91,6 +111,18 @@ return [
             'prefix_indexes' => true,
         ],
 
+        'sqlsrv2' => [
+            'driver' => 'sqlsrv',
+            'host' => env('DB_HOST_NC', 'localhost'),
+            'port' => env('DB_PORT_NC', '1433'),
+            'database' => env('DB_DATABASE_NC', 'forge'),
+            'username' => env('DB_USERNAME_NC', 'forge'),
+            'password' => env('DB_PASSWORD_NC', ''),
+            'charset' => 'utf8',
+            'prefix' => '',
+            'prefix_indexes' => true,
+        ],
+
         'sqlsrv5' => [
             'driver' => 'sqlsrv',
             'host' => env('DB_HOST_RE', 'localhost'),
@@ -103,6 +135,49 @@ return [
             'prefix_indexes' => true,
         ],
 
+        'sqlsrvNA' => [
+            'driver' => 'sqlsrv',
+            'host' => env('DB_HOST_NA', 'localhost'),
+            'port' => env('DB_PORT_NA', '1433'),
+            'database' => env('DB_DATABASE_NA', 'forge'),
+            'username' => env('DB_USERNAME_NA', 'forge'),
+            'password' => env('DB_PASSWORD_NA', ''),
+            'charset' => 'utf8',
+            'prefix' => '',
+            'prefix_indexes' => true,
+        ],
+
+        'LAT_MyNIKKEN' => [
+            'driver' => 'sqlsrv',
+            'host' => env('DB_HOST_LAT_MyNIKKEN', 'localhost'),
+            'port' => env('DB_PORT_LAT_MyNIKKEN', '1433'),
+            'database' => env('DB_DATABASE_LAT_MyNIKKEN', 'forge'),
+            'username' => env('DB_USERNAME_LAT_MyNIKKEN', 'forge'),
+            'password' => env('DB_PASSWORD_LAT_MyNIKKEN', ''),
+            'charset' => 'utf8',
+            'prefix' => '',
+            'prefix_indexes' => true,
+        ],
+
+        'nikkenla_marketing' => [
+            'driver' => 'mysql',
+            'url' => env('DATABASE_URL_la'),
+            'host' => env('DB_HOST_la', '127.0.0.1'),
+            'port' => env('DB_PORT_la', '3306'),
+            'database' => env('DB_DATABASE_la', 'forge'),
+            'username' => env('DB_USERNAME_la', 'forge'),
+            'password' => env('DB_PASSWORD_la', ''),
+            'unix_socket' => env('DB_SOCKET', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
+        ],
     ],
 
     /*

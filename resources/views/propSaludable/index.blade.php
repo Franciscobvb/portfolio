@@ -30,8 +30,11 @@
         <img src="{{ asset('fproh/img/finszsaludables/logo.png') }}" width="75%" >
     </div>
 </div>
-
-<div class="hd-tab-section">
+@php $prop = "hidden" @endphp
+@if ($associateid == 25918303)
+    @php $prop = "" @endphp
+@endif
+<div class="hd-tab-section" {{ $prop }}>
     <div class="row">
         <div class="col-md-12">
             <div class="tab-content " id="pills-tabContent">
@@ -59,7 +62,7 @@
                                                                     Código:
                                                                 </span>
                                                             </div>
-                                                            <input required type="text" id="abiCode" name="abiCode" class="form-control-rounded-right form-control main-input" aria-label="Small" aria-describedby="inputGroup-sizing-sm" value="{{ trim($abiInfo[0]->Associateid, ' ') }}" readonly>
+                                                            <input required type="text" id="abiCode" name="abiCode" class="form-control-rounded-right form-control main-input" aria-label="Small" aria-describedby="inputGroup-sizing-sm" value="{{ trim($abiInfo[0]->Associateid ?? '', ' ') }}" readonly>
                                                         </div>
                                                     </div>
                                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
@@ -69,7 +72,7 @@
                                                                     Nombre:
                                                                 </span>
                                                             </div>
-                                                            <input required type="text" id="abiName" name="abiName" class="form-control-rounded-right form-control main-input" aria-label="Small" aria-describedby="inputGroup-sizing-sm" value="{{ trim($abiInfo[0]->AssociateName, ' ') }}" readonly>
+                                                            <input required type="text" id="abiName" name="abiName" class="form-control-rounded-right form-control main-input" aria-label="Small" aria-describedby="inputGroup-sizing-sm" value="{{ trim($abiInfo[0]->AssociateName ?? '', ' ') }}" readonly>
                                                         </div>
                                                     </div>
                                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
@@ -79,7 +82,7 @@
                                                                     Rango:
                                                                 </span>
                                                             </div>
-                                                            <input required type="text" id="abiRank" name="abiRank" class="form-control-rounded-right form-control main-input" aria-label="Small" aria-describedby="inputGroup-sizing-sm" value="{{ trim($abiInfo[0]->Rango, ' ') }}" readonly>
+                                                            <input required type="text" id="abiRank" name="abiRank" class="form-control-rounded-right form-control main-input" aria-label="Small" aria-describedby="inputGroup-sizing-sm" value="{{ trim($abiInfo[0]->Rango ?? '', ' ') }}" readonly>
                                                         </div>
                                                     </div>
                                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
@@ -108,9 +111,9 @@
                                                 <div class="row">
                                                     <div class="input-group input-group-sm mb-2">
                                                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-3">
-                                                            <div class="border-dashed text-center">Añade una imagen a tu evento</div>
+                                                            <div class="border-dashed text-center">Añade una imagen a tu evento (Solo fotografías)</div>
                                                         </div>
-                                                        <input required type="file" id="eventPicture" name="eventPicture" class="dropify" data-height="80" data-allowed-file-extensions="heic tif tiff jpg gif png svg eps odg wmf cdr bmp raw bmp eps ai ico webp psd"/>
+                                                        <input required type="file" id="eventPicture" name="eventPicture" class="dropify" data-height="80"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -203,7 +206,7 @@
                                                             Código:
                                                         </span>
                                                     </div>
-                                                    <input required type="text" id="abiCodeUpdate" name="abiCodeUpdate" class="form-control-rounded-right form-control main-input" aria-label="Small" aria-describedby="inputGroup-sizing-sm" value="{{ trim($abiInfo[0]->Associateid, ' ') }}" readonly>
+                                                    <input required type="text" id="abiCodeUpdate" name="abiCodeUpdate" class="form-control-rounded-right form-control main-input" aria-label="Small" aria-describedby="inputGroup-sizing-sm" value="{{ trim($abiInfo[0]->Associateid ?? '', ' ') }}" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12">
@@ -213,7 +216,7 @@
                                                             Nombre:
                                                         </span>
                                                     </div>
-                                                    <input required type="text" id="abiNameUpdate" name="abiNameUpdate" class="form-control-rounded-right form-control main-input" aria-label="Small" aria-describedby="inputGroup-sizing-sm" value="{{ trim($abiInfo[0]->AssociateName, ' ') }}" readonly>
+                                                    <input required type="text" id="abiNameUpdate" name="abiNameUpdate" class="form-control-rounded-right form-control main-input" aria-label="Small" aria-describedby="inputGroup-sizing-sm" value="{{ trim($abiInfo[0]->AssociateName ?? '', ' ') }}" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12">
@@ -223,7 +226,7 @@
                                                             Rango:
                                                         </span>
                                                     </div>
-                                                    <input required type="text" id="abiRankUpdate" name="abiRankUpdate" class="form-control-rounded-right form-control main-input" aria-label="Small" aria-describedby="inputGroup-sizing-sm" value="{{ trim($abiInfo[0]->Rango, ' ') }}" readonly>
+                                                    <input required type="text" id="abiRankUpdate" name="abiRankUpdate" class="form-control-rounded-right form-control main-input" aria-label="Small" aria-describedby="inputGroup-sizing-sm" value="{{ trim($abiInfo[0]->Rango ?? '', ' ') }}" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12">
@@ -260,9 +263,9 @@
                                         <div class="row">
                                             <div class="input-group input-group-sm mb-2 pr-4">
                                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-3">
-                                                    <div class="border-dashed text-center">Añade una nueva imagen a tu evento (opcional)</div>
+                                                    <div class="border-dashed text-center">Añade una nueva imagen a tu evento (opcional) "Solo fotografías"</div>
                                                 </div>
-                                                <input required type="file" id="eventPictureUpdate" name="eventPictureUpdate" class="dropify" data-height="300" data-allowed-file-extensions="heic tif tiff jpg gif png svg eps odg wmf cdr bmp raw bmp eps ai ico webp psd"/>
+                                                <input required type="file" id="eventPictureUpdate" name="eventPictureUpdate" class="dropify" data-height="300"/>
                                             </div>
                                         </div>
                                     </div>
@@ -287,10 +290,11 @@
 @section('scripts')
     <script src="{{ asset('fproh/js/ui-kit/ui-tooltip-popovers.js') }}"></script>
     <script src="{{ asset('fproh/plugins/sweetalerts/sweetalert2.min.js') }}"></script>
-    <script src="{{ asset('fproh/mainjs/finszsaludables/finszsaludables.js') }}"></script>
     <script src="{{ asset('fproh/plugins/dropify/dropify.min.js') }}"></script>
     <script src="{{ asset('fproh/js/modal/classie.js') }}"></script>
     <script src="{{ asset('fproh/js/modal/modalEffects.js') }}"></script>
+    <script src="{{ asset('fproh/plugins/input-mask/jquery.inputmask.bundle.min.js') }}"></script>
+    <script src="{{ asset('fproh/mainjs/finszsaludables/finszsaludables.js') }}"></script>
     <script>
         $(document).ready(function() {
             $('.dropify').dropify();
@@ -319,27 +323,27 @@
         var textAlert = "";
 
         @if($estatus == 4 && $abiInfo[0]->Pais == 'CHL')
-            textAlert = "Te has hecho acreedor de un descuento durante las 4 semanas de Abril (1 al 30 de Abril) en Botella deportiva PiMag";
+            textAlert = "Te has hecho acreedor de un descuento durante las 4 semanas de Abril (3 al 30 de Abril) en Botella deportiva PiMag";
         @elseif($estatus == 4 && $abiInfo[0]->Pais != 'CHL')
-            textAlert = "Te has hecho acreedor de un descuento durante las 4 semanas de Abril (1 al 30 de Abril) en Sistema de aire KenkoAir Purifier";
+            textAlert = "Te has hecho acreedor de un descuento durante las 4 semanas de Abril (3 al 30 de Abril) en Sistema de aire KenkoAir Purifier";
         @endif
 
         @if($estatus == 3 && $abiInfo[0]->Pais == 'CHL')
-            textAlert = "Te has hecho acreedor de un descuento durante el mes de Abril en Botella deportiva PiMag";
+            textAlert = "Te has hecho acreedor de un descuento durante las 4 semanas de Abril (3 al 30 de Abril) en Botella deportiva PiMag";
         @elseif($estatus == 3 && $abiInfo[0]->Pais != 'CHL')
-            textAlert = "Te has hecho acreedor de un descuento durante el mes de Abril en Sistema de aire KenkoAir Purifier";
+            textAlert = "Te has hecho acreedor de un descuento durante las 4 semanas de Abril (3 al 30 de Abril) en Sistema de aire KenkoAir Purifier";
         @endif
 
         @if($estatus == 2 && $abiInfo[0]->Pais == 'CHL')
-            textAlert = "Te has hecho acreedor de un descuento durante la 2da y 3er semana de Abril en Botella deportiva PiMag";
+            textAlert = "Te has hecho acreedor de un descuento durante la 2da y 3er semana de Abril (13 al 27 de Abril) en Botella deportiva PiMag";
         @elseif($estatus == 2 && $abiInfo[0]->Pais != 'CHL')
-            textAlert = "Te has hecho acreedor de un descuento durante la 2da y 3er semana de Abril en Sistema de aire KenkoAir Purifier";
+            textAlert = "Te has hecho acreedor de un descuento durante la 2da y 3er semana de Abril (13 al 27 de Abril) en Sistema de aire KenkoAir Purifier";
         @endif
 
         @if($estatus == 1 && $abiInfo[0]->Pais == 'CHL')
-            textAlert = "Te has hecho acreedor de un descuento durante la 2da semana de Abril en Botella deportiva PiMag";
+            textAlert = "Te has hecho acreedor de un descuento durante la 3ra semana de Abril (13 al 20 de Abril) en Botella deportiva PiMag";
         @elseif($estatus == 1 && $abiInfo[0]->Pais != 'CHL')
-            textAlert = "Te has hecho acreedor de un descuento durante la 2da semanas de Abril en Sistema de aire KenkoAir Purifier";
+            textAlert = "Te has hecho acreedor de un descuento durante la 3ra semana de Abril (13 al 20 de Abril) en Sistema de aire KenkoAir Purifier";
         @endif
 
         @if($estatus != 0)
@@ -352,7 +356,17 @@
                 animation: false,
                 padding: '2em',
             })
-            sendMailPromo(abiName);
+        @endif
+
+        @if($abiInfo[0]->Pais == 'ECU')
+            swal({
+                type: 'error',
+                title: 'LO SENTIMOS',
+                text: 'La promoción ha finalizado',
+                allowEscapeKey: false,
+                allowOutsideClick: false,
+                showConfirmButton: false
+            })
         @endif
     </script>
     

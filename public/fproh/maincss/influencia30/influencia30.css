@@ -1,0 +1,300 @@
+.blur-bg{
+   width: 100%;
+   height: 100%;
+   position: fixed;
+   background: #1b1c25 url('../../img/influencia30/simuladorbg.png') no-repeat fixed;
+   background-size: cover;
+   z-index: -2;
+}
+
+.card{
+   opacity: 0.85;
+}
+
+.personal-shadow{
+   -webkit-box-shadow: 0px 0px 19px 2px rgba(128,128,128,1);
+   -moz-box-shadow: 0px 0px 19px 2px rgba(128,128,128,1);
+   box-shadow: 0px 0px 19px 2px rgba(128,128,128,1);
+}
+
+.cards tbody tr {
+   float: left;
+   width: 21%;
+   margin: 1rem;
+   border: 0.0625rem solid rgba(0, 0, 0, .125);
+   border-radius: .25rem;
+   box-shadow: 0.25rem 0.25rem 0.5rem rgba(0, 0, 0, 0.25);
+}
+
+.cards tbody td {
+   display: block;
+}
+
+.cards thead {
+   display: none;
+}
+
+.cards td:before {
+   content: attr(data-label);
+   position: relative;
+   float: left;
+   color: #808080;
+   min-width: 4rem;
+   margin-left: 0;
+   margin-right: 1rem;
+   text-align: left;   
+}
+
+tr.selected td:before {
+   color: #CCC;
+}
+
+.table .avatar {
+   width: 50px;
+}
+
+.cards .avatar {
+   width: 150px;
+   margin: 15px;
+}
+
+.logo{
+   margin: auto;
+   max-height: 115px;
+   width: 30%;
+}
+
+@media (max-width: 768px) {
+   .logo{
+      margin: auto;
+      width: 50%;
+   }
+}
+
+@media (max-width: 576px) {
+   .logo{
+      margin: auto;
+      width: 80%;
+   }
+}
+
+.img_country{
+    height: 80px !important;
+    width: 80px !important;
+}
+
+.btn-maingradient-color{
+    color: #fff;
+    background-image: linear-gradient(to top, #9b23ea 0%, #af4a8f 100%);
+    background-color: #9b23ea;
+    border: 0;
+}
+
+.main-hr{
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-top: 4px solid #ad4ee6;
+}
+
+.nav-header-pers{
+   background: rgb(2,0,36);
+   background: linear-gradient(90deg, #020024 0%, #5d85be 0%, #5fa38c 100%);
+}
+
+.pull-right{
+    float: left;
+    margin-right: -500px;
+}
+
+.mainCard1{
+   background: #fff url('../../img/influencia30/optimizerbg.jpg') no-repeat center center !important;
+   background-size: cover !important;
+   /*filter: blur(5px);*/
+}
+
+.mainCard2{
+   background: #fff url('../../img/influencia30/piwaterfallbg.jpg') no-repeat center center !important;
+   background-size: cover !important;
+   /*filter: blur(5px);*/
+}
+
+.producto1, .producto2{
+   width: 60%;
+   margin-top: -25px;
+}
+
+.swal2-container.swal2-shown {
+   background-color: rgb(0, 0, 0);
+   background-image: url(../../img/influencia30/simuladorbg.png);
+   background-size: 100% 100%;
+   background-repeat: no-repeat;
+}
+
+.swal2-input{
+   border-radius: 50px !important;
+   height: 2.0em !important;
+   text-align: center !important;
+   width: 35% !important;
+}
+
+.swal2-popup .swal2-actions {
+   margin: 0 !important;
+}
+
+#user-profile-card-2.card {
+   height: auto !important;
+}
+
+.form-control-rounded{
+   text-align: center;
+}
+
+.swal2-modal{
+   width: 70% !important;
+}
+
+.swal2-progresscircle{
+   display: none !important;
+}
+
+.swal2-footer{
+   border-top: 0 !important;
+}
+
+.swal2-modal .swal2-confirm.swal2-styled {
+   background-image: linear-gradient(to top, #3bbc43 0%, #86ffb5 100%) !important;
+}
+
+.modal-content > .swal2-cancel{
+   background-image: linear-gradient(to top, #3bbc43 0%, #86ffb5 100%) !important;
+}
+
+.bd-example-modal-xl {
+   background-image: url(../../img/influencia30/simuladorbg.png) !important;
+   background-size: 100% 100% !important;
+   background-repeat: no-repeat !important;
+   z-index: 1042 !important;
+}
+
+.modal-dialog{
+   max-width: 70% !important;
+}
+
+.modal-content > .swal2-popup{
+   width: 100% !important;
+}
+
+.total-commodities .widget-icon, .total-coins .widget-icon, .total-currencies .widget-icon{
+   right: 40% !important;
+}
+
+.widget-content-area{
+   box-shadow: 0px 0px 0px rgba(255,255,255,0) !important;
+}
+
+.btn-main-gradient{
+   background-image: linear-gradient(to top, #3bbc43 0%, #86ffb5 100%) !important;
+}
+
+.opcional{
+   color: tomato;
+   font-size: 10px !important;
+}
+
+.modal-open{
+   overflow: auto !important;
+}
+
+.swal2-container .swal2-popup{
+   padding-bottom: 0 !important;
+}
+
+@media (max-width: 880px){
+   .porductos{
+      width: 90% !important;
+   }
+}
+
+@media (max-width: 841.6px){
+   .swal2-container .swal2-popup .swal2-header .swal2-image{
+      width: 100% !important;
+   }
+
+   .swal2-input {
+      width: 60% !important;
+   }
+
+   .swal2-modal {
+      width: 100% !important;
+   }
+}
+
+@media (max-width: 575.4px){
+   .modal  .modal-dialog {
+      max-width: 100% !important;
+   }
+
+   #step5 img{
+      width: 90% !important;
+   }
+}
+
+.swal2-footer img{
+   max-width: 100% !important;
+}
+
+@media (max-width: 768px){
+   .swal2-footer img{
+      max-width: 100% !important;
+      max-height: 200px !important;
+   }
+}
+
+#chat-circle i {
+   font-size: 30px;
+   color: #fff;
+   padding: 16px;
+   background: #488e34;
+   background-image: none;
+   background-image: none;
+   background-image: linear-gradient(to right, #00a5e0 0%, #242468 100%);
+   border-radius: 50%;
+   letter-spacing: 0;
+}
+
+#chat-circle {
+   position: fixed;
+   bottom: 55px;
+   right: 15px;
+   background-color: transparent;
+   border-radius: 5px;
+   color: #fff;
+   padding: 0;
+   z-index: 2999;
+   cursor: pointer;
+   box-shadow: none;
+   outline: 0;
+   -webkit-transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s cubic-bezier(0.4, 0, 0.2, 1), -webkit-box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1);
+   transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s cubic-bezier(0.4, 0, 0.2, 1), -webkit-box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1);
+   -o-transition: box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1), background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+   transition: box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1), background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+   transition: box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1), background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s cubic-bezier(0.4, 0, 0.2, 1), -webkit-box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1);
+   will-change: box-shadow, transform;
+}
+
+.players-group{
+   width: 100% !important;
+   max-width: 100% !important;
+}
+
+.players-group > .row {
+   display: flex;
+   flex-wrap: nowrap;
+   overflow-x: auto;
+   max-width: 100%;
+}
+
+.players-group > .row > .col-xs-4 {
+   flex: 0 0 auto;
+}

@@ -1,0 +1,206 @@
+.blur-bg{
+   width: 100%;
+   height: 100%;
+   position: fixed;
+   /*filter: blur(5px);
+   -webkit-filter: blur(5px);*/
+   background: #1b1c25 url('../../img/regactivinf/bg.jpg') no-repeat fixed;
+   /*background: #1b1c25 url('https://nikkenlatam.com/interno/panel-marketing/assets/images/general/bg-pattern.jpg') fixed;*/
+   background-size: cover;
+   z-index: -2;
+}
+
+.card{
+   opacity: 0.8;
+}
+
+.personal-shadow{
+   -webkit-box-shadow: 0px 0px 19px 2px rgba(128,128,128,1);
+   -moz-box-shadow: 0px 0px 19px 2px rgba(128,128,128,1);
+   box-shadow: 0px 0px 19px 2px rgba(128,128,128,1);
+}
+
+
+
+.cards tbody tr {
+   float: left;
+   width: 21%;
+   margin: 1rem;
+   border: 0.0625rem solid rgba(0, 0, 0, .125);
+   border-radius: .25rem;
+   box-shadow: 0.25rem 0.25rem 0.5rem rgba(0, 0, 0, 0.25);
+}
+
+.cards tbody td {
+   display: block;
+}
+
+.cards thead {
+   display: none;
+}
+
+.cards td:before {
+   content: attr(data-label);
+   position: relative;
+   float: left;
+   color: #808080;
+   min-width: 4rem;
+   margin-left: 0;
+   margin-right: 1rem;
+   text-align: left;   
+}
+
+tr.selected td:before {
+   color: #CCC;
+}
+
+.table .avatar {
+   width: 50px;
+}
+
+.cards .avatar {
+   width: 150px;
+   margin: 15px;
+}
+
+.logo{
+   margin: auto;
+   max-height: 115px;
+   width: 30%;
+}
+
+@media (max-width: 768px) {
+   .logo{
+      margin: auto;
+      width: 50%;
+   }
+}
+
+@media (max-width: 576px) {
+   .logo{
+      margin: auto;
+      width: 80%;
+   }
+}
+
+.nav-header-pers{
+   background: rgb(2,0,36);
+   background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(123,79,146,1) 0%, rgba(232,68,140,1) 100%);
+}
+
+.nav-header-pers-menu{
+   opacity: 0.95;
+}
+
+.alert-warning > .close{
+   display: none;
+}
+
+
+#chat-circle {
+   position: fixed;
+   bottom: 55px;
+   right: 15px;
+   background-color: transparent;
+   border-radius: 5px;
+   color: #fff;
+   padding: 0;
+   z-index: 999;
+   cursor: pointer;
+   box-shadow: none;
+   outline: 0;
+   -webkit-transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s cubic-bezier(0.4, 0, 0.2, 1), -webkit-box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1);
+   transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s cubic-bezier(0.4, 0, 0.2, 1), -webkit-box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1);
+   -o-transition: box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1), background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+   transition: box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1), background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+   transition: box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1), background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s cubic-bezier(0.4, 0, 0.2, 1), -webkit-box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1);
+   will-change: box-shadow, transform;
+}
+
+#chat-circle i {
+   font-size: 30px;
+   color: #fff;
+   padding: 16px;
+   background: #488e34;
+   background-image: none;
+   background-image: linear-gradient(to right, #7c4f92 0%, #e8448c 100%);
+   border-radius: 50%;
+   letter-spacing: 0;
+}
+
+.img_country{
+   height: 80px !important;
+   width: 80px !important;
+}
+
+.btn-maingradient-color{
+   color: #fff;
+   background-image: linear-gradient(to top, #9b23ea 0%, #af4a8f 100%);
+   background-color: #9b23ea;
+   border: 0;
+}
+
+.text-red{
+   color: red;
+}
+
+.main-width{
+   width: 35%;
+}
+
+select.form-control {
+   display: inline-block;
+   width: 100%;
+   height: calc(2.25rem + 2px);
+   vertical-align: middle;
+   background: #fff url('../../../fpro/img/arrow-down.png') no-repeat right .75rem center;
+   background-size: 13px 14px;
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+}
+
+.main-img{
+   height: auto !important;
+}
+
+.main-hr{
+   width: 100%;
+   margin-top: 5px;
+   margin-bottom: 5px;
+   border-top: 4px solid #ad4ee6;
+}
+
+#returnIncForm{
+   z-index: 1042 !important;
+}
+
+.modal-backdrop{
+   z-index: 1041 !important;
+}
+
+.alert-gradient-inf{
+   color: #fff;
+   border: none;
+   background-size: cover;
+   background-image: linear-gradient(135deg, #e7448c 0%, #7e4f92 100%);
+}
+
+.select2-selection__arrow{
+   height: 20px !important;
+}
+
+.select2-selection__rendered{
+   /*line-height: 20.5px !important;*/
+   line-height: 1.5 !important;
+}
+
+.select2-container--default .select2-selection--single {
+   border: 1px solid #ced4da !important;
+   border-radius: 1.875rem !important;
+}
+
+.pull-right{
+   float: left;
+   margin-right: -500px;
+}

@@ -1,0 +1,7 @@
+.desktop-nav, .tabMobileView {
+    background-color: #0aa6b6 !important;
+}
+
+.login > .form-control{
+    padding: 0 !important;
+}

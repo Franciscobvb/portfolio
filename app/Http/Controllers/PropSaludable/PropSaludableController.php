@@ -13,14 +13,15 @@ class PropSaludableController extends Controller{
     const S3_OPTIONS = ['disk' => 's3', 'visibility' => 'public'];
 
     public function index(Request $request){
-        $associateid = base64_decode($request->associateid);
-        //$associateid = $request->associateid;
+        $associateid = $request->associateid;
+        if(!is_numeric($associateid)){
+            $associateid = base64_decode($associateid);
+        }
         $estatus = 0;
         $conexion5 = \DB::connection('sqlsrv5');
-            $periodo = Date('Ym');
-            $abiInfo = $conexion5->select("SELECT * FROM Puntos2020 WHERE Associateid = $associateid AND Periodo = $periodo;");
+            $abiInfo = $conexion5->select("SELECT * FROM Puntos2020 WHERE Associateid = $associateid AND Periodo = 202003;");
             $eventos = $conexion5->select("SELECT * FROM Registro_Eventos WHERE Associateid = $associateid;");
-            $getWinner = $conexion5->select("SELECT Estatus from WinProposito WHERE Associateid = $associateid AND Periodo = $periodo;");
+            $getWinner = $conexion5->select("SELECT Estatus from WinProposito WHERE Associateid = $associateid AND Periodo = 202003;");
         \DB::disconnect('sqlsrv5');
         if(sizeof($getWinner) > 0){
             $estatus = $getWinner[0]->Estatus;
@@ -58,7 +59,7 @@ class PropSaludableController extends Controller{
         $type = $request->type;
         $conexion5 = \DB::connection('sqlsrv5');
             $periodo = Date('Ym');
-            $genealogy = $conexion5->select("EXEC Gen_PropositoSaludable $associateid, $type;");
+            $genealogy = $conexion5->select("EXEC Gen_PropositoSaludable $associateid, $type, 202003;");
         \DB::disconnect('sqlsrv5');
 
         $data = [
@@ -169,7 +170,7 @@ class PropSaludableController extends Controller{
         return \Response::json($data);
     }
 
-    public function finzsSalMailView(){
+    public function finzsSalMailView(Request $request){
         return view('PropSaludable.email');
     }
 
@@ -177,46 +178,56 @@ class PropSaludableController extends Controller{
         $associateid = $request->abiCode;
         $periodo = Date('Ym');
         $conexion5 = \DB::connection('sqlsrv5');
-        $imgHeader = "latamhead.jpg";
-        $imgFooter = "latamfooter.jpg";
-
-        //$getMailExist = $conexion5->select("SELECT * FROM Puntos2020 WHERE Associateid = $associateid AND Periodo = $periodo;");
-        $abiInfo = $conexion5->select("SELECT * FROM Puntos2020 WHERE Associateid = $associateid AND Periodo = $periodo;");
-        $propSalInfo = $conexion5->select("SELECT * FROM Proposito_Saludable WHERE Associateid = $associateid AND Periodo = $periodo;");
+            $abiInfo = $conexion5->select("SELECT AssociateName, Email, Pais FROM Puntos2020 WHERE Associateid = $associateid AND Periodo = $periodo;");
+            $propSalInfo = $conexion5->select("SELECT * FROM Proposito_Saludable WHERE Associateid = $associateid AND Periodo = $periodo;");
+            $estatus = $conexion5->select("SELECT FechaInicio, FechaFin FROM WinProposito WHERE Associateid = $associateid;");
         \DB::disconnect('sqlsrv5');
 
-        //$correo = "lquintero@nikkenlatam.com";
-        $correo = "saxeden666@upcmaill.com";
-        $Vp = $abiInfo[0]->Vp;
-        $Incorp_Influencers = $propSalInfo[0]->Incorp_Influencers;
-        $producto = "el Sistema de Aire Kenko Air Purifier.";
+        $correo = "fmelchor@nikkenlatam.com";
+        //$correo = "jsoto@nikkenlatam.com";
+        //$correo = trim($abiInfo[0]->Email, ' ');
+        
+        $name = trim($abiInfo[0]->AssociateName, ' ');
 
-        if($abiInfo[0]->Pais == "CHL"){
-            $imgHeader = "chlhead.jpg";
-            $imgFooter = "chlfooter.jpg";
-            $producto = "la Botella deportiva PiMag.";
+        $imgHeader = "http://services.nikken.com.mx/fproh/img/finszsaludables/LATAMheader.png";
+        $imgFooter = "http://services.nikken.com.mx/fproh/img/finszsaludables/LATAMfooter.png";
+        $producto = "CupónAir con el 30%";
+
+        $del = explode('-', $estatus[0]->FechaInicio);
+        $del = $del[2];
+
+        $al = explode('-', $estatus[0]->FechaFin);
+        $al = $al[2];
+
+        if($estatus[0]->Estatus == 4){
+            $al = '30';
+        }
+
+        if($abiInfo[0]->Pais == 'CHL'){
+            $imgHeader = "http://services.nikken.com.mx/fproh/img/finszsaludables/CHILEheader.png";
+            $imgFooter = "http://services.nikken.com.mx/fproh/img/finszsaludables/CHILEfooter.png";
+            $producto = "CupónBottle con el 30%";
         }
 
         $data = array(
-            'nombre' => $abiInfo[0]->AssociateName,
+            'name' => $name,
             'imgHeader' => $imgHeader,
             'imgFooter' => $imgFooter,
-            'Vp' => $Vp,
-            'Incorp_Influencers' => $Incorp_Influencers,
-            'product' => $producto,
+            'producto' => $producto,
+            'del' => $del,
+            'al' => $al,
             'userB64' => base64_encode($associateid)
         );
 
         Mail::send('PropSaludable.email', $data, function ($message)  use ($correo){
-            //$message->from('lquintero@nikkenlatam.com', "Finanzas Saludables");
-            $message->from('fmelchor@nikkenlatam.com', "Finanzas Saludables");
+            $message->from('servicio.mex@nikkenlatam.com', "Finanzas Saludables");
             $message->to("$correo")->subject("Finanzas Saludables");
         });
 
-        return "1";
+        return $abiInfo[0]->Pais;
     }
 
     function internaMailPlatfomr(){
-        return view('internaMailPlatfomr');
+        return view('propSaludable.internaMailPlatfomr');
     }
 }

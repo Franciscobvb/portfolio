@@ -36,8 +36,9 @@
                                 $paisCompleto = [ "COL" => "Colombia", "GTM" => "Guatemala", "PER" => "Perú", "SLV" => "El Salvador", "ECU" => "Ecuador", "PAN" => "Panamá", "LAT" => "México", "CRI" => "Costa Rica", "CHL" => "Chile"];
                                 $banderas = ["COL" => "colombia.png", "GTM" => "guatemala.png", "PER" => "peru.png", "SLV" => "salvador.png", "ECU" => "ecuador.png", "PAN" => "panama.png", "LAT" => "mexico.png", "CRI" => "costarica.png", "CHL" => "chile.png"];
                             @endphp
-                            <h6 class="mb-1">{{ $abiInfo[0]->AssociateName ?? "Nikken Latam" }}</h6>
-                            <p class="mb-0">{{ $paisCompleto[$abiInfo[0]->Pais] . " | " . $abiInfo[0]->Associateid. " | " . $abiInfo[0]->Rango}}</p>
+                            <h6 class="mb-1">{{ $abiInfo[0]->AssociateName ?? "NO PARTICIPAS EN FINANZAS SALUDABLES" }}</h6>
+                            @php $pais = $abiInfo[0]->Pais ?? "LAT"; $Associateid = $abiInfo[0]->Associateid ?? 10000001; $Rango = $abiInfo[0]->Rango ?? "DIR"; @endphp
+                            <p class="mb-0">{{ $paisCompleto[$pais] . " | " . $Associateid . " | " . $Rango }}</p>
                         </div>
                     </div>
                 </a>
@@ -64,8 +65,8 @@
                     <div class="media">
                         <img src="{{ asset('fproh/img/regactivinf/user.png') }}" class="img-fluid mr-2" alt="admin-profile">
                         <div class="media-body align-self-center">
-                            <h6 class="mb-1">{{ $abiInfo[0]->AssociateName ?? "Nikken Latam" }}</h6>
-                            <p class="mb-0">{{ $paisCompleto[$abiInfo[0]->Pais] . " | " . $abiInfo[0]->Associateid. " | " . $abiInfo[0]->Rango}}</p>
+                            <h6 class="mb-1">{{ $abiInfo[0]->AssociateName ?? "NO PARTICIPAS EN FINANZAS SALUDABLES" }}</h6>
+                            <p class="mb-0">{{ $paisCompleto[$pais] . " | " . $Associateid . " | " . $Rango }}</p>
                         </div>
                     </div>
                 </a>
