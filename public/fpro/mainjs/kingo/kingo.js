@@ -45,10 +45,10 @@ for (var i = 0; i < classname.length; i++) {
         classname[i].addEventListener('click', animateButton, false);
     }
     else if(i == 1){
-        classname[i].addEventListener('click', ranking, false);
+        classname[i].addEventListener('click', folioBoletosEffect, false);
     }
     else if(i == 2){
-        classname[i].addEventListener('click', folioBoletosEffect, false);
+        classname[i].addEventListener('click', ranking, false);
     }
 }
 
@@ -59,18 +59,10 @@ $("#rankingTab").dataTable({
     ordering: false,
     info: false,
     destroy: true,
-    ajax: "/kgGetRank",
+    ajax: "/kgGetRank?associateid=" + $("#associateid").val(),
     columns: [
-        { 
-            data: 'associateid', 
-            className: 'text-center',
-            "render": function(data, type, row){
-                contador++;
-                return "# " + contador;
-            }
-        },
-        { data: 'associateName', className: 'text-center' },
-        { data: 'Rango', className: 'text-center' },
+        { data: 'associateid', className: 'text-center' },
+        { data: 'NombreMiembro', className: 'text-center' },
         { 
             data: 'Pais', 
             className: 'text-center',
@@ -253,10 +245,7 @@ $("#detalleOrdenes").dataTable({
                 return tipo;
             }
         },
-        /*{ data: 'ItemCode', className: 'text-center' },
-        { data: 'Descripcion', className: 'text-center' },
-        { data: 'Qty', className: 'text-center' },*/
-        { data: 'NumBoletos', className: 'text-center' },
+        { data: 'TotalBoletos', className: 'text-center' },
         { data: 'FolioIni', className: 'text-center' },
         { data: 'FolioFin', className: 'text-center' },
     ],

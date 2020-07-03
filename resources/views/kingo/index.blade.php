@@ -76,16 +76,16 @@
 									<h6>El Plan de Influencia te trae PiMag Connection te da la posibilidad de participar por bonos en productos y en efectivo en el mes de Junio, entonces prepárate por que empiezan pequeños retos que te acercaran a generar un ingreso muy interesante.</h6>
 									<hr class="mt-5">
 									<button class="btn btn-rounded mb-4 mr-2 btnEstatus confetti-button">Estatus personal</button>
-									<button class="btn btn-rounded mb-4 mr-2 btnranking confetti-button">Ranking</button>
 									<hr class="mt-2">
 									<button class="btn btn-rounded mb-4 mr-2 btnEstatus confetti-button btnPregFrec">Mis boletos por c/100 VP</button>
+									<button class="btn btn-rounded mb-4 mr-2 btnranking confetti-button">Boletos de mis Miembros de la Comunidad</button>
 								</div>
-								<div class="col-lg-12" data-aos="fade-down" data-aos-duration="3000">
-									<a class="btn btn-classic btn-primary mr-2 btnPregFrec" href="{{ asset('fpro/img/kingo/preguntas_frecuentes.pdf') }}" target="_new">
+								<div class="col-lg-12">
+									<a class="btn btn-classic btn-primary mr-2 mt-2 btnPregFrec" href="{{ asset('fpro/img/kingo/preguntas_frecuentes.pdf') }}" target="_new">
 										<i class="flaticon-pdf mr-1"></i>
 										Preguntas frecuentes
 									</a>
-									<a class="btn btn-classic btn-primary btnTerminos" href="{{ asset('fpro/img/kingo/terminos_y_condiciones.pdf') }}" target="_new">
+									<a class="btn btn-classic btn-primary btnTerminos mt-2" href="{{ asset('fpro/img/kingo/terminos_y_condiciones.pdf') }}" target="_new">
 										<i class="flaticon-pdf mt-2"></i>
 										Términos y Condiciones
 									</a>
@@ -623,12 +623,11 @@
 											date_default_timezone_set('America/Mexico_City');
 											$dia = Date('d');
 											$mes = Date('m');
-											$meses = ['', 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
 											$mes = DateTime::createFromFormat('!m', $mes);
 											$mes = strftime("%B", $mes->getTimestamp());
 											$mesnum = Date('m');
 											$mesnum = str_replace('0', '', $mesnum);
-											
+											$meses = ['', 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
 											$pais = $abiInfo[0]->Pais ?? "LAT";
 										@endphp
 										<h6>Periodo de volumen: <b>Junio 2020.</b></h6>
@@ -876,29 +875,25 @@
 							</div>
 							<div class="col-md-12">
 								<h2 class="text-center mainTitle">
-									<input type="hidden" id="associateid" disabled value="10613303">
-									<input type="hidden" id="rango" disabled value="EXE">
-									<input type="hidden" id="AvanceR" disabled value="NO   ">
-									Ranking de participantes
+									Boletos de mis Miembros de la Comunidad
 								</h2>
 							</div>
 							<div class="col-lg-12 mainModalBody">
 								<div class="row">
 									<div class="col-lg-12 pb-4">
-										<h6>Periodo de volumen: <b>Junio 2020.</b></h6>
 										<h6>Fecha de actualizacion: {{ $dia }} de {{ $meses[$mesnum] }} a las {{ $lastUpdate ?? '' }} hora México.</h6>
 									</div>
 									<div class="col-md-12">
 										<div class="col-md-12">
+											<h4 class="text-center">Detallado de órdenes</h4>
 											<div class="row">
 												<div class="col-md-12">
 													<div class="table-responsive mb-4">
 														<table id="rankingTab" class="table table-striped table-bordered table-hover text-center" >
 															<thead>
 																<tr class="text-center ranktabheadder">
-																	<th>Posición</th>
+																	<th>Código club</th>
 																	<th><p style="width: 150px;">Nombre</p></th>
-																	<th>Rango</th>
 																	<th>País</th>
 																	<th>Número de boletos</th>
 																</tr>
@@ -953,20 +948,20 @@
 														@if ($detalleBoletos[$i]->semana == 1)
 															<h5 class="text-black">Corte 1ra semana</h5>
 															<h5>
-																VP productos de otras lineas: {{ number_format($detalleBoletos[0]->Puntos ?? 0) }} <br>
-																# de boletos: {{ number_format($detalleBoletos[0]->TotalBoletos ?? 0) }}
+																VP productos de otras lineas: {{ number_format($detalleBoletos[$i]->Puntos ?? 0) }} <br>
+																# de boletos: {{ number_format($detalleBoletos[$i]->TotalBoletos ?? 0) }}
 															</h5>
 														@elseif($detalleBoletos[$i]->semana == 2)
 															<h5 class="text-black">Corte 2da semana</h5>
 															<h5>
-																VP productos de otras lineas: {{ number_format($detalleBoletos[1]->Puntos ?? 0) }} <br>
-																# de boletos: {{ number_format($detalleBoletos[1]->TotalBoletos ?? 0) }}
+																VP productos de otras lineas: {{ number_format($detalleBoletos[$i]->Puntos ?? 0) }} <br>
+																# de boletos: {{ number_format($detalleBoletos[$i]->TotalBoletos ?? 0) }}
 															</h5>
 														@elseif($detalleBoletos[$i]->semana == 3)
 															<h5 class="text-black">Corte 3ra y 4ta semana</h5>
 															<h5>
-																VP productos de otras lineas: {{ number_format($detalleBoletos[2]->Puntos ?? 0) }} <br>
-																# de boletos: {{ number_format($detalleBoletos[2]->TotalBoletos ?? 0) }}
+																VP productos de otras lineas: {{ number_format($detalleBoletos[$i]->Puntos ?? 0) }} <br>
+																# de boletos: {{ number_format($detalleBoletos[$i]->TotalBoletos ?? 0) }}
 															</h5>
 														@endif
 													</div>

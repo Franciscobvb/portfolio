@@ -21,7 +21,12 @@ class nikkenController extends Controller{
 		$hoy = getdate();
 		$day=$hoy['mday'];
 		$month=$hoy['month'];
-		$period = '202005';
+		if(Date('d') >= 16){
+			$period = Date('Ym');
+		}
+		else{
+			$period = Date('Ym') - 1;
+		}
 		$exponente='';
 		$abi = $abi;
 		if(!is_numeric($abi)){
@@ -446,7 +451,7 @@ class nikkenController extends Controller{
 			$bonoInfluencia = $contPiezasBono[0]->Total_Amount + $Total2;
 		}
 		else{
-			$bonoInfluencia = 0;
+			$bonoInfluencia = 0 + $Total2;
 		}
 		$bonoInfluencia = number_format($bonoInfluencia, 2);
 		$Total = $bonoInfluencia;
@@ -501,8 +506,7 @@ class nikkenController extends Controller{
 		$conexion=DB::connection('sqlsrv2');
 		$quantity = 0;
 		$queryKinyaDetail= [];
-		$queryKinyaLV1Detail= [];
-		$queryKinyaLV2Detail= [];
+		$tabDetallesInfluencia = [];
 		$queryKintai= [];
 		$PriceKinya = 0;	
 		$PriceKintai = 0;
@@ -558,9 +562,8 @@ class nikkenController extends Controller{
 		if (!$Datos) {
 			$quantity = 0;
 			$queryKinyaDetail= [];
-			$queryKinyaLV1Detail= [];
-			$queryKinyaLV2Detail= [];
 			$queryKintai= [];
+			$tabDetallesInfluencia = [];
 			$PriceKinya = 0;	
 			$PriceKintai = 0;
 			$Total=0;
@@ -574,6 +577,7 @@ class nikkenController extends Controller{
 			$CountryName="";
 			$name="";
 			$simboloPrecio="";
+			$bonoInfTotal = 0;
 		}
 		else{
 			$PriceKinya = number_format($Datos->Price_D1,2);	
@@ -670,15 +674,37 @@ class nikkenController extends Controller{
 				->get();
 				
 			if(sizeof($bonoTotalInfluencia) <= 0){
-				$bonoInfTotal = number_format(0, 2);
+				$bonoInfTotal = 0;
 			}
 			else{
-				$bonoInfTotal = number_format($bonoTotalInfluencia->Total_Amount, 2);
+				$bonoInfTotal = $bonoTotalInfluencia[0]->Total_Amount;
 			}
 			
 			$Total = number_format($Total + $bonoInfTotal, 2);
+
+			$conexion = \DB::connection('sqlsrv2');
+				$tabDetallesInfluencia = $conexion->select("SELECT b.AssociateName AS apfirstname, a.Associateid AS Associateid, a.Ordernum AS Ordernum, a.Fecha_Orden AS Orderdate, a.Periodo AS Periodo, a.Kit_Influencer AS itemcode, a.Descripcion AS Descripcion, a.Qty_Item AS Qty_Item, a.Bono_Una_Unidad AS Bono_Tres_Unidades_o_Mas, a.Owner_Influencer AS Owner_Influencer, a.owner_country AS owner_country 
+															FROM Historico_Influencer_UNA a
+															INNER JOIN [RETOS_ESPECIALES].[dbo].[puntos2020] b ON(a.Associateid = b.Associateid)
+															WHERE Owner_Influencer = $abi  AND a.Periodo = $period
+															GROUP BY b.AssociateName, a.Associateid, a.Ordernum, a.Fecha_Orden, a.Periodo, a.Kit_Influencer, a.Descripcion,a.Qty_Item,a.Bono_Una_Unidad,a.Owner_Influencer,a.owner_country;");
+				if(sizeof($tabDetallesInfluencia) <= 0){
+					$tabDetallesInfluencia = $conexion->select("SELECT b.AssociateName AS apfirstname, a.Associateid AS Associateid, a.Ordernum AS Ordernum, a.Orderdate AS Orderdate, a.Periodo AS Periodo, a.itemcode AS itemcode, a.Descripcion AS Descripcion, a.Qty_Item AS Qty_Item, a.Bono_Dos_Unidades AS Bono_Tres_Unidades_o_Mas, a.Owner_Influencer AS Owner_Influencer, a.owner_country AS owner_country
+																FROM Historico_Influencer_DOS a
+																INNER JOIN [RETOS_ESPECIALES].[dbo].[puntos2020] b ON(a.Associateid = b.Associateid)
+																WHERE Owner_Influencer = $abi  AND a.Periodo = $period
+																GROUP BY b.AssociateName,a.Associateid, a.Ordernum, a.Orderdate, a.Periodo, a.itemcode, a.Descripcion,a.Qty_Item,a.Bono_Dos_Unidades,a.Owner_Influencer,a.owner_country");
+					if(sizeof($tabDetallesInfluencia) <= 0){
+						$tabDetallesInfluencia = $conexion->select("SELECT  b.AssociateName AS apfirstname, a.Associateid,a.Ordernum,a.Orderdate,a.Periodo,a.itemcode,a.Descripcion,a.Qty_Item,a.Bono_Tres_Unidades_o_Mas,a.Owner_Influencer, a.owner_country
+																	FROM Historico_Influencer_TRESoMAS a
+																	INNER JOIN [RETOS_ESPECIALES].[dbo].[puntos2020] b on(a.Associateid = b.Associateid)
+																	WHERE Owner_Influencer = $abi AND a.Periodo = $period
+																	GROUP BY b.AssociateName,a.Associateid, a.Ordernum, a.Orderdate, a.Periodo, a.itemcode, a.Descripcion,a.Qty_Item,a.Bono_Tres_Unidades_o_Mas,a.Owner_Influencer,a.owner_country;");
+					}
+				}
+			\DB::disconnect('sqlsrv2');
 		}
-		
+
 		$pdf = \PDF::loadView('PlanInfluencia.portada', [
 			'year' => $year,
 			'mes' => $mes,	
@@ -694,6 +720,7 @@ class nikkenController extends Controller{
 			'name' => $name,
 			'simboloPrecio' => $simboloPrecio,
 			'bonoInfTotal' => $bonoInfTotal,
+			'tabDetallesInfluencia' => $tabDetallesInfluencia,
 		]);
 
 		return $pdf->stream();
@@ -702,7 +729,12 @@ class nikkenController extends Controller{
 	// PLAN DE INFLUENCIA
 	public function getInfoInfluencia(Request $request){
 		$associateid = $request->associateid;
-		$periodo = '202005';
+		if(Date('d') >= 16){
+			$periodo = Date('Ym');
+		}
+		else{
+			$periodo = Date('Ym') - 1;
+		}
 		$conexion = \DB::connection('sqlsrv2');
 			$contPiezasBono = $conexion->select("SELECT Total_Amount, No_Unidades FROM Influencer_Bonus WHERE Influencer = $associateid;");
 			$Detalle = $conexion->select("SELECT Qty_Item, Descripcion FROM Influencer_UNA WHERE Owner_Influencer = $associateid;");

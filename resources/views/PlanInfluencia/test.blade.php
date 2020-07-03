@@ -142,7 +142,7 @@
         <div class="alert alert-warning" style="text-align: center">
             <a href="javascript:void(0)" class="alert-link"><i class="fas fa-wallet"></i> Estados de Cuenta</a>
         </div>
-        <div class="row">
+        <div class="row" style="max-width: 100%;">
             <div class="col-sm-2 col-md-4"></div>
             <div class="col-sm-8 col-md-4">
                 <div class="form-group">
@@ -174,7 +174,7 @@
                 </div>
             </div>
         </div>
-
+        <hr style="border-bottom: 3px dotted #3B5BD4">
         <div class="notas fuente" style="font-size: 16px;"> 
         <h4 style="text-align: center;"><strong>NOTAS IMPORTANTES</strong></h4>
         <br>

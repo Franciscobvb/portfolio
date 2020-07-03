@@ -72,6 +72,7 @@ class convMayoController extends Controller{
         $fileName='Renuevate y Avanza de Rango - Reporte Interno';
         $queryGenealogy = DB::connection('sqlsrv5')->table('EstrategiaMayo')
         ->select('Associateid', 'AssociateName', 'Rango', 'Email', 'Pais', 'VGPAcumulado3', 'VP_Mes', 'VGP_Pimag', 'VO_LDP', 'VO_LDPyS', 'AvanceR')
+        ->take(10)
         ->get();
 
         \DB::disconnect('sqlsrv5');

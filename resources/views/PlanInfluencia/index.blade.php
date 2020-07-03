@@ -35,7 +35,7 @@
     <div class="container text-center">
         <h3 style="color: #000;">{{ $nombreAbi ?? ' ' }}</h3>
         <h3>Ganancia Total: <label class="amount">{{ $simboloPrecio }}{{ $Total }}</label> </h3>
-        <h4 style="color: #000;">MOSTRANDO PERIODO: MAYO</h4>
+        <h4 style="color: #000;">MOSTRANDO PERIODO: JUNIO</h4>
         <button type="button" id="Genealogy" name="detail" class="btn btn-deep-orange waves-effect waves-light">Jugadores de mi grupo personal</button> 
     </div>
 @endsection
@@ -154,7 +154,9 @@
                                 <td scope="row">{{ number_format($item->Bonificacion,2) }}</td>  
                                 <td scope="row">{{ number_format($item->TotalBonificacion,2) }}</td>          
                             </tr>
-                        @endforeach 
+                        @endforeach
+                    </tbody>
+                    <tfoot>
                         <tr>
                             <td></td>
                             <td></td>
@@ -172,7 +174,7 @@
                                 "ANIMATE A COMPRAR 3 ARTICULOS PARA VER REFLEJADA TU INFORMACIÓN DE BONIFICACIONES"
                             </div>
                         @endif
-                    </tbody>
+                    </tfoot>
                 </table>
             </div>
             <div class="modal-footer">
@@ -432,10 +434,6 @@
 @endsection
 
 @section('Update')
-    <div class="alert alert-warning" style="text-align: center">
-        <a href="javascript:void(0)" class="alert-link"><i class="fas fa-wallet"></i> Estados de Cuenta</a>
-    </div>
-    
     <div class="notas fuente" style="font-size: 16px;"> 
         <h4 style="text-align: center;"><strong>NOTAS IMPORTANTES</strong></h4>
         <br>

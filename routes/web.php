@@ -76,25 +76,24 @@ Route::get('/simInfGmetBonosTest', 'influencia30\influencia30ControllerTest@simI
 Route::get('/simInfPdfViewTest', 'influencia30\influencia30ControllerTest@simInfPdfView');
 
 /*=== Controlador Plan de Influencia ===*/
-Route::get('/PlanInfluencia/{associateid}','PlanInfluencia\nikkenController@nikkenChallenge'); 
-Route::get('/pdf/{associateid}', 'PlanInfluencia\nikkenController@printPDF');
-Route::post('/excel/{associateid}', 'PlanInfluencia\nikkenController@ExcelKinya');
-Route::post('/excelKinyaPlus/{associateid}', 'PlanInfluencia\nikkenController@ExcelKinyaPlus');
-Route::post('/excelKintai/{associateid}', 'PlanInfluencia\nikkenController@ExcelKintai');
-Route::post('/exceljugadores/{associateid}', 'PlanInfluencia\nikkenController@ExcelJugadores');
+Route::get('/PlanInfluencia/{associateid}','PlanInfluencia\nikkenController@nikkenChallenge');
 Route::get('/getInfoInfluencia', 'PlanInfluencia\nikkenController@getInfoInfluencia');
 route::get('testEdoCuenta', 'PlanInfluencia\nikkenController@testEdoCuenta');
 Route::get('InfContGetPDF', 'PlanInfluencia\nikkenController@printPDF');
 
 /*=== Kingo ===*/
 Route::get('pimag_connection/{associateid}', 'Kingo\KingoController@index');
-Route::get('pimag_connectionTest/{associateid}', 'Kingo\KingoController@indexTest');
 Route::get('pimag_connectionClub/{associateid}', 'Kingo\KingoController@indexTestClub');
 Route::get('kgGetRank', 'Kingo\KingoController@getRank');
 Route::get('kgGetDetail', 'Kingo\KingoController@kgGetDetail');
 Route::get('kgGetordenClub', 'Kingo\KingoController@kgGetordenClub');
+Route::get('pconnecReportePMK', 'Kingo\KingoController@pconnecReportePMK');
+Route::get('pconnecReportePMKBoletos', 'Kingo\KingoController@pconnecReportePMKBoletos');
 
 /*=== Club Viajeros Premium ===*/
 Route::get('viajeros_premium/{associateid}', 'ViajerosPro\ViajerosProController@index');
 Route::get('vpGetMonts', 'ViajerosPro\ViajerosProController@vpGetMonts');
 Route::get('vpGetRank', 'ViajerosPro\ViajerosProController@vpGetRank');
+
+/*=== Campaña de repuestos ===*/
+Route::get('puntos_connection/{associateid}', 'puntos_connection\puntos_connectionController@index');

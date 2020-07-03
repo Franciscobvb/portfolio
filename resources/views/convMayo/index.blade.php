@@ -203,7 +203,7 @@
 							</div>
 							<div class="col-xl-5 mx-auto col-lg-6 col-md-6 site-content-inner text-md-right text-center align-self-center"></div>
 						</div>
-					</div>		
+					</div>
 				</div>
 			</div>
 		</div>

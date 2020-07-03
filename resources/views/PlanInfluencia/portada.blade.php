@@ -126,7 +126,7 @@
                             </td>
                             <td>
                                 <div class="col-lg-6 " >
-                                    <p class="amount" style="text-align:right;">{{ $simboloPrecio }}<?php echo $bonoInfTotal ?></p>
+                                    <p class="amount" style="text-align:right;">{{ $simboloPrecio }}<?php echo number_format($bonoInfTotal, 2) ?></p>
                                     <br>
                                 </div>
                             </td>
@@ -224,16 +224,16 @@
                                 @else
                                     <tr class="white">
                                 @endif
-                                <td scope="row">{{ $item->Associateid }}</td>
-                                <td scope="row">{{ $item->Nombre }}</td>
-                                <td scope="row">{{ $item->OrderNum }}</td>
-                                <td scope="row">  {{ date("d-m-Y", strtotime($item->OrderDate)) }}</td>
-                                <td scope="row" style="text-align: center">{{ $item->Itemcode }}</td>
-                                <td scope="row">{{ $item->Descripcion }}</td>
-                                <td scope="row" style="text-align: center">{{ $item->Qty }}</td>
-                                <td scope="row">{{ $simboloPrecio }} {{ number_format($item->Bonificacion,2) }}</td>
-                                <td scope="row">{{ $simboloPrecio }} {{ number_format($item->TotalBonificacion,2) }}</td>
-                            </tr>
+                                    <td scope="row">{{ $item->Associateid }}</td>
+                                    <td scope="row">{{ $item->Nombre }}</td>
+                                    <td scope="row">{{ $item->OrderNum }}</td>
+                                    <td scope="row">  {{ date("d-m-Y", strtotime($item->OrderDate)) }}</td>
+                                    <td scope="row" style="text-align: center">{{ $item->Itemcode }}</td>
+                                    <td scope="row">{{ $item->Descripcion }}</td>
+                                    <td scope="row" style="text-align: center">{{ $item->Qty }}</td>
+                                    <td scope="row">{{ $simboloPrecio }} {{ number_format($item->Bonificacion,2) }}</td>
+                                    <td scope="row">{{ $simboloPrecio }} {{ number_format($item->TotalBonificacion,2) }}</td>
+                                </tr>
                             {{$i = $i + 1}}
                             @endforeach 
                             <tr class="total">
@@ -253,20 +253,21 @@
                     <br>
                 </div>
             </div>
+
             @if ($bonoInfTotal != 0)
                 <div class="row col-lg-12" >
                     <table  style="width: 100%; border-top:4px dotted #FF8C00;">
                         <tbody>
                             <tr>
                                 <td>
-                                    <div class="col-lg-6" >
+                                    <div class="col-lg-8" >
                                         <br>
-                                        <img src="{{ asset('fpro/img/NCINF/Kin-Ya+.jpg') }}" class="logokin">
+                                        <img src="{{ asset('fpro/img/NCINF/minilogo.jpg') }}" class="logokin">
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="col-lg-6 " >
-                                        <p class="amounttable">{{ $simboloPrecio }}<?php echo $bonoInfTotal ?></p>
+                                    <div class="col-lg-4" >
+                                        <p class="amounttable">{{ $simboloPrecio }}<?php echo number_format($bonoInfTotal, 2) ?></p>
                                     </div>
                                 </td>
                             </tr>
@@ -277,7 +278,7 @@
                     <div class="col-12">
                         <table class="fuente">
                             <thead>
-                                <tr style="background: rgb(156, 214, 52) !important;">
+                                <tr style="background-image: linear-gradient(135deg, #20b3e2 0%, #494691 100%) !important;">
                                     <th>Asesor</th>
                                     <th>Nombre</th>
                                     <th>Orden</th>
@@ -290,47 +291,25 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $i2 = 1; ?>
-                                <!-- Mostrando registros LV1-->
-                                @foreach($queryKinyaLV1Detail as $iteml1)
-                                @if($i2%2==0)
-                                <tr class="gray">
+                                <?php $i = 1; ?>
+                                @foreach($tabDetallesInfluencia as $item)
+                                    @if($i%2==0)
+                                        <tr class="gray">
                                     @else
-                                <tr class="white">
+                                        <tr class="white">
                                     @endif
-                                    <td scope="row">{{ $iteml1->Associateid }}</td>
-                                    <!-- <td scope="row">000001</td> -->
-                                    <td scope="row">{{ $iteml1->Nombre }}</td>
-                                    <!-- <td scope="row">NIKKEN</td> -->
-                                    <td scope="row">{{ $iteml1->OrderNum }}</td>
-                                    <td scope="row">  {{ date("d-m-Y", strtotime($iteml1->OrderDate)) }}</td>
-                                    <td scope="row" style="text-align: center">{{ $iteml1->Itemcode }}</td>
-                                    <td scope="row">{{ $iteml1->Descripcion }}</td>
-                                    <td scope="row" style="text-align: center">{{ $iteml1->Qty }}</td>
-                                    <td scope="row">{{ $simboloPrecio }} {{ number_format($iteml1->Bonificacion,2) }}</td>
-                                    <td scope="row">{{ $simboloPrecio }} {{ number_format($iteml1->TotalBonificacion,2) }}</td>
-                                </tr>
-                                {{$i2 = $i2 + 1}}
-                                @endforeach  
-                                <!-- Mostrando registros LV2-->
-                                @foreach($queryKinyaLV2Detail as $iteml2)
-                                @if($i2%2==0)
-                                <tr class="gray">
-                                    @else
-                                <tr class="white">
-                                    @endif
-                                    <td scope="row">{{ $iteml2->Associateid }}</td>
-                                    <td scope="row">{{ $iteml2->Nombre }}</td>
-                                    <td scope="row">{{ $iteml2->OrderNum }}</td>
-                                    <td scope="row">  {{ date("d-m-Y", strtotime($iteml2->OrderDate)) }}</td>
-                                    <td scope="row" style="text-align: center">{{ $iteml2->Itemcode }}</td>
-                                    <td scope="row">{{ $iteml2->Descripcion }}</td>
-                                    <td scope="row" style="text-align: center">{{ $iteml2->Qty }}</td>
-                                    <td scope="row">{{ $simboloPrecio }} {{ number_format($iteml2->Bonificacion,2) }}</td>
-                                    <td scope="row">{{ $simboloPrecio }} {{ number_format($iteml2->TotalBonificacion,2) }}</td>
-                                </tr>
-                                {{$i2 = $i2 + 1}}
-                                @endforeach
+                                        <td scope="row">{{ $item->Associateid }}</td>
+                                        <td scope="row">{{ $item->apfirstname }}</td>
+                                        <td scope="row">{{ $item->Ordernum }}</td>
+                                        <td scope="row">  {{ date("d-m-Y", strtotime($item->Orderdate)) }}</td>
+                                        <td scope="row" style="text-align: center">{{ $item->itemcode }}</td>
+                                        <td scope="row">{{ $item->Descripcion }}</td>
+                                        <td scope="row" style="text-align: center">{{ $item->Qty_Item }}</td>
+                                        <td scope="row">{{ $simboloPrecio }} {{ number_format($item->Bono_Tres_Unidades_o_Mas,2) }}</td>
+                                        <td scope="row">{{ $simboloPrecio }} {{ number_format($item->Bono_Tres_Unidades_o_Mas,2) }}</td>
+                                    </tr>
+                                {{$i = $i + 1}}
+                                @endforeach 
                                 <tr class="total">
                                     <td></td>
                                     <td></td>
@@ -340,7 +319,8 @@
                                     <td></td>
                                     <td></td>
                                     <th style="font-size: 16px !important;">Total</th>
-                                    <th style="font-size: 16px !important;  color: #D64000 !important; ">{{ $simboloPrecio }}<?php echo $bonoInfTotal ?></th>
+                                    <th style="font-size: 16px !important;  color: #D64000 !important; ">{{ $simboloPrecio }}<?php echo number_format($bonoInfTotal, 2) ?></th>
+                                    <td></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -348,101 +328,7 @@
                     </div>
                 </div>
             @endif
-            @if ($bonoInfTotal != 0)
-                <div class="row col-lg-12" >
-                    <table  style="width: 100%; border-top:4px dotted #FF8C00;">
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <div class="col-lg-6" >
-                                        <br>
-                                        <img src="{{ asset('fpro/img/NCINF/Kin-Ya+.jpg') }}" class="logokin">
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="col-lg-6 " >
-                                        <p class="amounttable">{{ $simboloPrecio }}<?php echo $bonoInfTotal ?></p>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <table class="fuente">
-                            <thead>
-                                <tr style="background: rgb(156, 214, 52) !important;">
-                                    <th>Asesor</th>
-                                    <th>Nombre</th>
-                                    <th>Orden</th>
-                                    <th>Fecha</th>
-                                    <th>Item</th>
-                                    <th>Descripción</th>
-                                    <th>Cantidad</th>
-                                    <th>Bonificación</th>
-                                    <th>Total Bonificación</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php $i2 = 1; ?>
-                                <!-- Mostrando registros LV1-->
-                                @foreach($queryKinyaLV1Detail as $iteml1)
-                                @if($i2%2==0)
-                                <tr class="gray">
-                                    @else
-                                <tr class="white">
-                                    @endif
-                                    <td scope="row">{{ $iteml1->Associateid }}</td>
-                                    <!-- <td scope="row">000001</td> -->
-                                    <td scope="row">{{ $iteml1->Nombre }}</td>
-                                    <!-- <td scope="row">NIKKEN</td> -->
-                                    <td scope="row">{{ $iteml1->OrderNum }}</td>
-                                    <td scope="row">  {{ date("d-m-Y", strtotime($iteml1->OrderDate)) }}</td>
-                                    <td scope="row" style="text-align: center">{{ $iteml1->Itemcode }}</td>
-                                    <td scope="row">{{ $iteml1->Descripcion }}</td>
-                                    <td scope="row" style="text-align: center">{{ $iteml1->Qty }}</td>
-                                    <td scope="row">{{ $simboloPrecio }} {{ number_format($iteml1->Bonificacion,2) }}</td>
-                                    <td scope="row">{{ $simboloPrecio }} {{ number_format($iteml1->TotalBonificacion,2) }}</td>
-                                </tr>
-                                {{$i2 = $i2 + 1}}
-                                @endforeach  
-                                <!-- Mostrando registros LV2-->
-                                @foreach($queryKinyaLV2Detail as $iteml2)
-                                @if($i2%2==0)
-                                <tr class="gray">
-                                    @else
-                                <tr class="white">
-                                    @endif
-                                    <td scope="row">{{ $iteml2->Associateid }}</td>
-                                    <td scope="row">{{ $iteml2->Nombre }}</td>
-                                    <td scope="row">{{ $iteml2->OrderNum }}</td>
-                                    <td scope="row">  {{ date("d-m-Y", strtotime($iteml2->OrderDate)) }}</td>
-                                    <td scope="row" style="text-align: center">{{ $iteml2->Itemcode }}</td>
-                                    <td scope="row">{{ $iteml2->Descripcion }}</td>
-                                    <td scope="row" style="text-align: center">{{ $iteml2->Qty }}</td>
-                                    <td scope="row">{{ $simboloPrecio }} {{ number_format($iteml2->Bonificacion,2) }}</td>
-                                    <td scope="row">{{ $simboloPrecio }} {{ number_format($iteml2->TotalBonificacion,2) }}</td>
-                                </tr>
-                                {{$i2 = $i2 + 1}}
-                                @endforeach
-                                <tr class="total">
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <th style="font-size: 16px !important;">Total</th>
-                                    <th style="font-size: 16px !important;  color: #D64000 !important; ">{{ $simboloPrecio }}<?php echo $bonoInfTotal ?></th>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <br>
-                    </div>
-                </div>
-            @endif
+
             @if ($PriceKintai != 0)
                 <div class="row col-lg-12">
                     <table  style="width: 100%; border-top:4px dotted #FF8C00;">
@@ -520,6 +406,7 @@
                     </div>
                 </div>
             @endif
+
             <div class="row">
                 <div class="col-11">
                     <br>

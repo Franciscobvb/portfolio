@@ -5,10 +5,14 @@
 
 body{
     font-family: 'Comfortaa', Arial, sans-serif !important;
-    background-image: url('../../img/ViajerosPro/BG.jpg');
+    background-image: url('../../img/puntos_connection/fondo.png');
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: 100% 100%;
+}
+
+.badge{
+    font-family: 'Comfortaa', Arial, sans-serif !important;
 }
 
 .menu{
@@ -105,60 +109,42 @@ svg {
     left: 0;
 }
 
-#navHeadWrapper{
-    background: linear-gradient(0.5deg, #d886f8 0%, #9332a9 100%)
+.requisitos .card {
+    border: none !important;
+    border-radius: 0 !important;
+    cursor: context-menu !important;
+    border-bottom: 1px solid #e9ecef !important;
+    border-radius: 15px !important;
+}
+
+.requisitos .card:hover {
+    border-color: #6156ce !important;
+    color: #6156ce !important;
 }
 
 #servicesWrapper {
     padding: 0 0 0 0;
 }
 
-.current input{
-    font-size: 14px !important;
+.ranktabheadder, .detailtabheadder {
+    background-image: linear-gradient(to right, #59518a 0%, #7d76ac 100%);
+    color: #000 !important;
 }
-
-.anterior{
-    border: 1px solid #000;
-    border-radius: 25px;
-}
-
-.anterior input{
-    font-size: 14px !important;
-    border: 1px solid #000;
-}
-
-.mainPosition{
-    background-image: linear-gradient(135deg, #621a4a 0%, #9434ab 100%);
-}
-
-.table-hover:not(.table-dark) tbody tr td {
-    color: #000;
-}
-
-.table-hover:not(.table-dark) tbody .mainPosition td, .table-hover:not(.table-dark) tbody .mainPosition td[class*="text-"] {
-    color: #fff !important;
-    box-shadow: none;
-}
-
-.table-hover:not(.table-dark) tbody .mainPosition:hover td, .table-hover:not(.table-dark) tbody .mainPosition:hover td[class*="text-"] {
-    color: #fff !important;
-    box-shadow: none;
-}
-
-.page-item.active .page-link {
-    background-color: #661c52 !important;
-    border-color: #661c51 !important;
-    border-radius: 4px;
-}
-
 .table > thead > tr > th {
-    color: #661c51 !important;
+    color: #000 !important;
     font-weight: 600;
 }
 
-ul.pagination li a:hover:not(.active) {
-    background-color: #661c51 !important;
-    color: #fff !important;
+.table-responsive {
+    border-radius: 20px !important;
+}
+
+.table{
+    margin-bottom: 0 !important;
+}
+
+.table-striped tbody tr:nth-of-type(2n+1) {
+    background-color: rgba(0,0,0,.05) !important;
 }
 
 .btnModal{
@@ -167,14 +153,6 @@ ul.pagination li a:hover:not(.active) {
     border: none;
     border-radius: 25px !important;
     font-size: 20px;
-}
-
-.divPremios{
-    background-image: url('../../img/ViajerosPro/premiosbg2.jpg');
-    background-size: contain;
-    border-right: 5px double #8a9594;
-    border-radius: 25px;
-    border-left: 5px double #8a9594;
 }
 
 #chat-circle i {
@@ -208,24 +186,28 @@ ul.pagination li a:hover:not(.active) {
     will-change: box-shadow, transform;
 }
 
-.resumenTab{
-    display: none;
-    width: 100%;
-    color: #000 !important;
+hr {
+    border-top: 3px solid #000 !important;
 }
 
-.resumen{
-    width: 100%;
+.miembros {
+    margin-top: -60px;
+    background-color: #fff;
+    border: 3px solid #000;
+    color: #000;
+    font-size: 20px;
+    cursor: context-menu !important;
 }
 
-.resumenTab .table td, .table th { border-top: 1px solid #f1f3f1; }
-.resumenTab .table-controls>li>a i { color: #d3d3d3; }
+.swal2-popup{
+    border-radius: 50px !important;
+}
 
-@media (max-width: 978px) {
-    .resumenTab{
-        display: block;
-    }
-    .resumen{
-        display: none;
-    }
+.swal2-footer{
+    color: #e95f2b !important;
+}
+
+.statusprs{
+    color: #e95f2b;
+    margin-right: 0 !important;
 }

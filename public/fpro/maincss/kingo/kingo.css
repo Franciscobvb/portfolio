@@ -187,11 +187,13 @@ hr{
 }
 
 .btnranking{
-    padding-left: 35px;
-    padding-right: 35px;
-    margin-top: -40px;
+    padding-left: 45px;
+    padding-right: 45px;
+    font-size: 18px !important;
+    /*margin-top: -40px;*/
     background-color: #f48620;
     border: 3px solid #000;
+    color: #fff;
 }
 
 .downScroll{
