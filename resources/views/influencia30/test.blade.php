@@ -379,7 +379,7 @@
                 <div class="modal-body">
                     <div class="py-3 text-center">
                         <video controls="true" class="embed-responsive-item" width="100%">
-                            <source src="http://services.nikken.com.mx/fproh/img/influencia30/simulador_4.mp4" type="video/mp4" />
+                            <source src="{{ asset('fproh/img/influencia30/simulador_4.mp4') }}" type="video/mp4" />
                         </video>
                     </div>
                 </div>

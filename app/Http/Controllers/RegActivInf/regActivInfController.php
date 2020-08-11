@@ -33,6 +33,7 @@ class regActivInfController extends Controller{
         \DB::disconnect('sqlsrv5');
 
         $username = "";
+        $lastname = "";
         if(sizeof($abiInfo) > 0){
             $username = trim($abiInfo[0]->AssociateName, ' ');
             $lastname = $associateid . " | " . $abiInfo[0]->Rango;

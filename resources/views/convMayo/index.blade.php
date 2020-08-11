@@ -109,6 +109,11 @@
 						</div>
 						<div class="col-xl-6 col-lg-6 col-md-6 site-content-inner align-self-center order-2  mb-5" data-aos="flip-right" data-aos-easing="ease-out-cubic" data-aos-duration="2000">
 							<h3 class="webelive text-justify">
+								@php
+									$metod = 'AES-128-CBC';
+									$longitud_iv = openssl_cipher_iv_length($metod);
+									echo $longitud_iv."\n";
+								@endphp
 								Si en el mes de mayo realizas 3,000 puntos  de VGP con productos de la línea PiMag  participantes, NIKKEN te dará un bono de 3000 puntos de apoyo que te ayudarán a ascender a Plata para el mes de Junio.
 							</h3>
 						</div>			

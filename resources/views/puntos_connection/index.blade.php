@@ -19,7 +19,6 @@
 		<link rel="stylesheet" type="text/css" href="{{ asset('fpro/plugins/sweetalerts/sweetalert.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ asset('fpro/css/ui-kit/custom-sweetalert.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ asset('fpro/css/aos.css') }}">
-		<link rel="stylesheet" type="text/css" href="{{ asset('fpro/maincss/puntos_connection/puntos_connection.css') }}">
 
 		<link rel="stylesheet" type="text/css" href="{{ asset('fpro/plugins/sliders/owlCarousel/css/owl.carousel.min.css') }}"/>
 		<link rel="stylesheet" type="text/css" href="{{ asset('fpro/plugins/sliders/owlCarousel/css/owl.theme.default.min.css') }}"/>
@@ -27,6 +26,7 @@
 		<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@0.1.0/dist/confetti.browser.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="{{ asset('fpro/plugins/charts/chartist/chartist.css') }}"/>
 		<link rel="stylesheet" type="text/css" href="{{ asset('fpro/css/modules/modules-widgets.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ asset('fpro/maincss/puntos_connection/puntos_connection.css') }}">
 	</head>
 	<body>
 		<div id="navHeadWrapper" class="navHeaderWrapper header-image">
@@ -34,7 +34,7 @@
 				<nav class="navbar navbar-expand-lg bg-faded header-nav">
 					<div class="container">
 						<div class="col-xl-4 col-lg-3 col-6 mx-auto ">
-							<img src="http://portfolio.test/fpro/img/logo-black.png" width="70%">
+							<img src="{{ asset('fpro/img/logo-black.png') }}" width="70%">
 						</div>
 
 						<div class="col-6 text-right d-lg-none d-block">
@@ -83,13 +83,14 @@
 										<img src="{{ asset('fpro/img/flags/' . $flag[$abiInfo[0]->Pais ?? 'LAT']) }}" width="40px">
 									</h4>
 									<input type="hidden" id="associateid" readonly value="{{ $associateid ?? 0 }}">
+									<input type="hidden" id="status" readonly value="{{ $getWinners[0]->Estatus ?? 0 }}">
 								</div>
 								<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 site-content-inner align-self-center mr-auto mt-4">
 									<a class="btn btn-classic btn-primary btnModal br-50 col-md-8 mb-2 pt-2 pb-2 confetti-button" href="javascript:void(0)" role="button" data-toggle="modal" data-target=".bd-estatusper-modal-xl">
-										Mis estatus
+										Mi estatus
 									</a>
-									<a class="btn btn-classic btn-primary btnModal br-50 col-md-8 mb-2 pt-2 pb-2 confetti-button" href="javascript:void(0)" role="button" data-toggle="modal" data-target=".bd-rank-modal-xl" hidden>
-										Ranking
+									<a class="btn btn-classic btn-primary btnModal br-50 col-md-8 mb-2 pt-2 pb-2 confetti-button" href="javascript:void(0)" role="button" data-toggle="modal" data-target=".bd-estatusred-modal-xl">
+										Ganadores de mi red
 									</a>
 								</div>
 							</div>
@@ -105,46 +106,87 @@
 					<div class="col-md-12 text-center">
 						<h2 class="section-title mb-2" data-aos="fade-up" data-aos-duration="2000">REQUISITOS</h2>
 					</div>
-					<div class="col-xl-4 col-lg-4 col-md-6 site-content-inner mt-3" data-aos="fade-up" data-aos-duration="1000">
-						<div class="card">
-							<div class="card-body">
-								<p class=""><span class="post-meta-info">3 SEMANAS</span></p>
-								<h5 class="card-title mb-1">VP DE 100</h5>
+					@php
+						$paisAbi = $abiInfo[0]->Pais ?? 'LAT';
+					@endphp
+					@if ($paisAbi == 'PAN' || $paisAbi == 'CRI' || $paisAbi == 'GTM' || $paisAbi == 'SLV')
+						<div class="col-xl-4 col-lg-4 col-md-6 site-content-inner mt-3" data-aos="fade-up" data-aos-duration="2000">
+							<div class="card">
+								<div class="card-body">
+									<p class=""><span class="post-meta-info">5 SEMANAS</span></p>
+									<h5 class="card-title mb-1">100 DE VP</h5>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="col-xl-4 col-lg-4 col-md-6 site-content-inner mt-3" data-aos="fade-up" data-aos-duration="2000">
-						<div class="card">
-							<div class="card-body">
-								<p class=""><span class="post-meta-info">4 SEMANAS</span></p>
-								<h5 class="card-title mb-1">1 KIT DE INFLUENCIA</h5>
+						<div class="col-xl-4 col-lg-4 col-md-6 site-content-inner mt-3" data-aos="fade-up" data-aos-duration="3000">
+							<div class="card">
+								<div class="card-body">
+									<p class=""><span class="post-meta-info">6 SEMANAS</span></p>
+									<h5 class="card-title mb-1">1 KIT DE INFLUENCIA</h5>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="col-xl-4 col-lg-4 col-md-6 site-content-inner mt-3" data-aos="fade-up" data-aos-duration="3000">
-						<div class="card">
-							<div class="card-body">
-								<p class=""><span class="post-meta-info">5 SEMANAS</span></p>
-								<h5 class="card-title mb-1">2 KIT DE INFLUENCIA</h5>
+						<div class="col-xl-4 col-lg-4 col-md-6 site-content-inner mt-3" data-aos="fade-up" data-aos-duration="2000">
+							<div class="card">
+								<div class="card-body">
+									<p class=""><span class="post-meta-info">7 SEMANAS</span></p>
+									<h5 class="card-title mb-1">LOGRO 1 KinYa!</h5>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="col-xl-4 col-lg-4 col-md-6 site-content-inner mt-3" data-aos="fade-up" data-aos-duration="2000">
-						<div class="card">
-							<div class="card-body">
-								<p class=""><span class="post-meta-info">6 SEMANAS</span></p>
-								<h5 class="card-title mb-1">LOGRO KinYa!</h5>
+						<div class="col-xl-4 col-lg-4 col-md-6 site-content-inner mt-3" data-aos="fade-up" data-aos-duration="1000">
+							<div class="card">
+								<div class="card-body">
+									<p class=""><span class="post-meta-info">4 SEMANAS</span></p>
+									<h5 class="card-title mb-1">UNA COMPRA SIN IMPORTAR PUNTOS</h5>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="col-xl-4 col-lg-4 col-md-6 site-content-inner mt-3" data-aos="fade-up" data-aos-duration="3000">
-						<div class="card">
-							<div class="card-body">
-								<p class=""><span class="post-meta-info">7 SEMANAS</span></p>
-								<h5 class="card-title mb-1">3 KIT DE INFLUENCIA</h5>
+						<div class="col-xl-12 text-center mt-4">
+							<img src="{{ asset('fpro/img/puntos_connection/banner.jpg') }}" width="80%">
+						</div>
+					@else
+						<div class="col-xl-4 col-lg-4 col-md-6 site-content-inner mt-3" data-aos="fade-up" data-aos-duration="1000">
+							<div class="card">
+								<div class="card-body">
+									<p class=""><span class="post-meta-info">3 SEMANAS</span></p>
+									<h5 class="card-title mb-1">VP DE 100</h5>
+								</div>
 							</div>
 						</div>
-					</div>
+						<div class="col-xl-4 col-lg-4 col-md-6 site-content-inner mt-3" data-aos="fade-up" data-aos-duration="2000">
+							<div class="card">
+								<div class="card-body">
+									<p class=""><span class="post-meta-info">4 SEMANAS</span></p>
+									<h5 class="card-title mb-1">1 KIT DE INFLUENCIA</h5>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-4 col-lg-4 col-md-6 site-content-inner mt-3" data-aos="fade-up" data-aos-duration="3000">
+							<div class="card">
+								<div class="card-body">
+									<p class=""><span class="post-meta-info">5 SEMANAS</span></p>
+									<h5 class="card-title mb-1">2 KIT DE INFLUENCIA</h5>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-4 col-lg-4 col-md-6 site-content-inner mt-3" data-aos="fade-up" data-aos-duration="2000">
+							<div class="card">
+								<div class="card-body">
+									<p class=""><span class="post-meta-info">6 SEMANAS</span></p>
+									<h5 class="card-title mb-1">LOGRO KinYa!</h5>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-4 col-lg-4 col-md-6 site-content-inner mt-3" data-aos="fade-up" data-aos-duration="3000">
+							<div class="card">
+								<div class="card-body">
+									<p class=""><span class="post-meta-info">7 SEMANAS</span></p>
+									<h5 class="card-title mb-1">3 KIT DE INFLUENCIA</h5>
+								</div>
+							</div>
+						</div>
+					@endif
 				</div>
 			</div>
 		</div>
@@ -155,75 +197,110 @@
 					<div class="col-md-12 text-center mt-5">
 						<h2 class="section-title mb-2" data-aos="fade-up" data-aos-duration="1000">PREMIOS</h2>
 					</div>
-					<div class="col-md-4 text-justify mt-5">
-						<h4 class="section-title mb-2">Participa y obten la posibilidad de obtener estos beneficios, mientras mas vendes, mas ganas.</h4>
+					<div class="col-xl-12 text-center">
+						<span class="badge badge-pill badge-success pill_vp100">VP 100</span>
+						<span class="badge badge-pill badge-success pill_1kitInf">1 KIT DE INFLUENCIA</span>
+						<span class="badge badge-pill badge-success pill_2kitInf">2 KIT DE INFLUENCIA</span>
+						<span class="badge badge-pill badge-success pill_1KinYa">1 KINYA</span>
+						<span class="badge badge-pill badge-success pill_3kitInf">3 KIT DE INFLUENCIA</span>
 					</div>
-					<div class="col-md-4 mb-5">
+					<div class="col-xl-12 mt-3 text-center mb-3">
 						<div class="table-responsive">
-							<table id="FoliosTab" class="table table-striped table-bordered table-hover text-center" >
+							<table class="premiosTab table table-striped table-bordered text-center">
 								<thead>
 									<tr class="text-center ranktabheadder">
-										<th colspan="3">AGOSTO</th>
+										<td colspan="4"></td>
+										<td colspan="5">Puntos Connection</td>
 									</tr>
 									<tr class="text-center ranktabheadder">
-										<th>Semana</th>
-										<th>Desde</th>
-										<th>Hasta</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>1</td>
-										<td>15</td>
-										<td>21</td>
-									</tr>
-									<tr>
-										<td>2</td>
-										<td>22</td>
-										<td>28</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-					<div class="col-md-4 mb-5">
-						<div class="table-responsive">
-							<table id="FoliosTab" class="table table-striped table-bordered table-hover text-center" >
-								<thead>
-									<tr class="text-center ranktabheadder">
-										<th colspan="3">SEPTIEMBRE</th>
-									</tr>
-									<tr class="text-center ranktabheadder">
-										<th>Semana</th>
-										<th>Desde</th>
-										<th>Hasta</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
+										<td>Mes de Beneficio</td>
+										<td>Semana</td>
+										<td>Desde</td>
+										<td>Hasta</td>
 										<td>3</td>
-										<td>29</td>
-										<td>04</td>
-									</tr>
-									<tr>
 										<td>4</td>
-										<td>05</td>
-										<td>11</td>
-									</tr>
-									<tr>
 										<td>5</td>
-										<td>12</td>
-										<td>18</td>
-									</tr>
-									<tr>
 										<td>6</td>
-										<td>19</td>
-										<td>25</td>
+										<td>7</td>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>AGOSTO</td>
+										<td>1</td>
+										<td>15 Ago.</td>
+										<td>21 Ago.</td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td class="_1KinYa"></td>
+										<td class="_3kitInf"></td>
 									</tr>
 									<tr>
+										<td></td>
+										<td>2</td>
+										<td>22 Ago.</td>
+										<td>28 Ago.</td>
+										<td></td>
+										<td class="_1kitInf"></td>
+										<td class="_2kitInf"></td>
+										<td class="_1KinYa"></td>
+										<td class="_3kitInf"></td>
+									</tr>
+									<tr>
+										<td>SEPTIEMBRE</td>
+										<td>3</td>
+										<td>29 Ago.</td>
+										<td>4 Sep.</td>
+										<td class="vp100"></td>
+										<td class="_1kitInf"></td>
+										<td class="_2kitInf"></td>
+										<td class="_1KinYa"></td>
+										<td class="_3kitInf"></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td>4</td>
+										<td>5 Sep.</td>
+										<td>11 Sep.</td>
+										<td class="vp100"></td>
+										<td class="_1kitInf"></td>
+										<td class="_2kitInf"></td>
+										<td class="_1KinYa"></td>
+										<td class="_3kitInf"></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td>5</td>
+										<td>12 Sep.</td>
+										<td>18 Sep.</td>
+										<td class="vp100"></td>
+										<td class="_1kitInf"></td>
+										<td class="_2kitInf"></td>
+										<td class="_1KinYa"></td>
+										<td class="_3kitInf"></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td>6</td>
+										<td>19 Sep.</td>
+										<td>25 Sep.</td>
+										<td></td>
+										<td></td>
+										<td class="_2kitInf"></td>
+										<td class="_1KinYa"></td>
+										<td class="_3kitInf"></td>
+									</tr>
+									<tr>
+										<td></td>
 										<td>7</td>
-										<td>26</td>
-										<td>30</td>
+										<td>26 Sep.</td>
+										<td>30 Sep.</td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td class="_3kitInf"></td>
 									</tr>
 								</tbody>
 							</table>
@@ -232,7 +309,7 @@
 					<div class="col-xl-12 mt-3 text-center">
 						<hr>
 						<button class="btn btn-rounded miembros"  data-aos="fade-up" data-aos-duration="2000">
-							Obnten estos increibles descuentos en repuestos
+							Obtén estos increíbles descuentos en repuestos
 						</button>
 						<div class="partnersSlider owl-carousel owl-theme">
 							<div class="slide-item">
@@ -311,7 +388,7 @@
 			</div>
 		</div>
 
-		<div id="chat">
+		<div id="chat" hidden>
 			<div id="chat-circle" class="btn btn-raised d-lg-block bs-tooltip" data-placement="left" title="Conoce" data-toggle="modal" data-target=".mdl-tutorial">
 				<i class="flaticon-youtube-play-button-line"></i>
 			</div>
@@ -361,7 +438,7 @@
 									Mis puntos
 								</h2>
 							</div>
-							<div class="col-lg-12 mainModalBody" style="z-index: 2">
+							<div class="col-lg-12 mainModalBody mb-5" style="z-index: 2">
 								<div class="row" style="justify-content: space-evenly">
 									<div class="col-lg-12 pb-4">
 										<div class="col-lg-12 pb-4">
@@ -381,31 +458,71 @@
 									<div class="col-lg-12 text-center mb-2">
 										<img src="{{ asset('fpro/img/flags/' . $flag[$abiInfo[0]->Pais ?? 'LAT']) }}" width="40px">
 										<h2 class="mb-3">{{ trim($abiInfo[0]->AssociateName ?? 'NIKKEN', ' ') }}</h2>
-										@if ($getWinners[0]->Estatus ?? 0 != 1 || $getWinners[0]->Estatus ?? 0 != 8)
+										<input type="hidden" id="dateIni" value="{{ $abiInfo[0]->FechaInicio ?? '' }}">
+										<input type="hidden" id="dateFin" value="{{ $abiInfo[0]->FechaFin ?? '' }}">
+										@php
+											$estatus = intval($getWinners[0]->Estatus ?? 0);
+											$alerta = '';
+											$msg = "Aun no has obtenido semanas de descuento en repuestos";
+
+											$fechaInicio = $abiInfo[0]->FechaInicio ?? '0000-00-00';
+											$fechaFin = $abiInfo[0]->FechaFin ?? '0000-00-00';
+											$meses = ['00' => '00', '08' => 'Agosto', '09' => 'Septiembre'];
+											if($fechaInicio == '0' && $fechaFin == '0'){
+												$fechaInicio = '0000-00-00';
+												$fechaFin = '0000-00-00';
+											}
+											$fechaInicio = explode('-', $fechaInicio);
+											$fechaFin = explode('-', $fechaFin);
+										@endphp
+										@if ($estatus == 8 || $estatus == 1)
+											@php
+												$alerta = '';
+												$msg = 'Has ganado el descuento en repuestos a apartir del ' . $fechaInicio[2] . ' de ' . $meses[$fechaInicio[1]] . ' y hasta el dia ' . $fechaFin[2] . ' de ' . $meses[$fechaFin[1]];
+											@endphp
+										@endif
+										@if ($estatus == 7)
+											@php
+												$alerta = '';
+												$msg = 'Semanas de descuento obtenidas: 7, del ' . $fechaInicio[2] . ' de ' . $meses[$fechaInicio[1]] . ' al ' . $fechaFin[2] . ' de ' . $meses[$fechaFin[1]];
+											@endphp
+										@endif
+										@if ($estatus == 6 || $estatus == 5 || $estatus == 4 || $estatus == 3)
+											@php
+												$msg = 'Semanas de descuento obtenidas: ' . $estatus . ', del ' . $fechaInicio[2] . ' de ' . $meses[$fechaInicio[1]] . ' al ' . $fechaFin[2] . ' de ' . $meses[$fechaFin[1]];
+											@endphp
+										@endif
+										@if (intval($estatus) == 3 || intval($estatus) == 4 || intval($estatus) == 5 || intval($estatus) == 6)
 											<span class="flaticon-danger-line mb-3 statusprs" style="font-size: 20px;"></span> <span class="statusprs">Recuerda que puedes obtener mas semanas de descuento.</span>
 										@endif
 									</div>
 									<div class="col-lg-12 text-center mb-2">
 										<hr class="statusprs">
 										<button class="btn btn-rounded miembros statusprs">
-											Semanas de descuento obtenidas: 3, del 29 de Agosto al 29 de Septiembre
+											{{ $msg }}
 										</button>
 									</div>
+									@if ($paisAbi != 'PAN' || $paisAbi != 'CRI' || $paisAbi != 'GTM' || $paisAbi != 'SLV')
+										<div class="col-xl-12 col-lg-12 col-md-12 site-content-inner mt-3 text-center">
+											<span class="flaticon-danger-line mb-3 statusprs" style="font-size: 20px;"></span>
+											<span class="statusprs">* Requisito mínimo de 100 VP</span>
+										</div>
+									@endif
 									<div class="col-xl-4 col-lg-4 col-md-6 site-content-inner mt-3">
 										<div class="card">
 											<div class="card-body">
 												<p class=""><span class="post-meta-info">VP </span><i class="flaticon-chart-2 float-right" style="font-size: 35px;"></i></p>
 												<h5 class="card-title mb-1">
 													{{ number_format($abiInfo[0]->VP ?? '0') }}
-													@if ($abiInfo[0]->VP ?? 0 >= 100)
+													@if (intval($abiInfo[0]->VP ?? 0) >= 100)
 														<span class="badge badge-success badge-pill"><i class="flaticon-single-circle-tick"></i></span>
 													@endif
 												</h5>
 											</div>
 										</div>
 									</div>
-									<div class="col-xl-4 col-lg-4 col-md-6 site-content-inner mt-3">
-										<div class="card">
+									<div class="col-xl-4 col-lg-4 col-md-6 site-content-inner mt-3 text-center">
+										<div class="card text-left">
 											<div class="card-body">
 												<p class=""><span class="post-meta-info">Kits de Influencia </span><i class="flaticon-cart-bag float-right" style="font-size: 35px;"></i></p>
 												<h5 class="card-title mb-1">
@@ -423,14 +540,14 @@
 												<p class=""><span class="post-meta-info">KinYa!</span> <i class="flaticon-users float-right" style="font-size: 35px;"></i></p>
 												<h5 class="card-title mb-1">
 													{{ $abiInfo[0]->KinYa ?? '0' }} 
-													@if ($abiInfo[0]->KinYa >= 1)
+													@if ($abiInfo[0]->KinYa ?? 0 >= 1)
 														<span class="badge badge-success badge-pill"><i class="flaticon-single-circle-tick"></i></span>
 													@endif
 												</h5>
 											</div>
 										</div>
 									</div>
-									<div class="col-xl-4 col-lg-4 col-md-6 site-content-inner mt-3">
+									<div class="col-xl-4 col-lg-4 col-md-6 site-content-inner mt-3 mb-5" hidden>
 										<div class="card">
 											<div class="card-body">
 												<p class=""><span class="post-meta-info">VGP</span> <i class="flaticon-bitcoin-chart float-right" style="font-size: 35px;"></i></p>
@@ -494,13 +611,19 @@
 			</div>
 		</div>
 
-		<div class="modal fade bd-rank-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+		<div class="modal fade bd-estatusred-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-xl" role="document">
 				<div class="modal-content">
 					<div class="modal-body" style="">
 						<div class="row ">
-							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" style="position: absolute; top: 0;z-index: 1;">
-								<path fill="#0099ff" fill-opacity="0.3" d="M0,64L34.3,58.7C68.6,53,137,43,206,42.7C274.3,43,343,53,411,85.3C480,117,549,171,617,192C685.7,213,754,203,823,213.3C891.4,224,960,256,1029,261.3C1097.1,267,1166,245,1234,240C1302.9,235,1371,245,1406,250.7L1440,256L1440,0L1405.7,0C1371.4,0,1303,0,1234,0C1165.7,0,1097,0,1029,0C960,0,891,0,823,0C754.3,0,686,0,617,0C548.6,0,480,0,411,0C342.9,0,274,0,206,0C137.1,0,69,0,34,0L0,0Z"></path>
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" style="position: absolute; top: 0;z-index: 1;transform: rotate(180deg);">
+								<defs>
+									<linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="0%">
+										<stop offset="0%" style="stop-color:rgb(119, 0, 255);stop-opacity:1" />
+										<stop offset="100%" style="stop-color:#58508b;stop-opacity:1" />
+									</linearGradient>
+								</defs>
+								<path fill="url(#grad3)" fill-opacity="0.3" d="M0,0L60,26.7C120,53,240,107,360,122.7C480,139,600,117,720,144C840,171,960,245,1080,277.3C1200,309,1320,299,1380,293.3L1440,288L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
 							</svg>
 							<div class="col-md-12" style="z-index: 2">
 								<button type="button" class="close mainCloseButton" data-dismiss="modal" aria-label="Close">
@@ -509,47 +632,38 @@
 							</div>
 							<div class="col-md-12" style="z-index: 2">
 								<h2 class="text-center mainTitle">
-									Ranking
+									Ganadores de mi red
 								</h2>
 							</div>
-							<div class="col-lg-12 mainModalBody" style="z-index: 2">
-								<div class="row">
-									<div class="col-lg-12 pb-4">
-										<div class="col-lg-12 pb-4">
-											<h6>Fecha de actualizacion: 26 de Junio a las 14:02:13 hora México.</h6>
-										</div>
-									</div>
-									<div class="col-lg-12 text-center mb-2">
-										<img src="http://portfolio.test/fpro/img/flags/mexico.png" width="40px">
-										<h2>BLANCO ORTIZ  PAULA</h2>
-									</div>
-									<div id="servicesWrapper" class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-										<div class="container">
-											<div class="row">
-												<div class="col-xl-12 col-lg-12 col-md-12 site-header-inner mb-5 table-responsive" style="background-color: #ffffffe3">
-													<table id="rankingTab" class="table table-striped table-bordered table-hover text-center" >
-														<thead>
-															<tr class="text-center ranktabheadder">
-																<th>Posición</th>
-																<th>Nombre</th>
-																<th>Rango</th>
-																<th>País</th>
-																<th>VGP Acumulado</th>
-																<th>Meses calificados rango de pago</th>
-																<th># KinYa! Personales</th>
-																<th># KinYa! Frontales</th>
-																<th>Participa por:</th>
-															</tr>
-														</thead>
-													</table>
-												</div>
-											</div>
-										</div>
-									</div>
+							<div class="col-lg-12 mainModalBody mb-5" style="z-index: 2">
+								<div class="col-lg-12 col-md-12 col-sm-12 col-12 mb-5 table-responsive">
+									<table id="genealogy" class="table table-striped table-bordered table-hover text-center" >
+										<thead>
+											<tr class="text-center ranktabheadder">
+												<th>Código</th>
+												<th><p style="width: 200px"></p>Nombre</th>
+												<th>Tipo Asociado</th>
+												<th>Nivel</th>
+												<th>País</th>
+												<th>Rango</th>
+												<th>VP</th>
+												<th>Numero Influencers</th>
+												<th>KinYa!</th>
+												<th>Semanas obtenidas</th>
+												<th>Correo</th>
+											</tr>
+										</thead>
+									</table>
 								</div>
 							</div>
 							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" style="position: absolute;bottom: 0;z-index: 1;">
-								<path fill="#0099ff" fill-opacity="0.3" d="M0,64L34.3,58.7C68.6,53,137,43,206,42.7C274.3,43,343,53,411,85.3C480,117,549,171,617,192C685.7,213,754,203,823,213.3C891.4,224,960,256,1029,261.3C1097.1,267,1166,245,1234,240C1302.9,235,1371,245,1406,250.7L1440,256L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z"></path>
+								<defs>
+									<linearGradient id="grad4" x1="0%" y1="0%" x2="100%" y2="0%">
+										<stop offset="0%" style="stop-color:#58508b;stop-opacity:1" />
+										<stop offset="100%" style="stop-color:rgb(119, 0, 255);stop-opacity:1" />
+									</linearGradient>
+								</defs>
+								<path fill="url(#grad4)" fill-opacity="0.5" d="M0,0L60,26.7C120,53,240,107,360,122.7C480,139,600,117,720,144C840,171,960,245,1080,277.3C1200,309,1320,299,1380,293.3L1440,288L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
 							</svg>
 						</div>
 					</div>
@@ -571,11 +685,11 @@
 	<script src="{{ asset('fpro/mainjs/puntos_connection/puntos_connection.js') }}"></script>
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-171601618-1"></script>
 	<script>
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
 
-	gtag('config', 'UA-171601618-1');
+		gtag('config', 'UA-171601618-1');
 	</script>
 
 </html>

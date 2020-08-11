@@ -8,7 +8,6 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.1/css/mdb.min.css" rel="stylesheet">
         <link rel="icon" type="image/x-icon" href="https://nikkenlatam.com/favicon.ico"/>
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
-        <link href="{{ asset('fpro/assets/css/plugins.css') }}" rel="stylesheet" type="text/css"/>
         <link href="{{ asset('fpro/plugins/charts/c3charts/c3.min.css') }}" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" href="{{ asset('fpro/maincss/ncinf/ncinf.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('fpro/plugins/table/datatable/datatables.css') }}">

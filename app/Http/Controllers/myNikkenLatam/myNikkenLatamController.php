@@ -17,11 +17,12 @@ class myNikkenLatamController extends Controller{
 
     public function getDataGenPers(Request $request){
         $associateid = $request->associateid;
-        $conexion5 = \DB::connection('sqlsrv5');
-            $periodo = Date('Ym');
-            //$genealogy = $conexion5->select("SELECT TOP 10 Associateid, AssociateName FROM ClubKiai WHERE Sponsorid = $associateid AND Periodo = 202002 AND Vp > 100;");
-            $genealogy = $conexion5->select("EXEC Gen_PropositoSaludable $associateid, 1, $periodo;");
-        \DB::disconnect('sqlsrv5');
+        $periodo = Date('Ym');
+
+        $conexion = \DB::connection('LAT_MyNIKKEN');
+            $genealogy = $conexion->select("EXEC Sp_TreePerId $associateid, $periodo, 'ORG';");
+        \DB::disconnect('LAT_MyNIKKEN');
+
         return $genealogy;
     }
 

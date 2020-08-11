@@ -174,7 +174,7 @@ var App = function() {
                     $('.menu-categories li > .collapse').removeClass('eq-animated eq-fadeInUp')
                     mobileFunctions.search();
                     mobileFunctions.activateScroll();
-                    console.log('On Mobile Resize');
+                    //console.log('On Mobile Resize');
                 }
             });
         }
@@ -188,7 +188,7 @@ var App = function() {
                 $('.menu-categories li > .collapse').addClass('eq-animated eq-fadeInUp')
                 desktopFunctions.hideMenu();
                 desktopFunctions.activateScroll();
-                console.log('On Desktop Refresh');
+                //console.log('On Desktop Refresh');
             }
         },
         onResize: function() {
@@ -200,7 +200,7 @@ var App = function() {
                     $('footer .footer-section-1').removeClass('f-close');
                     desktopFunctions.activateScroll();
                     toggleFunction.deactivateScroll();
-                    console.log('On Desktop Resize');
+                    //console.log('On Desktop Resize');
                 }
             });
         }

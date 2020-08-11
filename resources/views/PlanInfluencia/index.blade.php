@@ -20,6 +20,11 @@
 @endsection
 
 @section('Aviso')
+        <div class="alert alert-info" style="text-align: center !important">
+            <a href="javascript:void(0)" class="alert-link fuente" style="text-align: center; font-size: 26px;">
+                Te informamos que el cálculo del bono Kintai se hará hasta el cierre de mes, agradecemos tu comprensión.
+            </a>
+        </div>
     @if($day >= 1 && $day <= 10)
         <div class="alert alert-info">
             <a href="javascript:void(0)" class="alert-link fuente" style="text-align: center; font-size: 16px;">Estamos iniciando el Plan de Influencia 3.0. Considera que en el cambio de rango pueden existir modificaciones</a>
@@ -32,11 +37,39 @@
 @endsection
 
 @section('Total')
+    <style>
+        div.dataTables_wrapper div.dataTables_processing {
+            position: absolute;
+            top: 0 !important;
+            left: 50% !important;
+            width: 200px;
+            margin-left: -100px;
+            margin-top: -26px;
+            text-align: center;
+            padding: 1em 0;
+            background-color: #fff !important;
+            opacity: 1 !important;
+        }
+    </style>
     <div class="container text-center">
         <h3 style="color: #000;">{{ $nombreAbi ?? ' ' }}</h3>
         <h3>Ganancia Total: <label class="amount">{{ $simboloPrecio }}{{ $Total }}</label> </h3>
         <h4 style="color: #000;">MOSTRANDO PERIODO: JUNIO</h4>
-        <button type="button" id="Genealogy" name="detail" class="btn btn-deep-orange waves-effect waves-light">Jugadores de mi grupo personal</button> 
+        <button type="button" id="Genealogy" name="detail" class="btn btn-deep-orange waves-effect waves-light" hidden>
+            Jugadores de mi grupo personal
+        </button>
+        <div class="row" style="max-width: 100%; justify-content: space-evenly">
+            <div class="col-sm-8 col-md-4">
+                <div class="form-group">
+                    <h4>Jugadores de mi red</h4>
+                    <select class="form-control" id="mis_jugadores" onchange="getJugadores(this.value)">
+                        <option value="-" selected disabled>Selecciona...</option>
+                        <option value="1">Jugadores de mi grupo personal</option>
+                        <option value="2">Lideres de mi red</option>
+                    </select>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
 
@@ -185,113 +218,6 @@
     </div>
 
     <!-- BOTON DETALLE (KINYA+)-->
-    <div class="modal fade" id="modalCart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-notify modal-success modal-xl" role="document" >
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="heading simulator" id="myModalLabel" style="font-size: 30px ">Detalles <img src="{{ asset('../img/kinyaplus_white.png') }}" style="height: 50px; width: 150px;"></h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body" style="overflow: auto">
-                    <br>
-                    <label style="color: #D64000"><strong>KINYA+ NIVEL 1</strong></label>
-                    <table class="table table-hover" >
-                        <thead>
-                            <tr style="color: #000">
-                                <th>Cód. Asesor</th> 
-                                <th>Nombre</th>
-                                <th>Línea</th>
-                                <th>Nivel</th>
-                                <th># de Documento</th>
-                                <th>Documento</th>
-                                <th width="100px">Fecha</th>
-                                <th>Item</th>
-                                <th>Descripción</th>
-                                <th>Cantidad</th>
-                                <th>Bonificación</th>
-                                <th>Total Bonificación</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($queryKinyaLV1Detail as $iteml1)
-                                <tr>
-                                    <td scope="row">{{ $iteml1->Associateid }}</td> 
-                                    <td scope="row">{{ $iteml1->Nombre }}</td>
-                                    <td scope="row">{{ $iteml1->pata }}</td>
-                                    <td scope="row">{{ $iteml1->level }}</td>
-                                    <td scope="row">{{ $iteml1->OrderNum }}</td>
-                                    @if($iteml1->TipDoc == "OV")
-                                        <td scope="row">ORDEN DE VENTA</td>
-                                    @elseif($iteml1->TipDoc == "NC")
-                                        <td scope="row">NOTA DE CREDITO</td>
-                                    @endif
-                                    <td scope="row">  {{ date("d-m-Y", strtotime($iteml1->OrderDate)) }}</td>
-                                    <td scope="row">{{ $iteml1->Itemcode }}</td>
-                                    <td scope="row">{{ $iteml1->Descripcion }}</td>
-                                    <td scope="row">{{ $iteml1->Qty }}</td>
-                                    <td scope="row">{{ number_format($iteml1->Bonificacion,2) }}</td>  
-                                    <td scope="row">{{ number_format($iteml1->TotalBonificacion,2) }}</td>          
-                                </tr>
-                            @endforeach 
-                            @if($PriceKinyaPlus == 0)
-                                <div class="alert alert-warning" role="alert" style="text-align: center;">
-                                    "LA INFORMACIÓN SE MOSTRARÁ UNA VEZ ACREDITADO EL KINYA+"
-                                </div>
-                            @endif
-                        </tbody>
-                    </table>
-                    <br>
-                    <label style="color: #D64000"><strong>KINYA+ NIVEL 2</strong></label>
-                    <table class="table table-hover" >
-                        <thead>
-                            <tr style="color: #000">
-                                <th>Cód. Asesor</th>
-                                <th>Nombre</th>
-                                <th>Línea</th>
-                                <th>Nivel</th>
-                                <th># de Documento</th>
-                                <th>Documento</th>
-                                <th width="100px">Fecha</th>
-                                <th>Item</th>
-                                <th>Descripción</th>
-                                <th>Cantidad</th>
-                                <th>Bonificación</th>
-                                <th>Total Bonificación</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($queryKinyaLV2Detail as $iteml2)
-                                <tr>
-                                    <td scope="row">{{ $iteml2->Associateid }}</td>
-                                    <td scope="row">{{ $iteml2->Nombre }}</td>
-                                    <td scope="row">{{ $iteml2->pata }}</td>
-                                    <td scope="row">{{ $iteml2->level }}</td>
-                                    <td scope="row">{{ $iteml2->OrderNum }}</td>
-                                    @if($iteml2->TipDoc == "OV")
-                                        <td scope="row">ORDEN DE VENTA</td>
-                                    @elseif($iteml2->TipDoc == "NC")
-                                        <td scope="row">NOTA DE CREDITO</td>
-                                    @endif
-                                    <td scope="row">  {{ date("d-m-Y", strtotime($iteml2->OrderDate)) }}</td>
-                                    <td scope="row">{{ $iteml2->Itemcode }}</td>
-                                    <td scope="row">{{ $iteml2->Descripcion }}</td>
-                                    <td scope="row">{{ $iteml2->Qty }}</td>
-                                    <td scope="row">{{ number_format($iteml2->Bonificacion,2) }}</td>  
-                                    <td scope="row">{{ number_format($iteml2->TotalBonificacion,2) }}</td>          
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-                <div class="modal-footer">
-                    <label style="color: #000"><strong>Total: {{ $simboloPrecio }}{{ $PriceKinyaPlus }} </strong></label> <button type="button" class="btn btn-success" data-dismiss="modal">Cerrar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div class="modal fade" id="modalKintai" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-notify modal-info modal-xl" role="document" >
             <div class="modal-content">
@@ -388,10 +314,10 @@
 
     <!-- BOTON Genealogy -->
     <div class="modal fade" id="modalGenealogy" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
-        <div class="modal-dialog modal-notify modal-danger modal-lg" role="document" >
+        <div class="modal-dialog modal-notify modal-danger modal-lg" role="document">
             <div class="modal-content" >
-                <div class="modal-header d-flex justify-content-center">
-                    <h4 class="heading simulator" id="myModalLabel">JUGADORES DE MI GRUPO PERSONAL</h4>
+                <div class="modal-header d-flex justify-content-center" style="background-image: linear-gradient(to right, #00a5e0 0%, #484791 100%) !important;">
+                    <h4 class="heading simulator playersModal" id="myModalLabel">JUGADORES DE MI GRUPO PERSONAL</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -408,21 +334,36 @@
                                 <th style="color: #000">Correo</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            @foreach($queryGenealogy as $itemgenealogy)
-                                <tr>
-                                    <th scope="row">{{ $itemgenealogy->sponsorid }}</th>
-                                    <th scope="row">{{ $itemgenealogy->associateid }}</th>
-                                    <th scope="row">{{ $itemgenealogy->Name }}</th>
-                                    <th scope="row">{{ $itemgenealogy->level }}</th>
-                                    <th scope="row" style="text-align: center;">{{ $itemgenealogy->QTY }}</th>
-                                    <th scope="row">{{ $itemgenealogy->e_mail }}</th>
-                                </tr>
-                            @endforeach 
-                            <div class="alert alert-warning" role="alert" style="text-align: center;" hidden>
-                                "HAZ TÚ KINYA PARA VER A TUS JUGADORES QUE HAN ADQUIRIDO 1 Ó 2 ARTICULOS."
-                            </div>
-                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger br-50" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalLideres" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+        <div class="modal-dialog modal-notify modal-danger modal-lg" role="document">
+            <div class="modal-content" >
+                <div class="modal-header d-flex justify-content-center" style="background-image: linear-gradient(to right, #00a5e0 0%, #484791 100%) !important;">
+                    <h4 class="heading simulator playersModal" id="myModalLabel">LIDERES DE MI RED</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="overflow: auto">
+                    <table class="table table-hover" id="jugadoresRedLideres">
+                        <thead>
+                            <tr>
+                                <th style="color: #000">Patrocinador</th>
+                                <th style="color: #000">Cód. Asesor</th>
+                                <th style="color: #000">Nombre</th>
+                                <th style="color: #000">Nivel </th>
+                                <th style="color: #000">Cantidad</th>
+                                <th style="color: #000">Correo</th>
+                            </tr>
+                        </thead>
                     </table>
                 </div>
                 <div class="modal-footer">
@@ -434,6 +375,26 @@
 @endsection
 
 @section('Update')
+    <div class="alert alert-warning" style="text-align: center">
+        <a href="javascript:void(0)" class="alert-link"><i class="fas fa-wallet"></i> Estados de Cuenta</a>
+    </div>
+    <div class="row" style="max-width: 100%;">
+        <div class="col-sm-2 col-md-4"></div>
+        <div class="col-sm-8 col-md-4">
+            <div class="form-group">
+                <label for="period">Mes de consulta</label>
+                    <select class="form-control" id="period" onchange="getEdoCta(this.value)">
+                    <option value="-" selected disabled>Selecciona...</option>
+                    <option value="Junio">Junio 2020</option>
+                    <option value="Mayo">Mayo 2020</option>
+                    <option value="Abril">Abril 2020</option>
+                    <option value="Marzo">Marzo 2020</option>
+                    <option value="Febrero">Febrero 2020</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <hr style="border-bottom: 3px dotted #3B5BD4">
     <div class="notas fuente" style="font-size: 16px;"> 
         <h4 style="text-align: center;"><strong>NOTAS IMPORTANTES</strong></h4>
         <br>

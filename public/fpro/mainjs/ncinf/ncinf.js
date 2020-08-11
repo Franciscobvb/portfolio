@@ -652,11 +652,11 @@ function pie_short_influencia() {
                         extend: 'excel',
                         title: 'Influencia 3.0!',
                         className: 'btn btn-default btn-rounded btn-sm mb-4 btn-influencia-180 br-50',
-                        text:"<img src='http://services.nikken.com.mx/retos/img/excel.png' width='15px'></img> Exportar a Excel",
+                        text:"<img src='https://services.nikken.com.mx/retos/img/excel.png' width='15px'></img> Exportar a Excel",
                     }]
                 },
                 language: {
-                    url: "http://services.nikken.com.mx/fproh/mainjs/regactivinf/Spanish.json",
+                    url: "https://services.nikken.com.mx/fproh/mainjs/regactivinf/Spanish.json",
                     info: "Mostrando paguina _PAGE_ a _PAGES_"
                 },
                 responsive: true
@@ -812,11 +812,11 @@ $("#detailKintai").DataTable({
             extend: 'excel',
             title: 'Kintai',
             className: 'btn btn-default btn-rounded btn-sm mb-4 aqua-gradient br-50',
-            text:"<img src='http://services.nikken.com.mx/retos/img/excel.png' width='15px'></img> Exportar a Excel",
+            text:"<img src='https://services.nikken.com.mx/retos/img/excel.png' width='15px'></img> Exportar a Excel",
         }]
     },
     language: {
-        url: "http://services.nikken.com.mx/fproh/mainjs/regactivinf/Spanish.json",
+        url: "https://services.nikken.com.mx/fproh/mainjs/regactivinf/Spanish.json",
         info: "Mostrando paguina _PAGE_ a _PAGES_"
     },
     responsive: true
@@ -829,28 +829,11 @@ $("#tabDetailKinya").DataTable({
             extend: 'excel',
             title: 'KinYa!',
             className: 'btn btn-default btn-rounded btn-sm mb-4 btn-influencia-180 br-50',
-            text:"<img src='http://services.nikken.com.mx/retos/img/excel.png' width='15px'></img> Exportar a Excel",
+            text:"<img src='https://services.nikken.com.mx/retos/img/excel.png' width='15px'></img> Exportar a Excel",
         }]
     },
     language: {
-        url: "http://services.nikken.com.mx/fproh/mainjs/regactivinf/Spanish.json",
-        info: "Mostrando paguina _PAGE_ a _PAGES_"
-    },
-    responsive: true
-});
-
-$("#jugadoresRed").DataTable({
-    dom: '<"row"<"col-md-12"<"row"<"col-md-6"B><"col-md-6"f> > ><"col-md-12"rt> <"col-md-12"<"row"<"col-md-5 mb-md-0 mb-5"i><"col-md-7"p>>> >',
-    buttons: {
-        buttons: [{ 
-            extend: 'excel',
-            title: 'Jugadores de mi Red',
-            className: 'btn btn-default btn-rounded btn-sm mb-4 btn-influencia-180 br-50',
-            text:"<img src='http://services.nikken.com.mx/retos/img/excel.png' width='15px'></img> Exportar a Excel",
-        }]
-    },
-    language: {
-        url: "http://services.nikken.com.mx/fproh/mainjs/regactivinf/Spanish.json",
+        url: "https://services.nikken.com.mx/fproh/mainjs/regactivinf/Spanish.json",
         info: "Mostrando paguina _PAGE_ a _PAGES_"
     },
     responsive: true
@@ -866,7 +849,7 @@ continuar.on("click", function() {
     document.getElementById("exponente").textContent = contador;
 });
 
-function reset() {
+function reset(){
     document.getElementById("amount").innerText = '$0';
 }
 
@@ -882,4 +865,75 @@ function getEdoCta(periodo){
     var associateid = $("#associateid").val();
     window.open("/InfContGetPDF?associateid=" + associateid + "&periodo=" + periodo, "width=500,height=300,scrollbars=NO");
     $("#period").val('-');
+}
+
+function getJugadores(type){
+    $("#mis_jugadores").val('-');
+    if(type == 1){
+        $("#modalGenealogy").modal('toggle');
+        loadDataModalGenealogy();
+    }
+    else if(type == 2){
+        $("#modalLideres").modal('toggle');
+        loadDataModalLeaders();
+    }
+}
+
+function loadDataModalGenealogy(){
+    $("#jugadoresRed").DataTable({
+        destroy: true,
+        ajax: '/ctrinfGetGen?abi=' + $("#associateid").val(),
+        dom: '<"row"<"col-md-12"<"row"<"col-md-6"B><"col-md-6"f> > ><"col-md-12"rt> <"col-md-12"<"row"<"col-md-5 mb-md-0 mb-5"i><"col-md-7"p>>> >',
+        buttons: {
+            buttons: [{ 
+                extend: 'excel',
+                title: 'Jugadores de mi Red',
+                className: 'btn btn-default btn-rounded btn-sm mb-4 btn-influencia-180 br-50',
+                text:"<img src='https://services.nikken.com.mx/retos/img/excel.png' width='15px'></img> Exportar a Excel",
+            }]
+        },
+        columns: [
+            { 'data': 'sponsorid', className: 'text-center ' },
+            { 'data': 'associateid', className: 'text-center ' },
+            { 'data': 'Name', className: 'text-center ' },
+            { 'data': 'level', className: 'text-center ' },
+            { 'data': 'QTY', className: 'text-center ' },
+            { 'data': 'e_mail', className: 'text-center ' },
+        ],
+        language: {
+            url: "https://services.nikken.com.mx/fproh/mainjs/regactivinf/Spanish.json",
+            info: "Mostrando paguina _PAGE_ a _PAGES_"
+        },
+        responsive: true
+    });
+}
+
+function loadDataModalLeaders(){
+    $("#jugadoresRedLideres").DataTable({
+        destroy: true,
+        ajax: '/ctrinfGetLeaders?abi=' + $("#associateid").val(),
+        dom: '<"row"<"col-md-12"<"row"<"col-md-6"B><"col-md-6"f> > ><"col-md-12"rt> <"col-md-12"<"row"<"col-md-5 mb-md-0 mb-5"i><"col-md-7"p>>> >',
+        buttons: {
+            buttons: [{ 
+                extend: 'excel',
+                title: 'Jugadores de mi Red',
+                className: 'btn btn-default btn-rounded btn-sm mb-4 btn-influencia-180 br-50',
+                text:"<img src='https://services.nikken.com.mx/retos/img/excel.png' width='15px'></img> Exportar a Excel",
+            }]
+        },
+        columns: [
+            { 'data': 'Sponsor_id', },
+            { 'data': 'associateid', },
+            { 'data': 'AssociateName', },
+            { 'data': 'Level', },
+            { 'data': 'Qty', },
+            { 'data': 'Email', },
+        ],
+        processing: true,
+        language: {
+            url: "https://services.nikken.com.mx/fproh/mainjs/regactivinf/Spanish.json",
+            info: "Mostrando paguina _PAGE_ a _PAGES_"
+        },
+        responsive: true
+    });
 }

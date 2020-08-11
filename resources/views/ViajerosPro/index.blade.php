@@ -291,7 +291,7 @@
 						<div class="modal-body">
 							<div class="py-3 text-center">
 								<video controls="true" class="embed-responsive-item" width="100%">
-									<source src="http://services.nikken.com.mx/fpro/img/ViajerosPro/vPro.mp4" type="video/mp4" />
+									<source src="https://services.nikken.com.mx/fpro/img/ViajerosPro/vPro.mp4" type="video/mp4" />
 								</video>
 							</div>
 						</div>
@@ -361,7 +361,7 @@
 																	<td colspan="8"></td>
 																	<td>
 																		Total: {{ $totalsKinya[0]->totalKinya }}
-																		@if ($totalsKinya[0]->totalKinya >= 1)
+																		@if ($totalsKinya[0]->totalKinya >= 6)
 																			<span class="badge badge-success badge-pill"><i class="flaticon-single-circle-tick"></i> Cumple</span>
 																		@else
 																			<span class="badge badge-danger badge-pill"><i class="flaticon-close"></i> No cumple</span>
@@ -440,7 +440,18 @@
 																<th>Rango</th>
 																<th>País</th>
 																<th>VGP Acumulado</th>
-																<th>Meses calificados rango de pago</th>
+																<th>
+																	@php
+																		$periodos = ['202001'=>'Enero', '202002'=>'Febrero', '202003'=>'Marzo', '202004'=>'Abril', '202005'=>'Mayo', '202006'=>'Junio', '202007'=>'Julio', '202008'=>'Agosto', '202009'=>'Septiembre', '202010'=>'Octubre', '202011'=>'Noviembre', '202012'=>'Diciembre'];
+																		if(Date('d') >= 14){
+																			$period = Date('Ym') - 1;
+																		}
+																		else{
+																			$period = Date('Ym') - 2;
+																		}
+																	@endphp
+																	Meses calificados rango de pago <br> (Enero - {{ $periodos[$period] }})
+																</th>
 																<th># KinYa! Personales</th>
 																<th># KinYa! Frontales</th>
 																<th>Participa por:</th>

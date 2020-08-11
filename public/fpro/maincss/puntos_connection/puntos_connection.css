@@ -127,8 +127,8 @@ svg {
 }
 
 .ranktabheadder, .detailtabheadder {
-    background-image: linear-gradient(to right, #59518a 0%, #7d76ac 100%);
-    color: #000 !important;
+    background-image: linear-gradient(to right, #9a418f 0%, #804fbf 100%) !important;
+    color: #fff !important;
 }
 .table > thead > tr > th {
     color: #000 !important;
@@ -210,4 +210,84 @@ hr {
 .statusprs{
     color: #e95f2b;
     margin-right: 0 !important;
+}
+
+.premiosTab tbody tr:nth-of-type(2n+1) {
+    background-color: #6b5289 !important;
+    color: #fff !important;
+}
+
+.premiosTab tbody tr:nth-of-type(2n+2) {
+    background-image: linear-gradient(to right, #9a418f 0%, #804fbf 100%) !important;
+    color: #fff !important;
+}
+
+.vp100{
+    background-color: #ffed00 !important;
+    border: 1px solid #ffed00 !important;
+    padding: 0 !important;
+}
+
+.pill_vp100{
+    font-size: 12px !important;
+    background-color: #ffed00 !important;
+    padding: 10px !important;
+    color: #000 !important;
+    border: 1px solid #000 !important;
+}
+
+._1kitInf{
+    background-color: #ffc000 !important;
+    border: 1px solid #ffc000 !important;
+    padding: 0 !important;
+}
+
+.pill_1kitInf{
+    font-size: 12px !important;
+    background-color: #ffc000 !important;
+    padding: 10px !important;
+    color: #000 !important;
+    border: 1px solid #000 !important;
+}
+
+._2kitInf{
+    background-color: #a3195b !important;
+    border: 1px solid #a3195b !important;
+    padding: 0 !important;
+}
+
+.pill_2kitInf{
+    font-size: 12px !important;
+    background-color: #a3195b !important;
+    padding: 10px !important;
+    color: #fff !important;
+    border: 1px solid #000 !important;
+}
+
+._1KinYa{
+    background-color: #36a9e1 !important;
+    border: 1px solid #36a9e1 !important;
+    padding: 0 !important;
+}
+
+.pill_1KinYa{
+    font-size: 12px !important;
+    background-color: #36a9e1 !important;
+    padding: 10px !important;
+    color: #000 !important;
+    border: 1px solid #000 !important;
+}
+
+._3kitInf{
+    background-color: #662483 !important;
+    border: 1px solid #662483 !important;
+    padding: 0 !important;
+}
+
+.pill_3kitInf{
+    font-size: 12px !important;
+    background-color: #662483 !important;
+    padding: 10px !important;
+    color: #fff !important;
+    border: 1px solid #000 !important;
 }

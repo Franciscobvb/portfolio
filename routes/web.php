@@ -78,8 +78,9 @@ Route::get('/simInfPdfViewTest', 'influencia30\influencia30ControllerTest@simInf
 /*=== Controlador Plan de Influencia ===*/
 Route::get('/PlanInfluencia/{associateid}','PlanInfluencia\nikkenController@nikkenChallenge');
 Route::get('/getInfoInfluencia', 'PlanInfluencia\nikkenController@getInfoInfluencia');
-route::get('testEdoCuenta', 'PlanInfluencia\nikkenController@testEdoCuenta');
 Route::get('InfContGetPDF', 'PlanInfluencia\nikkenController@printPDF');
+Route::get('ctrinfGetGen', 'PlanInfluencia\nikkenController@ctrinfGetGen');
+Route::get('ctrinfGetLeaders', 'PlanInfluencia\nikkenController@ctrinfGetLeaders');
 
 /*=== Kingo ===*/
 Route::get('pimag_connection/{associateid}', 'Kingo\KingoController@index');
@@ -97,3 +98,17 @@ Route::get('vpGetRank', 'ViajerosPro\ViajerosProController@vpGetRank');
 
 /*=== Campaña de repuestos ===*/
 Route::get('puntos_connection/{associateid}', 'puntos_connection\puntos_connectionController@index');
+Route::get('pmkReportPuntos_connection', 'puntos_connection\puntos_connectionController@pmkReport');
+Route::get('ptsConnectGenealogy', 'puntos_connection\puntos_connectionController@ptsConnectGenealogy');
+
+/*=== Back Office My Nikken ==*/
+Route::get('loginbf', 'BackOfficeMyNikken\BackOfficeMyNikkenController@login');
+Route::get('homebf', 'BackOfficeMyNikken\BackOfficeMyNikkenController@homebf');
+
+/*=== Calculadora ===*/
+Route::get('calculadoraNikken', 'CalculadoraNK\CalculadoraNkController@calculadoraNikken');
+Route::get('calcGetProducts', 'CalculadoraNK\CalculadoraNkController@calcGetProducts');
+Route::get('calcGetBonos', 'CalculadoraNK\CalculadoraNkController@calcGetBonos');
+
+/*=== Mantenimiento ===*/
+Route::get('mantenimiento', 'puntos_connection\puntos_connectionController@mantenimiento');

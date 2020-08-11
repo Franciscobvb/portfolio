@@ -51,7 +51,7 @@ $("#mainPts").dataTable({
             { 
                 extend: 'excel', 
                 className: 'btn btn-fill btn-fill-dark btn-rounded mb-4 mr-3 btnExcel', 
-                text:"<img src='http://services.nikken.com.mx/retos/img/excel.png' width='15px'></img> Exportar a Excel",
+                text:"<img src='https://services.nikken.com.mx/retos/img/excel.png' width='15px'></img> Exportar a Excel",
             },
         ]
     },
